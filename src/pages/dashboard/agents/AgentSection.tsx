@@ -1,6 +1,5 @@
 import AgentsResponse from '@/components/dashboard/agentSection/AgentsResponse';
 import ChatInput from '@/components/dashboard/chatSection/ChatInput';
-import ChatResponse from '@/components/dashboard/chatSection/ChatResponse';
 import { Modelbar } from '@/components/shared/model-bar'
 import { AI_AGENT_MODELS, ModelConfig } from '@/constants/aiModelData'
 import { useState } from 'react';
@@ -15,7 +14,7 @@ interface IContext{
 
 
 export default function AgentSection() {
-  const {activeHistory, setActiveHistory,reqChatGenerate, setReqChatGenerate} = useOutletContext<IContext>();
+  const {setActiveHistory,reqChatGenerate, setReqChatGenerate} = useOutletContext<IContext>();
     const [selectedModel, setSelectedModel] = useState<ModelConfig>(AI_AGENT_MODELS[0]);
     const [activeVersion, setActiveVersion] = useState<string>(
       AI_AGENT_MODELS[0].versions?.[0] || ""

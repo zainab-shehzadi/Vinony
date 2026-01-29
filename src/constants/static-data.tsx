@@ -1,5 +1,5 @@
 import { UserRound } from "lucide-react";
-import { Icons, IconProps } from "./aiModelData";
+import { Icons } from "./aiModelData";
 interface ChatMessage {
   id: number;
   role: "user" | "assistant";
