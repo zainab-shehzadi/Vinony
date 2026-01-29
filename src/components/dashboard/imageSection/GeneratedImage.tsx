@@ -16,7 +16,7 @@ export default function GeneratedImage() {
     <>
       <div className={`w-full px-4 overflow-y-auto`}>
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-semibold text-primaryDark">
+          <h3 className="text-xl font-semibold text-foreground">
             Generated Images
           </h3>
           <p className="text-[16px] font-medium text-accent">
@@ -27,7 +27,7 @@ export default function GeneratedImage() {
           {SoraImage.map((image, index) => (
             <div
               key={index}
-              className="relative group aspect-square rounded-2xl overflow-hidden bg-slate-100"
+              className="relative group aspect-square rounded-2xl overflow-hidden border border-border"
             >
               <img
                 src={image}

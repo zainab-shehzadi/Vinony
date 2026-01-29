@@ -21,7 +21,11 @@ type Props = {
   content?: ModelsShowcaseContent;
   onCtaClick?: () => void;
   className?: string;
+
+  /** ✅ right-side image for light mode */
   imageSrc?: string;
+
+  /** ✅ right-side image for dark mode */
   darkImageSrc?: string;
 };
 

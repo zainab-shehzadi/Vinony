@@ -107,12 +107,12 @@ export default function SignUp() {
               onCheckedChange={(v) => setValue("acceptTerms", Boolean(v))}
               className="h-5 w-5 shrink-0 mt-[8px]"
             />
-            <Label htmlFor="acceptTerms" className="text-sm md:text-baseleading-5">
+            <Label htmlFor="acceptTerms" className="text-sm md:text-base text-foreground leading-5">
               By Creating an Account, I accept the{" "}
               <a className="auth-link text-primary" href="/terms-condition">
                 Terms and Conditions
               </a>{" "}
-              and agree with{" "} text-foreground 
+              and agree with{" "}
               <a className="auth-link text-primary" href="/privacy-policy">
                 Privacy Policies
               </a>

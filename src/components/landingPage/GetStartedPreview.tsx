@@ -35,7 +35,7 @@ export default function GetStartedPreview({
       </div>
 
       {/* Preview */}
-      <div className=" lg:px-20 dark:px-0 flex justify-center mt-4 lg:mt-6">
+      <div className="px-2 md:px-10 lg:px-20 dark:px-0 flex justify-center mt-6">
         <img
           key={src}
           src={src}

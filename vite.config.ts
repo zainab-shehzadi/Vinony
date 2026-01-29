@@ -17,7 +17,7 @@ export default defineConfig({
     setupFiles: "./src/__tests__/setup.ts",
   },
 });
-// /// <reference types="vitest" />
+// / <reference types="vitest" />
 // import { defineConfig, splitVendorChunkPlugin } from "vite";
 // import react from "@vitejs/plugin-react";
 // import { visualizer } from "rollup-plugin-visualizer";

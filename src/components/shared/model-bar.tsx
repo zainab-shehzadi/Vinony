@@ -48,11 +48,11 @@ export function Modelbar({
                   setSelectedModel(model);
                   if (model.versions) setActiveVersion(model.versions[0]);
                 }}
-                className={`flex items-center gap-2 px-4 md:px-10 py-2.5 rounded-[14px] text-[16px]  transition-all duration-300 border flex-shrink-0 whitespace-nowrap outline-none
-                ${isActive ? "text-white btn-gradient shadow-[inset_0px_4px_10px_rgba(0,0,0,0.4)] font-bold" : "bg-white text-primaryDark hover:bg-gray-50 font-normal"}`}
+                className={`flex items-center gap-2 px-4 md:px-10 py-2.5 rounded-[14px] text-[16px] transition-all duration-300 border border-border flex-shrink-0 whitespace-nowrap outline-none
+                ${isActive ? "text-white btn-gradient shadow-[inset_0px_4px_10px_rgba(0,0,0,0.4)] font-bold" : "bg-background text-foreground font-normal"}`}
               >
                 <span
-                  className={`flex-shrink-0 ${isActive ? "brightness-0 invert" : ""}`}
+                  className={`flex-shrink-0 ${isActive ? "" : ""}`}
                 >
                   {model.icon}
                 </span>
@@ -73,13 +73,13 @@ export function Modelbar({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="start"
-                  className="rounded-xl p-1 min-w-[150px]"
+                  className="rounded-xl p-1 min-w-[150px] border border-border"
                 >
                   {model.versions?.map((v) => (
                    <>
                      <DropdownMenuItem
                       key={v}
-                      className="rounded-lg cursor-pointer focus:bg-grey-50 focus:text-textMuted"
+                      className="rounded-lg cursor-pointer focus:bg-grey-50 focus:text-accent"
                       onClick={() => {
                         setSelectedModel(model);
                         setActiveVersion(v);
@@ -87,7 +87,7 @@ export function Modelbar({
                     >
                       {model.baseLabel} {v}
                     </DropdownMenuItem>
-                    <hr />
+                    <hr className="border border-border"/>
                    </>
                   ))}
                 </DropdownMenuContent>

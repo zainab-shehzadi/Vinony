@@ -43,7 +43,7 @@ export default function MobileDrawer({
 
       <aside
         className={cn(
-          "fixed right-0 top-0 z-50 h-full w-[82%] max-w-[360px] bg-[#F1E4FF] dark:bg-background shadow-xl transition-transform duration-300",
+          "fixed right-0 top-0 z-50 h-full w-[82%] max-w-[360px] bg-[#F1E4FF] shadow-xl transition-transform duration-300",
           open ? "translate-x-0" : "translate-x-full"
         )}
         role="dialog"
@@ -80,7 +80,7 @@ export default function MobileDrawer({
                       "flex items-center justify-between rounded-xl px-3 py-3 text-lg font-medium transition",
                       isActive
                         ? "bg-primary/15 text-primary ring-1 ring-primary/30"
-                        : "text-black dark:text-primary/80 hover:bg-white/60"
+                        : "text-black hover:bg-white/60"
                     )}
                   >
                     <span>{item.label}</span>

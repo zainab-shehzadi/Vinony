@@ -69,7 +69,7 @@ export default function ModelsMarquee({
 
     return (
         <section className={cn("w-full bg-white dark:bg-background", className)}>
-            <div className=" pt-16 md:pt-20 xl:pt-48">
+            <div className=" pt-16 md:pt-32 xl:pt-48">
 
                 <SectionHeading
                     eyebrow="VINONY UNLOCKS THE POTENTIAL Ai"

@@ -24,6 +24,7 @@ export default function GuaranteeStrip() {
               key={item.id}
               className={cn(
                 "text-center",
+                // ✅ only on md: make 3rd item centered on its own row
                 idx === 2 && "md:col-span-2 md:mx-auto md:max-w-[420px] lg:col-span-1 lg:mx-0 lg:max-w-none"
               )}
             >
