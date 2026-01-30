@@ -5,6 +5,7 @@ type Props = {
   title?: string;
   providers?: AiProvider[];
   className?: string;
+  /** seconds for one full loop */
   durationSec?: number;
 };
 
@@ -77,7 +78,7 @@ export default function LeadingAiProviders({
 
   return (
     <section className={["w-full", className ?? ""].join(" ")}>
-      <div className="mt-6 lg:mt-0">
+      <div>
         <h3 className="text-center text-xl md:text-[32px] font-semibold dark:text-primary">
           {title}
         </h3>
@@ -88,20 +89,20 @@ export default function LeadingAiProviders({
               <ProvidersRow providers={providers} />
             </div>
           )) || (
-              <>
-                <div className="relative overflow-hidden">
-                  <div
-                    className="marquee-track flex w-max items-center"
-                    style={{ ["--dur" as any]: `${durationSec}s` }}
-                  >
-                    <ProvidersRow providers={providers} />
-                    <span className="mx-6" aria-hidden="true" />
-                    <SparkleDivider />
-                    <ProvidersRow providers={providers} />
-                  </div>
+            <>
+              <div className="relative overflow-hidden">
+                <div
+                  className="marquee-track flex w-max items-center"
+                  style={{ ["--dur" as any]: `${durationSec}s` }}
+                >
+                  <ProvidersRow providers={providers} />
+                  <span className="mx-6" aria-hidden="true" />
+                  <SparkleDivider /> 
+                  <ProvidersRow providers={providers} />
                 </div>
+              </div>
 
-                <style>{`
+        <style>{`
   @keyframes marquee {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
@@ -117,8 +118,8 @@ export default function LeadingAiProviders({
     .marquee-track:hover { animation-play-state: paused; }
   }
 `}</style>
-              </>
-            )}
+            </>
+          )}
         </div>
       </div>
     </section>

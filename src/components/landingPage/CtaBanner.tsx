@@ -32,17 +32,17 @@ export default function CtaBanner({
           draggable={false}
           loading="lazy"
           className={[
-            "absolute inset-0 h-full w-full object-cover",
-            "transition-transform duration-300 will-change-transform",
+            "absolute inset-0 h-full w-full",
+            "object-cover", // base
             resolved === "dark"
-              ? "scale-[1.08] md:scale-[1.12] origin-center object-[50%_45%]"
-              : "scale-100 object-center",
+              ? "scale-[1.25] md:scale-[1.35] origin-center object-center"
+              : "scale-100",
           ].join(" ")}
         />
         {/* Content */}
         <div className="relative flex min-h-[160px] sm:min-h-[190px] md:min-h-[220px] items-center justify-center py-6 md:py-10 text-center">
           <div className="max-w-3xl">
-            <h3 className="md:mt-6 text-xl md:text-4xl font-extrabold tracking-tight text-white">
+            <h3 className="mt-6 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
               {content.title}
             </h3>
 

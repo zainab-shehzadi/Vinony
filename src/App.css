@@ -9,9 +9,11 @@
 @layer components {
   .btn-gradient {
     box-shadow: none;
-    background: linear-gradient(90deg,
-        var(--btn-grad-from) 0%,
-        var(--btn-grad-to) 100%);
+    background: linear-gradient(
+      90deg,
+      var(--btn-grad-from) 0%,
+      var(--btn-grad-to) 100%
+    );
   }
 .text-gradient {
   background: linear-gradient(
@@ -34,9 +36,11 @@
 
   .auth-primary-btn {
     @apply w-full rounded-xl text-white;
-    background: linear-gradient(90deg,
-        var(--btn-grad-from) 0%,
-        var(--btn-grad-to) 100%);
+    background: linear-gradient(
+      90deg,
+      var(--btn-grad-from) 0%,
+      var(--btn-grad-to) 100%
+    );
   }
 
   .auth-primary-btn:hover {
@@ -94,6 +98,7 @@
 
     --card: 0 0% 100%;
     --card-foreground: 225 14% 15%;
+    --card-soft: 267 65% 92%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 225 14% 15%;
@@ -104,6 +109,7 @@
     /* ≈ #F1E4FF */
     --secondary: 204 89% 56%;
     --secondary-foreground: 0 0% 100%;
+    --secondary-bg: 0 0% 96%;
 
     --muted: 0 0% 96.1%;
     --muted-foreground: 220 7% 46%;
@@ -115,13 +121,14 @@
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
+    --input: 210 40% 98%;
+    /* --input: 0 0% 89.8%; */
     --ring: 270 100% 80%;
 
     --radius: 0.5rem;
 
-    --btn-grad-from: #805AF5;
-    --btn-grad-to: #CD99FF;
+    --btn-grad-from: #805af5;
+    --btn-grad-to: #cd99ff;
   }
 
   .dark {
@@ -130,6 +137,7 @@
 
     --card: 240 6% 10%;
     --card-foreground: 0 0% 98%;
+    --card-soft: 267 30% 15%;
 
     --popover: 240 6% 10%;
     --popover-foreground: 0 0% 98%;
@@ -139,6 +147,7 @@
     --primary-soft: 255 30% 18%;
     --secondary: 204 89% 56%;
     --secondary-foreground: 0 0% 100%;
+    --secondary-bg: 240 5% 12%;
 
     --muted: 240 4% 16%;
     --muted-foreground: 220 7% 70%;
@@ -147,11 +156,12 @@
     --accent-foreground: 240 6% 10%;
 
     --border: 240 4% 22%;
-    --input: 240 4% 22%;
+    --input: 222 15% 16%;
+    /* --input: 240 4% 22%; */
     --ring: 270 100% 80%;
 
-    --btn-grad-from: #805AF5;
-    --btn-grad-to: #CD99FF;
+    --btn-grad-from: #805af5;
+    --btn-grad-to: #cd99ff;
   }
 
   /* ✅ Global page colors */

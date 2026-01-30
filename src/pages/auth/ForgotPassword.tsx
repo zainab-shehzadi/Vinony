@@ -2,9 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import AuthShell from "@/components/auth/AuthShell";
 import AuthCard from "@/components/auth/AuthCard";
-
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -59,7 +59,7 @@ export default function ForgotPassword() {
           </Button>
 
 
-          <div className="text-sm md:text-lg text-[#81878C] dark:text-foreground  space-y-1 md:py-2">
+          <div className="text-sm md:text-lg text-[#81878C] space-y-1 md:py-2">
             <div>
               Already have account?{" "}
               <Link to="/login" className="auth-link text-secondary">
@@ -75,7 +75,7 @@ export default function ForgotPassword() {
           </div>
           <div className="auth-divider " />
 
-          <p className=" auth-helper md:pt-4 text-sm md:text-lg text-[#5B5D5E] dark:text-foreground ">
+          <p className=" auth-helper md:pt-4 text-sm md:text-lg text-[#5B5D5E]">
             You may contact{" "}
             <a className="auth-link text-primary" href="#" onClick={(e) => e.preventDefault()}>
               Customer Service

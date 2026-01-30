@@ -52,7 +52,7 @@ function ChatHistory() {
   ];
 
   return (
-    <div className=" bg-white font-sans mt-10 overflow-y-auto hide-scrollbar">
+    <div className="w-full bg-background  mt-10 overflow-y-auto hide-scrollbar">
       <div className="flex flex-col">
         {historyData.map((item) => {
           const isActive = activeId === item.id;
@@ -64,14 +64,14 @@ function ChatHistory() {
               className={`group flex items-center justify-between px-6 py-4 cursor-pointer transition-all duration-200 border-b border-gray-50 
                 ${
                   isActive
-                    ? "bg-primary/10 border-r-4 border-r-primary"
-                    : "hover:bg-gray-50 border-r-4 border-r-transparent"
+                    ? "bg-primary/10 border-r-4 border-r-primary border-b-border"
+                    : "hover:bg-gray-50 border-r-4 border-r-transparent  border-b-border border-t-border"
                 }`}
             >
               {/* Left Side: Title and Meta Info */}
               <div className="flex flex-col gap-1 flex-1">
                 <h3
-                  className={`text-[16px] font-medium transition-colors text-primaryDark`}
+                  className={`text-[16px] font-medium transition-colors text-foreground`}
                 >
                   {item.title}
                 </h3>
@@ -88,7 +88,7 @@ function ChatHistory() {
               {/* Right Side: Model Name */}
               <div className="text-right">
                 <span
-                  className={`text-[16px] font-normal text-primaryDark`}
+                  className={`text-[16px] font-normal text-foreground`}
                 >
                   {item.modelName}
                 </span>
