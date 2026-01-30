@@ -1,7 +1,7 @@
+import { Input } from "@/components/ui/input";
+import { CircleDollarSign, Search } from "lucide-react";
 import { useState } from "react";
-import { CircleDollarSign } from "lucide-react";
 
-// Data Type definition for Type Safety
 interface ChatHistoryItem {
   id: string | number;
   title: string;
@@ -10,9 +10,8 @@ interface ChatHistoryItem {
   modelName: string;
 }
 
-function ChatHistory() {
+export default function AgentHistory() {
   const [activeId, setActiveId] = useState<string | number>(3);
-  // Dynamic Data Array
   const historyData: ChatHistoryItem[] = [
     {
       id: 1,
@@ -49,10 +48,55 @@ function ChatHistory() {
       date: "14/04/2025",
       modelName: "Grok 4.1 Fast",
     },
+    {
+      id: 6,
+      title: "REACT NEXTJS Tutorial",
+      credits: 24,
+      date: "14/04/2025",
+      modelName: "Grok 4.1 Fast",
+    },
+    {
+      id: 7,
+      title: "REACT NEXTJS Tutorial",
+      credits: 24,
+      date: "14/04/2025",
+      modelName: "Grok 4.1 Fast",
+    },
+    {
+      id: 8,
+      title: "REACT NEXTJS Tutorial",
+      credits: 24,
+      date: "14/04/2025",
+      modelName: "Grok 4.1 Fast",
+    },
+    {
+      id: 9,
+      title: "Help me with web development tasks from client",
+      credits: 24,
+      date: "14/04/2025",
+      modelName: "Grok 4.1 Fast",
+    },
   ];
-
   return (
-    <div className="w-full bg-background  mt-10 overflow-y-auto hide-scrollbar">
+    <div className="w-full bg-background sm:mt-5">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <h3 className="text-[16px] md:text-lg font-bold text-foreground">
+            Your Chats
+          </h3>
+          <span className="text-sm md:text-[16px] text-accent font-medium px-2.5 mt-0.5 rounded-full">
+            {historyData.length} Total
+          </span>
+        </div>
+
+        <div className="relative w-full md:max-w-sm">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-accent w-4 h-4" />
+          <Input
+            placeholder="Search for video"
+            className="pl-10 bg-input rounded-xl"
+          />
+        </div>
+      </div>
       <div className="flex flex-col">
         {historyData.map((item) => {
           const isActive = activeId === item.id;
@@ -61,7 +105,7 @@ function ChatHistory() {
             <div
               key={item.id}
               onClick={() => setActiveId(item.id)}
-              className={`group flex items-center justify-between px-6 py-4 cursor-pointer transition-all duration-200 border-b border-border 
+              className={`group flex items-center justify-between px-6 py-4 cursor-pointer transition-all duration-200 border-b border-gray-50 
                 ${
                   isActive
                     ? "bg-primary/10 border-r-4 border-r-primary border-b-border"
@@ -79,7 +123,9 @@ function ChatHistory() {
                 <div className="flex items-center gap-4 text-accent/70 font-medium">
                   <div className="flex items-center gap-1.5">
                     <CircleDollarSign size={18} className="text-primary" />
-                    <span className="text-[16px] font-semibold">{item.credits}</span>
+                    <span className="text-[16px] font-semibold">
+                      {item.credits}
+                    </span>
                   </div>
                   <span className="text-[12px]">{item.date}</span>
                 </div>
@@ -87,9 +133,7 @@ function ChatHistory() {
 
               {/* Right Side: Model Name */}
               <div className="text-right">
-                <span
-                  className={`text-[16px] font-normal text-foreground`}
-                >
+                <span className={`text-[16px] font-normal text-foreground`}>
                   {item.modelName}
                 </span>
               </div>
@@ -100,5 +144,3 @@ function ChatHistory() {
     </div>
   );
 }
-
-export default ChatHistory;

@@ -126,6 +126,7 @@
     --ring: 270 100% 80%;
 
     --radius: 0.5rem;
+    --hover: 0 0% 97%;
 
     --btn-grad-from: #805af5;
     --btn-grad-to: #cd99ff;
@@ -159,6 +160,7 @@
     --input: 222 15% 16%;
     /* --input: 240 4% 22%; */
     --ring: 270 100% 80%;
+    --hover: 240 6% 10%;
 
     --btn-grad-from: #805af5;
     --btn-grad-to: #cd99ff;
