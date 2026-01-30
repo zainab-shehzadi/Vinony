@@ -1,4 +1,4 @@
-import { Download, Play } from "lucide-react";
+import { Download } from "lucide-react";
 import { useEffect, useRef } from "react";
 // import soraVideo from "@/assets/your-video.mp4";
 

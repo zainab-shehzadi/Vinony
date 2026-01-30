@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { useNavigate } from "react-router-dom";
 
 interface IProp {
   setToggle: (val: boolean) => void;
@@ -22,7 +23,10 @@ interface IProp {
 }
 
 export default function Header({ setToggle, toggle }: IProp) {
+  const navigate = useNavigate();
+
   return (
+
     <>
       <header className="h-16 w-full border-b border-border flex items-center justify-between px-4 lg:px-6 sticky top-0">
         {/* Left Side: Workspace Title & Mobile Menu */}
@@ -57,12 +61,16 @@ export default function Header({ setToggle, toggle }: IProp) {
           </div>
 
           {/* Notification Bell */}
-          <div className="relative">
-            <div className="text-primary h-8 w-7 flex items-center justify-center relative cursor-pointer">
-              <Bell className="w-6 h-6 fill-primary" />
-              <span className="bg-red-500 h-1.5 w-1.5 rounded-full absolute top-0.5 right-1"></span>
-            </div>
-          </div>
+          <button
+            type="button"
+            onClick={() => navigate("/notification")}
+            aria-label="Open notifications"
+            className="relative text-primary h-8 w-7 flex items-center justify-center cursor-pointer
+                 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
+          >
+            <Bell className="w-6 h-6 fill-primary" />
+            <span className="bg-red-500 h-1.5 w-1.5 rounded-full absolute top-0.5 right-1" />
+          </button>
 
           {/* User Profile Dropdown */}
           <DropdownMenu>

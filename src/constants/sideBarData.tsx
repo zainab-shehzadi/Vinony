@@ -43,5 +43,6 @@ export const menuItems = [
     title: "Settings",
     icon: <Settings className="w-5 h-5" />,
     path: PATH.SETTING,
+    end:false
   },
 ];

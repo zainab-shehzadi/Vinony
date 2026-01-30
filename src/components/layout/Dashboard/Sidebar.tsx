@@ -48,7 +48,7 @@ const Sidebar = ({
     if (location.pathname === PATH.VIDEO) return "item-2";
     if (location.pathname === PATH.AGENT) return "item-3";
     if (location.pathname === PATH.BILLING) return "item-4";
-    if (location.pathname === PATH.SETTING) return "item-5";
+    if (location.pathname.startsWith(PATH.SETTING)) return "item-5";
     return "";
   };
   const [activeAccordion, setActiveAccordion] = useState(getActiveAccordion());
@@ -74,7 +74,13 @@ const Sidebar = ({
   };
 
   const hasHistory = recentChats.length > 0;
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === PATH.SETTING) {
+      return location.pathname.startsWith(PATH.SETTING);
+    }
+
+    return location.pathname === path;
+  };
 
   return (
     <div
@@ -122,11 +128,10 @@ const Sidebar = ({
                   // if subItems exist then standard AccordionTrigger
                   <AccordionTrigger
                     onClick={() => item.path && navigate(item.path)}
-                    className={`hover:no-underline py-3 px-2 mt-2 rounded-lg transition-all ${
-                      item.path && isActive(item.path)
-                        ? "bg-secondary-bg text-primary"
-                        : "hover:bg-slate-50 text-accent"
-                    }`}
+                    className={`hover:no-underline py-3 px-2 mt-2 rounded-lg transition-all ${item.path && isActive(item.path)
+                      ? "bg-secondary-bg text-primary"
+                      : "hover:bg-slate-50 text-accent"
+                      }`}
                   >
                     {content}
                   </AccordionTrigger>
@@ -134,11 +139,10 @@ const Sidebar = ({
                   // if subItems not exist then simple Button (No Arrow)
                   <div
                     onClick={() => item.path && navigate(item.path)}
-                    className={`flex items-center justify-between cursor-pointer py-3 px-2 mt-2 rounded-lg transition-all ${
-                      item.path && isActive(item.path)
-                        ? "bg-secondary-bg text-primary"
-                        : "hover:bg-slate-50 text-accent"
-                    }`}
+                    className={`flex items-center justify-between cursor-pointer py-3 px-2 mt-2 rounded-lg transition-all ${item.path && isActive(item.path)
+                      ? "bg-secondary-bg text-primary"
+                      : "hover:bg-slate-50 text-accent"
+                      }`}
                   >
                     {content}
                   </div>
@@ -173,7 +177,7 @@ const Sidebar = ({
                               {/* Accordion Trigger for Recent Chats */}
                               <AccordionTrigger
                                 className="flex items-center gap-1 py-1 px-0 text-[12px] font-normal text-accent tracking-tighter hover:no-underline hover:text-slate-600 transition-colors"
-                                // onClick={() => setActiveHistory(false)}
+                              // onClick={() => setActiveHistory(false)}
                               >
                                 <span>Recent Chats</span>
                               </AccordionTrigger>
