@@ -10,6 +10,7 @@ export default function DashboardLayout() {
   const [reqGenerate, setReqGenerate] = useState<Boolean>(false);
   const [reqVideoGenerate, setReqVideoGenerate] = useState<Boolean>(false);
   const [reqChatGenerate, setReqChatGenerate] = useState<Boolean>(false);
+  const [reqAgentGenerate, setReqAgentGenerate] = useState<Boolean>(false);
 
   return (
     <>
@@ -22,6 +23,7 @@ export default function DashboardLayout() {
           setReqGenerate={setReqGenerate}
           setReqVideoGenerate={setReqVideoGenerate}
           setReqChatGenerate={setReqChatGenerate}
+          setReqAgentGenerate={setReqAgentGenerate}
         />
         {toggle && (
           <div
@@ -43,6 +45,8 @@ export default function DashboardLayout() {
                 setReqVideoGenerate,
                 reqChatGenerate,
                 setReqChatGenerate,
+                reqAgentGenerate, 
+                setReqAgentGenerate
               }}
             />
           </main>

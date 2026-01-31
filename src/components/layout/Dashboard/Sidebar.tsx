@@ -19,6 +19,7 @@ interface IProp {
   setReqGenerate: (a: Boolean) => void;
   setReqVideoGenerate: (a: Boolean) => void;
   setReqChatGenerate: (a: Boolean) => void;
+  setReqAgentGenerate: (a: Boolean) => void;
 }
 
 const Sidebar = ({
@@ -29,6 +30,7 @@ const Sidebar = ({
   setReqGenerate,
   setReqVideoGenerate,
   setReqChatGenerate,
+  setReqAgentGenerate
 }: IProp) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,7 +43,6 @@ const Sidebar = ({
     "UI Design Guidelines",
   ]);
 
-  // This piece of code is for active route
   const getActiveAccordion = () => {
     if (location.pathname === PATH.CHAT) return "item-0";
     if (location.pathname === PATH.IMAGE) return "item-1";
@@ -60,13 +61,15 @@ const Sidebar = ({
   const handleTabClick = (sub) => {
     setActiveView(sub.view);
 
-    // Differentiate based on view name or label
     switch (sub.view) {
       case "video-history":
         setReqVideoGenerate(false);
         break;
       case "image-history":
         setReqGenerate(false);
+        break;
+      case "my-history":
+        setReqAgentGenerate(false);
         break;
       default:
         null;
@@ -125,7 +128,7 @@ const Sidebar = ({
                     className={`hover:no-underline py-3 px-2 mt-2 rounded-lg transition-all ${
                       item.path && isActive(item.path)
                         ? "bg-secondary-bg text-primary"
-                        : "hover:bg-slate-50 text-accent"
+                        : "hover:bg-hover text-accent"
                     }`}
                   >
                     {content}
@@ -137,7 +140,7 @@ const Sidebar = ({
                     className={`flex items-center justify-between cursor-pointer py-3 px-2 mt-2 rounded-lg transition-all ${
                       item.path && isActive(item.path)
                         ? "bg-secondary-bg text-primary"
-                        : "hover:bg-slate-50 text-accent"
+                        : "hover:bg-hover text-accent"
                     }`}
                   >
                     {content}

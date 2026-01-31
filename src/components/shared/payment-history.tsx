@@ -1,0 +1,61 @@
+import { payment } from "@/constants/static-data";
+
+interface IProp{
+  visible?: string;
+  font: string;
+  INVOICES: payment[]
+}
+
+export default function PaymentHistory({visible, font, INVOICES}: IProp) {
+  return (
+    <div className="flex flex-col gap-8 w-full mx-auto mt-5">
+      <div className="w-full overflow-x-auto">
+        <table className="w-full text-left border-collapse bg-background rounded-lg">
+          <thead>
+            <tr className="text-xs font-bold uppercase text-foreground tracking-widest border-b border-border/50">
+              <th className="px-4 py-4">Invoice ID</th>
+              <th className="px-4 py-4">Billing Date</th>
+              <th className="px-4 py-4">Plan</th>
+              <th className="px-4 py-4">Amount</th>
+              <th className="px-4 py-4 text-right md:text-left w-[180px]">
+                Payment Method
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border/50">
+            {INVOICES.map((inv, i) => (
+              <tr
+                key={i}
+                className="bg-transparent hover:bg-input/20 transition-colors group"
+              >
+                <td className="px-4 py-3 font-normal text-sm text-foreground group-hover:text-foreground">
+                  {inv.id}
+                </td>
+                <td className="px-4 py-3 font-normal text-sm text-foreground whitespace-nowrap">
+                  {inv.date}
+                </td>
+                <td className="px-4 py-3 font-normal text-sm text-foreground">
+                  {inv.plan}
+                </td>
+                <td className={`px-4 py-3 text-sm text-foreground ${font}`}>
+                  <p>{inv.amount}<span className={`text-accent font-normal ${visible}`}> USD</span></p>
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-5 bg-input rounded text-[8px] flex items-center justify-center font-bold">
+                      <img src={inv.icon} alt="" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span>••••</span>
+                      <span className="text-sm font-medium">{inv.method}</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

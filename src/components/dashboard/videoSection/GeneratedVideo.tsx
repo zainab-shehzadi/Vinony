@@ -10,7 +10,7 @@ export default function GeneratedVideo() {
   return (
     <div className="w-full px-4 overflow-y-auto">
       <div className="flex items-center justify-between mb-5">
-        <h3 className="text-xl font-semibold text-primaryDark">
+        <h3 className="text-xl font-semibold text-foreground">
           Generated Video
         </h3>
       </div>

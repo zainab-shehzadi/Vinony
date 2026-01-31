@@ -67,7 +67,7 @@ export default function Header({ setToggle, toggle }: IProp) {
           {/* User Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 p-1 rounded-lg transition-colors">
+              <div className="flex items-center gap-2 cursor-pointer hover:bg-hover p-1 rounded-lg transition-colors">
                 <Avatar className="h-7 w-7">
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>MS</AvatarFallback>
@@ -112,22 +112,22 @@ export default function Header({ setToggle, toggle }: IProp) {
 
               {/* Menu Items */}
               <div className="px-1 py-1">
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70">
                   Profile
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70">
                   Terms
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70">
                   Privacy
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70">
                   Logout
                 </DropdownMenuItem>
               </div>

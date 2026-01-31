@@ -9,8 +9,8 @@ import { AgentMessages } from "@/constants/static-data";
 
 export default function AgentsResponse() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="p-4 mx-auto space-y-8">
+    <div className="min-h-screen bg-background pt-5">
+      <div className="mx-auto space-y-8">
         {AgentMessages.map((msg) => {
           const hasVersions = msg.versions && msg.versions.length > 0;
 
@@ -67,64 +67,79 @@ export default function AgentsResponse() {
 
                     {/* AI Message Bubble */}
                     <div className="bg-input p-5 rounded-[2rem] rounded-tl-none ">
-                      {Array.isArray(msg.content) ? (
-                        <div className="space-y-4">
-                          <p className="text-sm md:text-[16px] leading-relaxed text-accent">
-                            {msg.content[0]}
-                          </p>
-                          <ul className="space-y-4">
-                            {msg.content.slice(1).map((point, idx) => (
-                              <li
-                                key={idx}
-                                className="flex gap-3 text:sm md:text-[16px] leading-relaxed text-accent"
-                              >
-                                <span className="font-bold min-w-[15px]">
-                                  {idx + 1}.
-                                </span>
-                                <span>{point}</span>
-                              </li>
+                      <div className="bg-input p-5 rounded-[2rem] rounded-tl-none">
+                        {Array.isArray(msg.content) ? (
+                          <div className="space-y-6">
+                            {" "}
+                            {msg.content?.map((data, index) => (
+                              <div key={index} className="space-y-2">
+                                <h3 className="font-bold text-sm md:text-[16px] text-foreground">
+                                  {data.heading}
+                                </h3>
+
+                                {/* Points List */}
+                                <ul className="space-y-3">
+                                  {data.paragraph?.map((point, idx) => (
+                                    <li
+                                      key={idx}
+                                      className="flex gap-3 text-sm md:text-[16px] leading-relaxed text-accent"
+                                    >
+                                      <span className="text-primary font-bold min-w-[18px]">
+                                        {idx + 1}
+                                      </span>
+                                      <span>{point}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             ))}
-                          </ul>
-                        </div>
-                      ) : (
-                        <p className="text-sm md:text-[16px] leading-relaxed text-textMuted">
-                          {msg.content}
-                        </p>
-                      )}
+                          </div>
+                        ) : (
+                          <p className="text-sm md:text-[16px] leading-relaxed text-textMuted">
+                            {msg.content}
+                          </p>
+                        )}
+                        <h3 className="font-bold text-sm md:text-[16px] text-foreground mt-5">
+                          {msg.conclude}
+                        </h3>
+                        <p className="flex gap-3 text-sm md:text-[16px] leading-relaxed text-accent font-normal">{msg.concludePara}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               ) : (
                 /* User Section */
-                <div className="w-full flex flex-col items-end">
-                  <div className="flex gap-3">
-                    <div className="mb-2 flex flex-col items-end">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm sm:text-[16px] font-bold">
+                <div className="w-full flex flex-col items-end gap-1 mb-6">
+                  <div className="flex items-end leading-tight gap-2">
+                    <div className="flex flex-col items-end">
+                      <div className="flex items-center gap-5">
+                        <span className="text-sm sm:text-[16px] font-bold text-foreground">
                           You
                         </span>
-                        <span className="text-[12px] sm:text-sm font-normal text-accent">
+                        <span className="text-[12px] sm:text-xs font-normal text-accent mt-1">
                           {msg.time}
                         </span>
                       </div>
                       {msg.credit && (
-                        <span className="text-sm font-bold text-primary tracking-tight">
+                        <span className="text-[12px] md:text-sm font-semibold text-primary/80 mt-0.5">
                           {msg.credit} Credits used
                         </span>
                       )}
                     </div>
-                    <div className="flex-shrink-0 w-9 h-9 bg-input rounded-full flex items-center justify-center shadow-sm mt-1">
+                    <div className="flex-shrink-0 w-10 h-10 bg-input rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-border">
                       {msg.icon}
                     </div>
                   </div>
-                  <div className="bg-input px-6 py-3 rounded-3xl rounded-tr-none shadow-sm max-w-[85%] text-right">
-                    <p className="text-sm md:text-[16px] text-accent">
-                      {msg.content}
-                    </p>
+                  <div className="flex items-start gap-3 mr-12">
+                    <div className="bg-input px-5 py-2.5 rounded-[28px] rounded-tr-none shadow-sm">
+                      <p className="text-sm md:text-[16px] text-accent">
+                        {msg.content as string}
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
-            </div>
+            </div> //checked
           );
         })}
       </div>
