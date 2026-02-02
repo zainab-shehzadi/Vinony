@@ -13,6 +13,7 @@ type OutletContextType = {
 import { Video_Actions } from "@/constants/aiModelData";
 import GeneratedVideo from "@/components/dashboard/videoSection/GeneratedVideo";
 import VideoHistory from "@/components/dashboard/videoSection/VideoHistory";
+import WebContainer from "@/lib/webContainer";
 
 export default function VideoSection() {
   const { activeView, reqVideoGenerate, setReqVideoGenerate } =
@@ -25,9 +26,9 @@ export default function VideoSection() {
   );
   return (
     <>
-      <div className="flex w-full flex-col min-h-[90vh]">
-        {activeView !== "video-history" && (
-          <div className="w-full p-4 mx-auto overflow-hidden">
+       
+    <WebContainer>
+ {activeView !== "video-history" && (
             <Modelbar
               models={AI_VIDEO_MODELS}
               selectedModel={selectedModel}
@@ -35,10 +36,7 @@ export default function VideoSection() {
               activeVersion={activeVersion}
               setActiveVersion={setActiveVersion}
             />
-          </div>
         )}
-
-        <div className="flex-grow overflow-y-auto flex flex-col items-center px-5 py-8 no-scrollbar">
           {activeView !== "video-history" && (
             <div className={`w-full`}>
               <CreationInput
@@ -50,8 +48,8 @@ export default function VideoSection() {
           )}
           {reqVideoGenerate && <GeneratedVideo />}
           {activeView === "video-history" && <VideoHistory />}
-        </div>
-      </div>
+            </WebContainer>
+
     </>
   );
 }

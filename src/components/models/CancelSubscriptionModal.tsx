@@ -10,7 +10,7 @@ type Props = {
   loading?: boolean;
 };
 
-export default function DeleteAccountModal({
+export default function CancelSubscriptionModal({
   open,
   onOpenChange,
   onConfirm,

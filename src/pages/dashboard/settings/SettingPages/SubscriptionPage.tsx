@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import SettingsTabs from "@/components/settings/SettingsTabs";
 import BillingInfoCard from "@/components/settings/subscription/BillingInfoCard";
+import SummaryCard from "@/components/shared/summary-card";
 
 export default function SubscriptionPage() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function SubscriptionPage() {
     <>
       <div className="w-full p-6 md:p-10 lg:p-16 space-y-8">
         <SettingsTabs />
-
+        <SummaryCard />
         <BillingInfoCard
           onEdit={() => navigate("/settings/subscription/edit-info")}
           left={[

@@ -7,6 +7,7 @@ import { useOutletContext } from "react-router-dom";
 import AgentSources from "../../../components/dashboard/agentSection/AgentSources";
 import AgentFrame from "../../../components/dashboard/agentSection/AgentFrame";
 import AgentHistory from "@/components/dashboard/agentSection/AgentHistory";
+import WebContainer from "@/lib/webContainer";
 
 interface IContext {
   activeHistory: Boolean;
@@ -32,7 +33,7 @@ export default function AgentSection() {
   );
   return (
     <>
-      <div className="flex w-full flex-col h-[90vh]">
+    <WebContainer>
         {activeView !== "my-history" && (
           <Modelbar
             models={AI_AGENT_MODELS}
@@ -42,12 +43,7 @@ export default function AgentSection() {
             setActiveVersion={setActiveVersion}
           />
         )}
-        <div className="flex-grow overflow-y-auto flex flex-col items-center px-5 py-10 no-scrollbar">
-          {/* {!reqChatGenerate && !activeHistory && (
-          <h1 className={`text-2xl md:text-4xl font-semibold text-foreground my-auto md:mt-5 mb-10 text-center`}>
-          What can I help with?
-          </h1>
-          )} */}
+
           {!reqAgentGenerate && activeView !== "my-history" && (
             <h1
               className={`text-2xl md:text-4xl font-semibold text-foreground my-auto md:mt-5 mb-10 text-center md:hidden`}
@@ -80,8 +76,7 @@ export default function AgentSection() {
           {activeView === "my-history" && (
           <AgentHistory/>
         )}
-        </div>
-      </div>
+    </WebContainer>     
     </>
   );
 }

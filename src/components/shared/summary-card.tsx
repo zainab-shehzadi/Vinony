@@ -1,6 +1,10 @@
 import { CircleAlert } from "lucide-react";
 import { Button } from "../ui/button";
 import { Progress } from "../ui/progress";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CancelSubscriptionModal from "../models/CancelSubscriptionModal";
+import TopUpCreditsModal from "../models/TopUpCreditsModal";
 
 interface PlanProps {
   name: string;
@@ -14,27 +18,73 @@ const Plan: PlanProps = {
 };
 
 export default function SummaryCard() {
+  const navigate = useNavigate();
+  const [cancelOpen, setCancelOpen] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const [topUpOpen, setTopUpOpen] = useState(false);
+  const [topUpLoadingId, setTopUpLoadingId] = useState<string | null>(null);
+  const handleConfirmCancel = async () => {
+    try {
+      setCancelLoading(true);
+
+
+      setCancelOpen(false);
+    } catch (e) {
+      // TODO: show toast if you have one
+      console.error(e);
+    } finally {
+      setCancelLoading(false);
+    }
+  };
+  const handleBuyCredits = async (packId: string) => {
+    try {
+      setTopUpLoadingId(packId);
+
+      // ✅ TODO: call API / thunk for buying credits
+      // await billingService.buyTopUp(packId);
+
+      setTopUpOpen(false);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setTopUpLoadingId(null);
+    }
+  };
   return (
     <div className="w-full rounded-3xl p-5 md:p-8 bg-input border border-border my-5">
-      {/* Header: Buttons mobile pe stack honge */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h2 className="text-xl md:text-2xl text-foreground font-semibold tracking-tight">
           Current Plan Summary
         </h2>
         <div className="flex flex-row items-center gap-2 sm:gap-3">
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
+            onClick={() => setCancelOpen(true)}
             className="flex-1 sm:flex-none bg-accent/10 rounded-xl text-foreground hover:bg-accent/20 border-none h-11 px-2 sm:px-6 transition-all"
           >
             Cancel Subscription
           </Button>
-          <Button 
-            className="flex-1 sm:flex-none btn-gradient rounded-xl h-11 px-3 sm:px-6 shadow-md hover:opacity-90 transition-all"
+          <Button
+            onClick={() => setTopUpOpen(true)}
+            className="flex-1 sm:flex-none btn-gradient rounded-xl h-11 px-3 sm:px-6 transition-all"
           >
             Upgrade Plan
           </Button>
         </div>
       </div>
+      <CancelSubscriptionModal
+        open={cancelOpen}
+        onOpenChange={setCancelOpen}
+        onConfirm={handleConfirmCancel}
+        loading={cancelLoading}
+      />
+      <TopUpCreditsModal
+        open={topUpOpen}
+        onOpenChange={setTopUpOpen}
+        onBuyCredits={handleBuyCredits}
+        loadingPackId={topUpLoadingId}
+        plan={Plan}
+      />
 
       {/* Stats Grid: Mobile pe columns stack honge */}
       <div className="w-full pt-10">
@@ -78,7 +128,7 @@ export default function SummaryCard() {
             86 of 100 Used
           </p>
         </div>
-        <Progress value={86} className="h-[7px] bg-muted/40" />
+        <Progress value={86} className="h-[8px] bg-[#DDE1E4]" />
         <p className="text-muted-foreground/80 text-xs md:text-sm font-medium mt-4 tracking-tight">
           14 Credits remaining until your plan requires update
         </p>
@@ -106,9 +156,14 @@ export default function SummaryCard() {
               <span className="text-muted-foreground text-xs font-normal leading-relaxed">
                 Your payment was declined. To start using tools, please
               </span>
-              <button className="text-primary hover:text-primary/80 text-xs font-normal underline-offset-4 hover:underline transition-all">
+              <button
+                type="button"
+                onClick={() => navigate("/settings/payment")}
+                className="text-primary hover:text-primary/80 text-xs font-normal underline-offset-4 hover:underline transition-all"
+              >
                 Add Payment Method.
               </button>
+
             </div>
           </div>
         </div>

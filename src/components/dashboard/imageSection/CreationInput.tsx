@@ -24,7 +24,7 @@ export default function CreationInput({
   const [inputValue, setInputValue] = useState<string>("");
 
   return (
-    <div className="w-full mx-auto p-4 rounded-xl bg-background">
+    <div className="w-full mx-auto py-4 rounded-xl bg-background">
       <p className="font-bold text-[16px] text-foreground mb-2">Prompt</p>
 
       <form

@@ -37,7 +37,7 @@ export function ChatInput({
     selectedModel.versions && selectedModel.versions.length > 0;
 
   return (
-    <div className={`w-full mx-auto p-4 border border-border rounded-lg`}>
+    <div className={`w-full mx-auto p-4 border border-border rounded-lg my-6 my-10`}>
       <div className="inline-block mb-2">
         {hasVersions ? (
           <DropdownMenu>
