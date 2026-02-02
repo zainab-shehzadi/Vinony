@@ -19,7 +19,6 @@ interface IContext {
 
 export default function AgentSection() {
   const {
-    activeHistory,
     setActiveHistory,
     reqAgentGenerate,
     setReqAgentGenerate,

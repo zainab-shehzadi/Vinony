@@ -16,6 +16,8 @@ export const PATH = {
   VIDEO: "/dashboard/video-section",
   AGENT: "/dashboard/agent-section",
   BILLING: "/dashboard/billing-section",
+  INVOICE: "/dashboard/billing-section/invoces",
+  CREDIT: "/dashboard/billing-section/credits",
   SETTING: "/settings",
   NOTIFICATION :"/notification",
     // DASHBOARD: "/dashboard",

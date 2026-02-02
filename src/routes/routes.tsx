@@ -27,6 +27,8 @@ import AccountPage from "@/pages/dashboard/settings/SettingPages/AccountPage";
 import EditBillingInfoPage from "@/pages/dashboard/settings/SettingPages/EditBillingInfoPage";
 import PaymentPage from "@/pages/dashboard/settings/SettingPages/PaymentPage";
 import NotificationPage from "@/pages/notification/page";
+import TotalInvoices from "@/pages/dashboard/billings/TotalInvoices";
+import BuyCredits from "@/pages/dashboard/billings/BuyCredits";
 
 
 export const routes: RouteObject[] = [
@@ -60,6 +62,8 @@ export const routes: RouteObject[] = [
           { path: PATH.VIDEO, element: <VideoSection /> },
           { path: PATH.AGENT, element: <AgentSection /> },
           { path: PATH.BILLING, element: <BillingSection /> },
+          { path: PATH.INVOICE, element: <TotalInvoices /> },
+          { path: PATH.CREDIT, element: <BuyCredits /> },
           { path: PATH.SETTING, element: <Navigate to="/settings/profile" replace /> },
           { path: "/settings/profile", element: <ProfilePage /> },
           { path: "/settings/subscription", element: <SubscriptionPage /> },

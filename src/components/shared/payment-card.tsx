@@ -1,7 +1,11 @@
 import { Ellipsis, Plus } from "lucide-react";
 import { cards } from "@/constants/static-data";
 
-export default function PaymentMethods() {
+export default function PaymentMethods({
+  setCardActive,
+}: {
+  setCardActive: (value: boolean) => void;
+}) {
   return (
     <div className="w-full rounded-3xl p-6 md:p-8 bg-input border border-border/50">
       <h3 className="text-[12px] md:text-sm font-semibold text-foreground mb-6">
@@ -62,11 +66,11 @@ export default function PaymentMethods() {
         ))}
       </div>
 
-      <button className="w-full mt-6 border-2 border-dashed border-border rounded-lg py-4 flex items-center justify-center gap-2 text-foreground font-bold text-sm hover:bg-background/50 hover:border-primary/50 transition-all group">
-        <Plus
-          size={18}
-          className="text-accent group-hover:text-primary"
-        />
+      <button
+        className="w-full mt-6 border-2 border-dashed border-border rounded-lg py-4 flex items-center justify-center gap-2 text-foreground font-bold text-sm hover:bg-background/50 hover:border-primary/50 transition-all group"
+        onClick={() => setCardActive(true)}
+      >
+        <Plus size={18} className="text-accent group-hover:text-primary" />
         Add card
       </button>
     </div>

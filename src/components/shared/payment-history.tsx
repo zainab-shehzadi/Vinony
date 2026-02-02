@@ -1,12 +1,19 @@
 import { payment } from "@/constants/static-data";
+import { useLocation } from "react-router-dom";
 
 interface IProp{
   visible?: string;
   font: string;
-  INVOICES: payment[]
+  Record: payment[];
+  
+  Credits?: string;
+  Invoices?: string;
 }
 
-export default function PaymentHistory({visible, font, INVOICES}: IProp) {
+export default function PaymentHistory({visible, font, Record, Credits, Invoices}: IProp) {
+  const location = useLocation();
+  const isFullView = location.pathname === Credits || location.pathname === Invoices;
+  const displayData = isFullView ? Record : Record.slice(0,5);
   return (
     <div className="flex flex-col gap-8 w-full mx-auto mt-5">
       <div className="w-full overflow-x-auto">
@@ -23,7 +30,7 @@ export default function PaymentHistory({visible, font, INVOICES}: IProp) {
             </tr>
           </thead>
           <tbody className="divide-y divide-border/50">
-            {INVOICES.map((inv, i) => (
+            {displayData.map((inv, i) => (
               <tr
                 key={i}
                 className="bg-transparent hover:bg-input/20 transition-colors group"
