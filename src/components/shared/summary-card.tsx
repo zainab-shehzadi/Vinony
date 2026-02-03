@@ -14,6 +14,8 @@ const Plan: PlanProps = {
 };
 
 export default function SummaryCard() {
+
+
   return (
     <div className="w-full rounded-3xl p-5 md:p-8 bg-input border border-border my-5">
       {/* Header: Buttons mobile pe stack honge */}
@@ -23,7 +25,7 @@ export default function SummaryCard() {
         </h2>
         <div className="flex flex-row items-center gap-2 sm:gap-3">
           <Button 
-            variant="secondary" 
+            variant="secondary"
             className="flex-1 sm:flex-none bg-accent/10 rounded-xl text-foreground hover:bg-accent/20 border-none h-11 px-2 sm:px-6 transition-all"
           >
             Cancel Subscription
@@ -78,7 +80,7 @@ export default function SummaryCard() {
             86 of 100 Used
           </p>
         </div>
-        <Progress value={86} className="h-[7px] bg-muted/40" />
+        <Progress value={86} className="h-[7px] bg-slate-200" />
         <p className="text-muted-foreground/80 text-xs md:text-sm font-medium mt-4 tracking-tight">
           14 Credits remaining until your plan requires update
         </p>

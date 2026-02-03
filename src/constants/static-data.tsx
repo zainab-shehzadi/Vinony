@@ -294,6 +294,37 @@ export const INVOICES: payment[] = [
     method: "2332",
     icon: visa
   },
+   {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Basic Plan",
+    amount: "$1200",
+    method: "4242",
+    icon: paypal
+  }, {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Basic Plan",
+    amount: "$1200",
+    method: "4242",
+    icon: paypal
+  },
+  {
+    id: "#54619",
+    date: "23 Mar 2023",
+    plan: "Unlimited Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: masterCard
+  },
+  {
+    id: "#56849",
+    date: "23 Mar 2023",
+    plan: "Pro Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: visa
+  },
   {
     id: "#54619",
     date: "23 Mar 2023",
@@ -321,6 +352,21 @@ export const CREDITS: payment[] = [
     method: "4242",
     icon: masterCard
   },
+   {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  }, {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  },
   {
     id: "#56489",
     date: "23 Mar 2023",
@@ -338,6 +384,22 @@ export const CREDITS: payment[] = [
     icon: visa
   },
   {
+    id: "#54619",
+    date: "23 Mar 2023",
+    plan: "Power Pack",
+    amount: "$90.00",
+    method: "2332",
+    icon: masterCard
+  },
+   {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  },
+   {
     id: "#54619",
     date: "23 Mar 2023",
     plan: "Power Pack",
