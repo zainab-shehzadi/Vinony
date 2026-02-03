@@ -11,8 +11,8 @@ import {messages} from "@/constants/static-data"
 const ChatResponse: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
-      <div className="p-4 mx-auto space-y-8">
-        {messages.map((msg) => {
+      <div className="py-4 mx-auto space-y-8">
+        {messages.map((msg : any) => {
           const hasVersions = msg.versions && msg.versions.length > 0;
 
           return (

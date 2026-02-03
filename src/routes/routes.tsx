@@ -1,4 +1,4 @@
-import type { RouteObject } from "react-router-dom";
+import { Navigate, type RouteObject } from "react-router-dom";
 
 import { PATH } from "../constants/paths";
 
@@ -21,7 +21,14 @@ import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
 import VideoSection from "@/pages/dashboard/videos/VideoSection";
 import AgentSection from "@/pages/dashboard/agents/AgentSection";
 import BillingSection from "@/pages/dashboard/billings/BillingSection";
-import SettingSection from "@/pages/dashboard/settings/SettingSection";
+import ProfilePage from "@/pages/dashboard/settings/SettingPages/ProfilePage";
+import SubscriptionPage from "@/pages/dashboard/settings/SettingPages/SubscriptionPage";
+import AccountPage from "@/pages/dashboard/settings/SettingPages/AccountPage";
+import EditBillingInfoPage from "@/pages/dashboard/settings/SettingPages/EditBillingInfoPage";
+import PaymentPage from "@/pages/dashboard/settings/SettingPages/PaymentPage";
+import NotificationPage from "@/pages/notification/page";
+import TotalInvoices from "@/pages/dashboard/billings/TotalInvoices";
+import BuyCredits from "@/pages/dashboard/billings/BuyCredits";
 
 
 export const routes: RouteObject[] = [
@@ -50,12 +57,21 @@ export const routes: RouteObject[] = [
       {
         element: <DashboardLayout />,
         children: [
-          { path: PATH.CHAT, element: <Chat/> },
-          { path: PATH.IMAGE, element: <ImageSection/> },
+          { path: PATH.CHAT, element: <Chat /> },
+          { path: PATH.IMAGE, element: <ImageSection /> },
           { path: PATH.VIDEO, element: <VideoSection /> },
           { path: PATH.AGENT, element: <AgentSection /> },
           { path: PATH.BILLING, element: <BillingSection /> },
-          { path: PATH.SETTING, element: <SettingSection /> },
+          { path: PATH.INVOICE, element: <TotalInvoices /> },
+          { path: PATH.CREDIT, element: <BuyCredits /> },
+          { path: PATH.SETTING, element: <Navigate to="/settings/profile" replace /> },
+          { path: "/settings/profile", element: <ProfilePage /> },
+          { path: "/settings/subscription", element: <SubscriptionPage /> },
+          { path: "/settings/account", element: <AccountPage /> },
+          { path: "/settings/subscription/edit-info", element: <EditBillingInfoPage /> },
+          { path: "/settings/payment", element: <PaymentPage /> },
+          { path: PATH.NOTIFICATION, element: <NotificationPage /> },
+
         ],
       },
     ],

@@ -1,14 +1,38 @@
 import { UserRound } from "lucide-react";
 import { Icons } from "./aiModelData";
+import visa from "@/assets/visa.svg";
+import masterCard from "@/assets/mastercard.svg";
+import paypal from "@/assets/paypal.svg";
+
+interface IContent {
+  heading: string;
+  paragraph: string | string[];
+}
 interface ChatMessage {
   id: number;
   role: "user" | "assistant";
   senderName?: string;
   time?: string;
-  content: string | string[];
+  content: string | string[] | IContent[];
   credit?: string;
   versions?: string[];
   icon?: React.ReactNode;
+  conclude?: string;
+  concludePara?: string;
+}
+
+export interface payment {
+  id: string,
+    date: string,
+    plan: string,
+    amount: string,
+    method: string,
+    icon: string
+}
+export interface Source {
+  id: string;
+  title: string;
+  url: string;
 }
 
 export const messages: ChatMessage[] = [
@@ -91,7 +115,7 @@ export const AgentMessages: ChatMessage[] = [
     content: "let's say it does - what happens then?",
     time: "02:22 AM",
     credit: "4",
-    icon: <UserRound/>
+    icon: <UserRound className="text-primary" />,
   },
   {
     id: 2,
@@ -112,14 +136,26 @@ export const AgentMessages: ChatMessage[] = [
       />
     ),
     content: [
-      "The question of whether androids dream of electric sheep is the title and central theme of the science fiction novel Do Androids Dream of Electric Sheep? by Philip K. Dick.",
-      "The book explores a world where androids are indistinguishable from humans except for a lack of empathy.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
-      "The book explores a world where androids are indistinguishable from humans except for a lack of empathy.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
+      {
+        heading: "Current State of AI:",
+        paragraph: [
+          "Lack of Subjective Experience: Presently, AI lacks the capacity for subjective experience. While AI can process vast amounts of information and perform complex tasks, it doesn't have personal experiences or emotions.",
+          "Mimicking Human Behavior: Some AI systems are designed to mimic human behavior, including aspects of creativity and association, but this mimicry doesn't equate to actual dreaming.",
+          "Lack of Subjective Experience: Presently, AI lacks the capacity for subjective experience. While AI can process vast amounts of information and perform complex tasks, it doesn't have personal experiences or emotions.",
+        ],
+      },
+      {
+        heading: "Current State of AI:",
+        paragraph: [
+          "Mimicking Human Behavior: Some AI systems are designed to mimic human behavior, including aspects of creativity and association, but this mimicry doesn't equate to actual dreaming.",
+          "Lack of Subjective Experience: Presently, AI lacks the capacity for subjective experience. While AI can process vast amounts of information and perform complex tasks, it doesn't have personal experiences or emotions.",
+          "Mimicking Human Behavior: Some AI systems are designed to mimic human behavior, including aspects of creativity and association, but this mimicry doesn't equate to actual dreaming.",
+        ],
+      },
     ],
+    conclude: "Conclusion",
+    concludePara:
+      "From a current scientific and technological standpoint, androids do not dream of electric sheep. They lack the biological and neurological foundations required for dreaming as humans experience it.",
   },
   {
     id: 3,
@@ -127,6 +163,7 @@ export const AgentMessages: ChatMessage[] = [
     content: "let's say it does - what happens then?",
     time: "02:22 AM",
     credit: "4",
+    icon: <UserRound className="text-primary" />,
   },
   {
     id: 4,
@@ -147,13 +184,227 @@ export const AgentMessages: ChatMessage[] = [
       />
     ),
     content: [
-      "The question of whether androids dream of electric sheep is the title and central theme of the science fiction novel Do Androids Dream of Electric Sheep? by Philip K. Dick.",
-      "The book explores a world where androids are indistinguishable from humans except for a lack of empathy.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
-      "The book explores a world where androids are indistinguishable from humans except for a lack of empathy.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
-      "The title refers to the empathy test used to distinguish between humans and androids.",
+      {
+        heading: "Current State of AI:",
+        paragraph: [
+          "Lack of Subjective Experience: Presently, AI lacks the capacity for subjective experience. While AI can process vast amounts of information and perform complex tasks, it doesn't have personal experiences or emotions.",
+          "Mimicking Human Behavior: Some AI systems are designed to mimic human behavior, including aspects of creativity and association, but this mimicry doesn't equate to actual dreaming.",
+          "Lack of Subjective Experience: Presently, AI lacks the capacity for subjective experience. While AI can process vast amounts of information and perform complex tasks, it doesn't have personal experiences or emotions.",
+        ],
+      },
+      {
+        heading: "Current State of AI:",
+        paragraph: [
+          "Mimicking Human Behavior: Some AI systems are designed to mimic human behavior, including aspects of creativity and association, but this mimicry doesn't equate to actual dreaming.",
+          "Lack of Subjective Experience: Presently, AI lacks the capacity for subjective experience. While AI can process vast amounts of information and perform complex tasks, it doesn't have personal experiences or emotions.",
+          "Mimicking Human Behavior: Some AI systems are designed to mimic human behavior, including aspects of creativity and association, but this mimicry doesn't equate to actual dreaming.",
+        ],
+      },
     ],
+    conclude: "Conclusion",
+    concludePara:
+      "From a current scientific and technological standpoint, androids do not dream of electric sheep. They lack the biological and neurological foundations required for dreaming as humans experience it.",
+  },
+];
+
+export const SourcesData: Source[] = [
+  {
+    id: "s1",
+    title: "Androids explained: Why LLMS will rule the world",
+    url: "www.dailyllm.com",
+  },
+  {
+    id: "s2",
+    title: "Androids explained: Why LLMS will rule the world",
+    url: "www.dailyllm.com",
+  },
+  {
+    id: "s3",
+    title: "View 87+ more exernal sources",
+    url: "View All Sources",
+  },
+  {
+    id: "s4",
+    title: "View 87+ more exernal sources",
+    url: "View All Sources",
+  },
+];
+
+// Payment cards method
+export const cards = [
+  {
+    id: 1,
+    name: "ByeWind",
+    active: true,
+    number: "9656 6598 1236 4698",
+    exp: "06/25",
+    type: "visa",
+    icon: visa,
+  },
+  {
+    id: 2,
+    name: "ByeWind",
+    active: false,
+    number: "1235 6321 1343 7542",
+    exp: "06/25",
+    type: "mastercard",
+    icon: masterCard,
+  },
+  {
+    id: 3,
+    name: "PayPal",
+    active: false,
+    number: "byewind@twitter.com",
+    exp: "06/25",
+    type: "paypal",
+    icon: paypal,
+  },
+];
+
+export const INVOICES: payment[] = [
+  {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Basic Plan",
+    amount: "$1200",
+    method: "4242",
+    icon: paypal
+  },
+  {
+    id: "#56489",
+    date: "23 Feb 2023",
+    plan: "Pro Plan",
+    amount: "$7000",
+    method: "4242",
+    icon: masterCard
+  },
+  {
+    id: "#56489",
+    date: "23 Mar 2023",
+    plan: "Basic Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: masterCard
+  },
+  {
+    id: "#56849",
+    date: "23 Mar 2023",
+    plan: "Pro Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: visa
+  },
+   {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Basic Plan",
+    amount: "$1200",
+    method: "4242",
+    icon: paypal
+  }, {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Basic Plan",
+    amount: "$1200",
+    method: "4242",
+    icon: paypal
+  },
+  {
+    id: "#54619",
+    date: "23 Mar 2023",
+    plan: "Unlimited Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: masterCard
+  },
+  {
+    id: "#56849",
+    date: "23 Mar 2023",
+    plan: "Pro Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: visa
+  },
+  {
+    id: "#54619",
+    date: "23 Mar 2023",
+    plan: "Unlimited Plan",
+    amount: "$7000",
+    method: "2332",
+    icon: masterCard
+  },
+];
+
+export const CREDITS: payment[] = [
+  {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  },
+  {
+    id: "#56489",
+    date: "23 Feb 2023",
+    plan: "Stater pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: masterCard
+  },
+   {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  }, {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  },
+  {
+    id: "#56489",
+    date: "23 Mar 2023",
+    plan: "Power Plan",
+    amount: "$90.00",
+    method: "2332",
+    icon: masterCard
+  },
+  {
+    id: "#56849",
+    date: "23 Mar 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "2332",
+    icon: visa
+  },
+  {
+    id: "#54619",
+    date: "23 Mar 2023",
+    plan: "Power Pack",
+    amount: "$90.00",
+    method: "2332",
+    icon: masterCard
+  },
+   {
+    id: "#23456",
+    date: "23 Jan 2023",
+    plan: "Popular Pack",
+    amount: "$150.00",
+    method: "4242",
+    icon: paypal
+  },
+   {
+    id: "#54619",
+    date: "23 Mar 2023",
+    plan: "Power Pack",
+    amount: "$90.00",
+    method: "2332",
+    icon: masterCard
   },
 ];

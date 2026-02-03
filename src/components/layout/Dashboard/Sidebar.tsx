@@ -19,6 +19,7 @@ interface IProp {
   setReqGenerate: (a: Boolean) => void;
   setReqVideoGenerate: (a: Boolean) => void;
   setReqChatGenerate: (a: Boolean) => void;
+  setReqAgentGenerate: (a: Boolean) => void;
 }
 
 const Sidebar = ({
@@ -29,6 +30,7 @@ const Sidebar = ({
   setReqGenerate,
   setReqVideoGenerate,
   setReqChatGenerate,
+  setReqAgentGenerate
 }: IProp) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,14 +43,13 @@ const Sidebar = ({
     "UI Design Guidelines",
   ]);
 
-  // This piece of code is for active route
   const getActiveAccordion = () => {
     if (location.pathname === PATH.CHAT) return "item-0";
     if (location.pathname === PATH.IMAGE) return "item-1";
     if (location.pathname === PATH.VIDEO) return "item-2";
     if (location.pathname === PATH.AGENT) return "item-3";
     if (location.pathname === PATH.BILLING) return "item-4";
-    if (location.pathname === PATH.SETTING) return "item-5";
+    if (location.pathname.startsWith(PATH.SETTING)) return "item-5";
     return "";
   };
   const [activeAccordion, setActiveAccordion] = useState(getActiveAccordion());
@@ -60,7 +61,6 @@ const Sidebar = ({
   const handleTabClick = (sub) => {
     setActiveView(sub.view);
 
-    // Differentiate based on view name or label
     switch (sub.view) {
       case "video-history":
         setReqVideoGenerate(false);
@@ -68,13 +68,22 @@ const Sidebar = ({
       case "image-history":
         setReqGenerate(false);
         break;
+      case "my-history":
+        setReqAgentGenerate(false);
+        break;
       default:
         null;
     }
   };
 
   const hasHistory = recentChats.length > 0;
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === PATH.SETTING) {
+      return location.pathname.startsWith(PATH.SETTING);
+    }
+
+    return location.pathname === path;
+  };
 
   return (
     <div
@@ -125,7 +134,7 @@ const Sidebar = ({
                     className={`hover:no-underline py-3 px-2 mt-2 rounded-lg transition-all ${
                       item.path && isActive(item.path)
                         ? "bg-secondary-bg text-primary"
-                        : "hover:bg-slate-50 text-accent"
+                        : "hover:bg-hover text-accent"
                     }`}
                   >
                     {content}
@@ -137,7 +146,7 @@ const Sidebar = ({
                     className={`flex items-center justify-between cursor-pointer py-3 px-2 mt-2 rounded-lg transition-all ${
                       item.path && isActive(item.path)
                         ? "bg-secondary-bg text-primary"
-                        : "hover:bg-slate-50 text-accent"
+                        : "hover:bg-hover text-accent"
                     }`}
                   >
                     {content}
@@ -173,7 +182,7 @@ const Sidebar = ({
                               {/* Accordion Trigger for Recent Chats */}
                               <AccordionTrigger
                                 className="flex items-center gap-1 py-1 px-0 text-[12px] font-normal text-accent tracking-tighter hover:no-underline hover:text-slate-600 transition-colors"
-                                // onClick={() => setActiveHistory(false)}
+                              // onClick={() => setActiveHistory(false)}
                               >
                                 <span>Recent Chats</span>
                               </AccordionTrigger>

@@ -1,3 +1,4 @@
+
 export const PATH = {
   HOME: "/",
   LOGIN: "/login",
@@ -15,8 +16,11 @@ export const PATH = {
   VIDEO: "/dashboard/video-section",
   AGENT: "/dashboard/agent-section",
   BILLING: "/dashboard/billing-section",
-  SETTING: "/dashboard/setting-section",
-  // DASHBOARD: "/dashboard",
+  INVOICE: "/dashboard/billing-section/invoces",
+  CREDIT: "/dashboard/billing-section/credits",
+  SETTING: "/settings",
+  NOTIFICATION :"/notification",
+    // DASHBOARD: "/dashboard",
   // SIGNUP: "/signup",
   // JOBLISTING: "/jobListing",
   // Category: "/category",

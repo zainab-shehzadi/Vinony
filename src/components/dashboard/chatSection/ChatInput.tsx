@@ -37,7 +37,7 @@ export function ChatInput({
     selectedModel.versions && selectedModel.versions.length > 0;
 
   return (
-    <div className={`w-full mx-auto p-4 border border-border rounded-lg`}>
+    <div className={`w-full mx-auto p-4 border border-border rounded-lg my-6 my-10`}>
       <div className="inline-block mb-2">
         {hasVersions ? (
           <DropdownMenu>
@@ -91,13 +91,13 @@ export function ChatInput({
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="bg-background text-foreground rounded-full w-8 h-8 hover:bg-slate-50 sm:hidden">
+              <Button className="bg-card text-foreground rounded-full w-8 h-8 hover:bg-hover sm:hidden">
                 <Plus size={20} strokeWidth={3} />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="bg-card border border-border">
               {Actions.map((action, index) => (
-                <DropdownMenuItem>
+                <DropdownMenuItem className="focus:bg-hover focus:text-foreground">
                   <ActionButton
                     icon={action.icon}
                     label={action.baseLabel}
@@ -151,7 +151,7 @@ const ActionButton = ({
   icon: React.ReactNode;
   label: string;
 }) => (
-  <button className="flex items-center gap-2 text-foreground transition-colors whitespace-nowrap px-1">
+  <button className="flex items-center gap-2 text-foregroun transition-colors whitespace-nowrap px-1">
     <span className="text-foreground">{icon}</span>
     <span className="text-[14px] font-medium">{label}</span>
   </button>

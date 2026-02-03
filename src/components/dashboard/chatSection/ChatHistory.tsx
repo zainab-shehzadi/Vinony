@@ -61,11 +61,11 @@ function ChatHistory() {
             <div
               key={item.id}
               onClick={() => setActiveId(item.id)}
-              className={`group flex items-center justify-between px-6 py-4 cursor-pointer transition-all duration-200 border-b border-gray-50 
+              className={`group flex items-center justify-between px-6 py-4 cursor-pointer transition-all duration-200 border-b border-border 
                 ${
                   isActive
                     ? "bg-primary/10 border-r-4 border-r-primary border-b-border"
-                    : "hover:bg-gray-50 border-r-4 border-r-transparent  border-b-border border-t-border"
+                    : "hover:bg-card border-r-4 border-r-transparent  border-b-border border-t-border"
                 }`}
             >
               {/* Left Side: Title and Meta Info */}

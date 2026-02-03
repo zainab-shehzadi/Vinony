@@ -24,7 +24,7 @@ export default function CreationInput({
   const [inputValue, setInputValue] = useState<string>("");
 
   return (
-    <div className="w-full mx-auto p-4 rounded-xl bg-background">
+    <div className="w-full mx-auto py-4 rounded-xl bg-background">
       <p className="font-bold text-[16px] text-foreground mb-2">Prompt</p>
 
       <form
@@ -56,11 +56,11 @@ export default function CreationInput({
           <div className="flex sm:hidden items-center gap-4 overflow-x-auto no-scrollbar w-full sm:w-auto py-1">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="bg-card text-foreground rounded-full w-8 h-8 hover:bg-slate-50 ">
+                <Button className="bg-card text-foreground rounded-full w-8 h-8 hover:bg-hover/50 ">
                   <Plus size={20} strokeWidth={3} />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-background border border-border rounded-lg p-2 z-50">
+              <DropdownMenuContent className="bg-card border border-border rounded-lg p-2 z-50">
                 {Actions.map((action, index) => (
                   <>
                   <DropdownMenuItem className="py-1">

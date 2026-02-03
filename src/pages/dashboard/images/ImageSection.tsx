@@ -5,7 +5,8 @@ import { AI_IMAGE_MODELS, ModelConfig } from "@/constants/aiModelData";
 import GeneratedHistory from "@/components/dashboard/imageSection/GeneratedHistory";
 import { useOutletContext } from "react-router-dom";
 import GeneratedImage from "@/components/dashboard/imageSection/GeneratedImage";
-import {Image_Actions} from "@/constants/aiModelData"
+import { Image_Actions } from "@/constants/aiModelData"
+import WebContainer from "@/lib/webContainer";
 
 type OutletContextType = {
   activeView: String;
@@ -24,31 +25,29 @@ export default function ImageSection() {
   );
   return (
     <>
-      <div className="flex w-full flex-col min-h-screen">
-        <div className="w-full max-w-[74rem] mx-auto overflow-hidden">
-          <Modelbar
-            models={AI_IMAGE_MODELS}
-            selectedModel={selectedModel}
-            setSelectedModel={setSelectedModel}
-            activeVersion={activeVersion}
-            setActiveVersion={setActiveVersion}
-          />
-        </div>
+      <WebContainer>
+        <Modelbar
+          models={AI_IMAGE_MODELS}
+          selectedModel={selectedModel}
+          setSelectedModel={setSelectedModel}
+          activeVersion={activeVersion}
+          setActiveVersion={setActiveVersion}
+        />
 
-        <div className="flex-grow overflow-y-auto flex flex-col items-center px-5 py-8 no-scrollbar">
-          {activeView !== "image-history" && (
-            <div className={`w-full`}>
-              <CreationInput
-                setReqGenerate={setReqGenerate}
-                Placeholder="Describe the image you want to generate... e.g., A futuristic cityscape at sunset"
-                Actions={Image_Actions}
-              />
-            </div>
-          )}
-          {reqGenerate && <GeneratedImage />}
-          {activeView === "image-history" && <GeneratedHistory />}
-        </div>
-      </div>
+        {activeView !== "image-history" && (
+          <div className={`w-full`}>
+            <CreationInput
+              setReqGenerate={setReqGenerate}
+              Placeholder="Describe the image you want to generate... e.g., A futuristic cityscape at sunset"
+              Actions={Image_Actions}
+            />
+          </div>
+        )}
+        {reqGenerate && <GeneratedImage />}
+        {activeView === "image-history" && <GeneratedHistory />}
+
+      </WebContainer>
+
     </>
   );
 }

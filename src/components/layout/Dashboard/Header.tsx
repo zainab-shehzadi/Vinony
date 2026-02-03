@@ -1,3 +1,6 @@
+"use client";
+
+import { useCallback, useMemo, useState } from "react";
 import {
   Bell,
   ChevronDown,
@@ -5,6 +8,8 @@ import {
   CircleDollarSign,
   CreditCard,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +20,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import LogoutModal from "@/components/models/LogoutAccountModal";
+import { PATH } from "@/constants/paths";
+
 
 interface IProp {
   setToggle: (val: boolean) => void;
@@ -22,58 +30,127 @@ interface IProp {
 }
 
 export default function Header({ setToggle, toggle }: IProp) {
+  const navigate = useNavigate();
+
+  const [logoutOpen, setLogoutOpen] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
+
+  // ✅ You can centralize routes here
+  const routes = useMemo(
+    () => ({
+      notification: "/notification",
+      billing: "/billing", // change to your upgrade route
+      profile: "/settings/profile", // change as needed
+      terms: "/terms",
+      privacy: "/privacy",
+      login: "/auth/login", // change as needed
+    }),
+    []
+  );
+
+  const go = useCallback(
+    (path: string) => {
+      navigate(path);
+    },
+    [navigate]
+  );
+
+  const handleUpgrade = useCallback(() => {
+    go(PATH.PRICING);
+  }, [go, PATH.PRICING]);
+
+  const handleLogoutConfirm = useCallback(async () => {
+    try {
+      setLogoutLoading(true);
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("user");
+
+      setLogoutOpen(false);
+      navigate(routes.login, { replace: true });
+    } finally {
+      setLogoutLoading(false);
+    }
+  }, [navigate, routes.login]);
+
   return (
     <>
-      <header className="h-16 w-full border-b border-border flex items-center justify-between px-4 lg:px-6 sticky top-0">
+      <header className="h-16 w-full border-b border-border flex items-center justify-between px-4 md:px-10 xl:px-16 sticky top-0">
         {/* Left Side: Workspace Title & Mobile Menu */}
         <div className="flex items-center gap-4">
-          <div
+          <button
+            type="button"
             className="lg:hidden cursor-pointer font-semibold text-xl text-foreground"
             onClick={() => setToggle(!toggle)}
+            aria-label="Toggle sidebar"
           >
             <Menu className="w-6 h-6" />
-          </div>
-          <h1 className="text-sm lg:text-base font-semibold truncate">
+          </button>
+
+          <h1 className="text-sm md:text-base lg:text-[20px] font-semibold truncate">
             Chat Workspace
           </h1>
         </div>
 
         {/* Right Side: Actions & Profile */}
         <div className="flex items-center gap-2 md:gap-4">
+          {/* Credits */}
           <div className="hidden auth-primary-btn h-8 sm:flex sm:items-center gap-1 px-2 py-3 rounded-lg">
             <CircleDollarSign className="w-4 h-4" />
             <span className="text-xs font-semibold">100 +</span>
           </div>
 
+          {/* Upgrade */}
           <div className="flex items-center border-l border-r pl-1 pr-1">
-            <div className="text-foreground w-40 hidden md:flex md:justify-center gap-2 cursor-pointer">
+            <button
+              type="button"
+              onClick={handleUpgrade}
+              className="text-foreground w-40 hidden md:flex md:justify-center gap-2 cursor-pointer"
+            >
               <CreditCard className="w-6 h-6 text-primary" />
-              <span className="text-sm md:text-[16px] font-medium">Upgrade plan</span>
-            </div>
-            {/* Mobile Icon only version */}
-            <div className="md:hidden text-primary cursor-pointer">
+              <span className="text-sm md:text-[16px] font-medium">
+                Upgrade plan
+              </span>
+            </button>
+
+            {/* Mobile Icon only */}
+            <button
+              type="button"
+              onClick={handleUpgrade}
+              className="md:hidden text-primary cursor-pointer"
+              aria-label="Upgrade plan"
+            >
               <CreditCard className="w-6 h-6 text-primary" />
-            </div>
+            </button>
           </div>
 
           {/* Notification Bell */}
-          <div className="relative">
-            <div className="text-primary h-8 w-7 flex items-center justify-center relative cursor-pointer">
-              <Bell className="w-6 h-6 fill-primary" />
-              <span className="bg-red-500 h-1.5 w-1.5 rounded-full absolute top-0.5 right-1"></span>
-            </div>
-          </div>
+          <button
+            type="button"
+            onClick={() => go(routes.notification)}
+            aria-label="Open notifications"
+            className="relative text-primary h-8 w-7 flex items-center justify-center cursor-pointer
+              focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
+          >
+            <Bell className="w-6 h-6 fill-primary" />
+            <span className="bg-red-500 h-1.5 w-1.5 rounded-full absolute top-0.5 right-1" />
+          </button>
 
           {/* User Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 p-1 rounded-lg transition-colors">
+              <button
+                type="button"
+                className="flex items-center gap-2 cursor-pointer hover:bg-hover p-1 rounded-lg transition-colors"
+                aria-label="Open user menu"
+              >
                 <Avatar className="h-7 w-7">
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>MS</AvatarFallback>
                 </Avatar>
                 <ChevronDown className="w-4 h-4 text-accent hidden sm:block" />
-              </div>
+              </button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent
@@ -88,8 +165,7 @@ export default function Header({ setToggle, toggle }: IProp) {
                     <AvatarFallback>MS</AvatarFallback>
                   </Avatar>
                   <div className="flex items-center gap-2">
-                    <div className="w-[1px] h-6 bg-accent" />{" "}
-                    {/* Vertical Line */}
+                    <div className="w-[1px] h-6 bg-accent" />
                     <span className="font-bold text-foreground text-base">
                       Michael Smith
                     </span>
@@ -112,22 +188,37 @@ export default function Header({ setToggle, toggle }: IProp) {
 
               {/* Menu Items */}
               <div className="px-1 py-1">
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem
+                  className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70"
+                  onSelect={() => go(PATH.SETTING)}
+                >
                   Profile
                 </DropdownMenuItem>
+
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem
+                  className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70"
+                  onSelect={() => go(PATH.TERMS)}
+                >
                   Terms
                 </DropdownMenuItem>
+
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem
+                  className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70"
+                  onSelect={() => go(PATH.PRIVACY)}
+                >
                   Privacy
                 </DropdownMenuItem>
+
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
-                <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-slate-50 focus:text-[#131316]">
+                <DropdownMenuItem
+                  className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70"
+                  onSelect={() => setLogoutOpen(true)}
+                >
                   Logout
                 </DropdownMenuItem>
               </div>
@@ -135,6 +226,14 @@ export default function Header({ setToggle, toggle }: IProp) {
           </DropdownMenu>
         </div>
       </header>
+
+      {/* ✅ Logout Modal */}
+      <LogoutModal
+        open={logoutOpen}
+        onOpenChange={setLogoutOpen}
+        onConfirm={handleLogoutConfirm}
+        loading={logoutLoading}
+      />
     </>
   );
 }

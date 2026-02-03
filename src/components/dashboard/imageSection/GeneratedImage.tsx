@@ -16,7 +16,7 @@ export default function GeneratedImage() {
     <>
       <div className={`w-full px-4 overflow-y-auto`}>
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-semibold text-foreground">
+          <h3 className="mt-4 lg:mt-6 text-xl font-semibold text-foreground">
             Generated Images
           </h3>
           <p className="text-[16px] font-medium text-accent">

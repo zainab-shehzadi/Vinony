@@ -45,7 +45,7 @@ export default function GeneratedHistory() {
 
   return (
     <>
-      <div className="w-full mx-auto p-6 space-y-5">
+      <div className="w-full mx-auto py-6 space-y-5">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
           <div className="flex items-center gap-3">
             <h3 className="text-[16px] md:text-lg font-bold text-foreground">

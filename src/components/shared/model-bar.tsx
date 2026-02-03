@@ -30,7 +30,7 @@ export function Modelbar({
   setActiveVersion,
 }: IProp) {
   return (
-    <nav className="w-full px-5 pt-10">
+    <nav className="w-full mt-4 md:mt-6">
       <div className="overflow-x-auto no-scrollbar">
         <div className="flex w-max mx-auto gap-2.5 overflow-x-auto no-scrollbar pb-2 flex-nowrap">
           {models?.map((model) => {

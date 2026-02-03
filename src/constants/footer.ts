@@ -6,7 +6,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     links: [
       { label: "Features", to: "/features" },
       { label: "Pricing", to: "/pricing" },
-      { label: "Models", to: "/models" },
+      { label: "Models", to: "/ai-models" },
       { label: "Changelog", to: "/changelog" },
     ],
   },

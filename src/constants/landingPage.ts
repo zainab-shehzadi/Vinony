@@ -155,3 +155,87 @@ export const AI_PROVIDERS: AiProvider[] = [
     className: "h-6",
   },
 ];
+
+
+
+export type AppNotification = {
+  id: number;
+  text: string;
+  time: string;
+  unread: boolean;
+};
+
+export const notifications: {
+  today: AppNotification[];
+  yesterday: AppNotification[];
+  thisMonth: AppNotification[];
+} = {
+  today: [
+    {
+      id: 1,
+      text: "You’re running low on credits — top up to avoid interruptions",
+      time: "10min ago",
+      unread: true,
+    },
+    {
+      id: 2,
+      text: "Your document has been processed and is ready for questions",
+      time: "10min ago",
+      unread: true,
+    },
+    {
+      id: 3,
+      text: "Your plan is active and credits have been added to your account",
+      time: "1hr ago",
+      unread: true,
+    },
+    {
+      id: 4,
+      text: "New login detected on your account",
+      time: "5hr ago",
+      unread: false,
+    },
+  ],
+
+  yesterday: [
+    {
+      id: 5,
+      text: "This model is currently unavailable due to maintenance",
+      time: "5hr ago",
+      unread: false,
+    },
+    {
+      id: 6,
+      text: "Your subscription has been renewed for the next cycle",
+      time: "5hr ago",
+      unread: false,
+    },
+    {
+      id: 7,
+      text: "Your subscription has been renewed for the next cycle",
+      time: "5hr ago",
+      unread: false,
+    },
+  ],
+
+  thisMonth: [
+    {
+      id: 8,
+      text: "This model is currently unavailable due to maintenance",
+      time: "5hr ago",
+      unread: false,
+    },
+    {
+      id: 9,
+      text: "Your subscription has been renewed for the next cycle",
+      time: "5hr ago",
+      unread: false,
+    },
+    {
+      id: 10,
+      text: "Your subscription has been renewed for the next cycle",
+      time: "5hr ago",
+      unread: false,
+    },
+  ],
+};

@@ -22,15 +22,18 @@ export const ActionButton = ({
         <DropdownMenuContent
           sideOffset={8}
           align="start"
-          className="z-50 min-w-[160px] overflow-hidden rounded-xl border border-slate-100 bg-white p-1.5 shadow-xl animate-in fade-in zoom-in-95"
+          className="z-50 min-w-[160px] overflow-hidden rounded-xl border border-border bg-card p-1.5 shadow-xl animate-in fade-in zoom-in-95"
         >
           {menu.map((action, index) => (
-            <DropdownMenuItem
+            <>
+              <DropdownMenuItem
               key={index}
-              className="relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2.5 text-sm text-primaryDark font-medium outline-none transition-colors hover:bg-slate-50 focus:bg-slate-50 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+              className="relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2.5 text-sm text-foreground font-medium outline-none transition-colors hover:bg-hover focus:bg-hover data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
             >
               {action}
             </DropdownMenuItem>
+            <hr className="border border-border" />
+            </>
           ))}
         </DropdownMenuContent>
       )}
