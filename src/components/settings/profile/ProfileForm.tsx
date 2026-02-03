@@ -49,7 +49,7 @@ export default function ProfileForm() {
       <div className="grid grid-cols-12">
         {/* LEFT */}
         <div className="col-span-12 md:col-span-3 border-b border-border">
-          <div className="flex justify-center md:justify-start px-4 sm:px-6 md:px-4 lg:px-6">
+          <div className="flex justify-center md:justify-start ">
             <AvatarUploader
               initialUrl={DEFAULT_PROFILE_SETTINGS.avatarUrl}
               value={avatarFile}

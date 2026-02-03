@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CancelSubscriptionModal from "../models/CancelSubscriptionModal";
 import TopUpCreditsModal from "../models/TopUpCreditsModal";
+import TopUpSuccessModal from "../models/AddedCreditModal";
 
 interface PlanProps {
   name: string;
@@ -23,6 +24,8 @@ export default function SummaryCard() {
   const [cancelLoading, setCancelLoading] = useState(false);
   const [topUpOpen, setTopUpOpen] = useState(false);
   const [topUpLoadingId, setTopUpLoadingId] = useState<string | null>(null);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [successLoading, setSuccessLoading] = useState(false);
   const handleConfirmCancel = async () => {
     try {
       setCancelLoading(true);
@@ -30,26 +33,35 @@ export default function SummaryCard() {
 
       setCancelOpen(false);
     } catch (e) {
-      // TODO: show toast if you have one
       console.error(e);
     } finally {
       setCancelLoading(false);
     }
   };
   const handleBuyCredits = async (packId: string) => {
+    setTopUpLoadingId(packId);
     try {
-      setTopUpLoadingId(packId);
-
-      // ✅ TODO: call API / thunk for buying credits
-      // await billingService.buyTopUp(packId);
-
       setTopUpOpen(false);
+      setSuccessOpen(true);
     } catch (e) {
       console.error(e);
     } finally {
       setTopUpLoadingId(null);
     }
   };
+
+
+
+  const onSuccessConfirm = async () => {
+    setSuccessLoading(true);
+    try {
+      setSuccessOpen(false);
+      navigate("/dashboard");
+    } finally {
+      setSuccessLoading(false);
+    }
+  };
+
   return (
     <div className="w-full rounded-3xl p-5 md:p-8 bg-input border border-border my-5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -86,6 +98,12 @@ export default function SummaryCard() {
         plan={Plan}
       />
 
+      <TopUpSuccessModal
+        open={successOpen}
+        onOpenChange={setSuccessOpen}
+        onConfirm={onSuccessConfirm}
+        loading={successLoading}
+      />
       {/* Stats Grid: Mobile pe columns stack honge */}
       <div className="w-full pt-10">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-4">

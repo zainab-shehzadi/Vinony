@@ -45,56 +45,61 @@ export default function ModalShell({
       <DialogContent
         className={cn(
           "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-
-          "w-[calc(100vw-2rem)] sm:w-[530px] sm:max-w-[530px]",
-
+          "w-[calc(100vw-2rem)] sm:w-[530px]",
           "max-h-[calc(100dvh-2rem)]",
 
-          " overflow-hidden rounded-2xl bg-background shadow-lg",
+          "overflow-visible p-0 border border-border shadow-lg",
 
-          "[&>button[aria-label='Close']]:hidden",
+          "[&>button[aria-label='Close']]:hidden rounded-2xl",
 
           contentClassName
         )}
       >
-        {showClose ? (
-          <DialogClose asChild>
-            <button
-              type="button"
-              aria-label="Close modal"
-              className={cn(
-                "absolute right-3 top-3 sm:right-5 sm:top-5 z-10",
-                "flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full",
-                "bg-destructive text-white shadow-md",
-                "hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background",
-                closeClassName
-              )}
-            >
-              <X className="h-4 w-4 sm:h-5 sm:w-5" />
-            </button>
-          </DialogClose>
-        ) : null}
+        {/* Inner wrapper handles rounded + clipping */}
+        <div className="relative rounded-2xl bg-background overflow-hidden">
+          {showClose ? (
+            <DialogClose asChild>
+              <button
+                type="button"
+                aria-label="Close modal"
+                className={cn(
+                  "absolute right-4 top-4 z-50 grid h-8 w-8 place-items-center rounded-full bg-[#FF4D4D] text-white shadow-sm hover:opacity-90 transition",
+                  closeClassName
+                )}
+              >
+                <X className="h-4 w-4 sm:h-5 sm:w-5" />
+              </button>
+            </DialogClose>
+          ) : null}
 
-        {/* ✅ Content scroll only if needed */}
-        <div className={cn("max-h-[calc(100dvh-2rem)] overflow-y-auto", bodyClassName)}>
-          <div className="p-0 md:p-6">
-            {title ? (
-              <DialogTitle className="text-center text-xl sm:text-2xl font-bold text-foreground">
-                {title}
-              </DialogTitle>
-            ) : null}
+          {/* Scroll area (you can hide scrollbar here if you want) */}
+          <div
+            className={cn(
+              "max-h-[calc(100dvh-2rem)] overflow-y-auto",
+              // optional: hide scrollbar but keep scroll
+              "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+              bodyClassName
+            )}
+          >
+            <div className="p-4 md:p-10">
+              {title ? (
+                <DialogTitle className="text-center text-xl sm:text-2xl font-bold text-foreground">
+                  {title}
+                </DialogTitle>
+              ) : null}
 
-            {description ? (
-              <DialogDescription className="mt-4 text-center text-sm sm:text-base font-semibold text-muted-foreground/80">
-                {description}
-              </DialogDescription>
-            ) : null}
+              {description ? (
+                <DialogDescription className="mt-4 text-center text-sm sm:text-base font-semibold text-muted-foreground/80">
+                  {description}
+                </DialogDescription>
+              ) : null}
 
-            <div className={cn(title || description ? "mt-6" : "mt-0")}>
-              {children}
+              <div className={cn(title || description ? "mt-6" : "mt-0")}>
+                {children}
+              </div>
+
+              {footer ? <div className="mt-6">{footer}</div> : null}
             </div>
-
-            {footer ? <div className="mt-6">{footer}</div> : null}
           </div>
         </div>
       </DialogContent>

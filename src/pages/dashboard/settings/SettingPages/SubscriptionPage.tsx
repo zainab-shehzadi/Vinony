@@ -1,18 +1,18 @@
 "use client";
 
 import { useNavigate } from "react-router-dom";
-
 import SettingsTabs from "@/components/settings/SettingsTabs";
 import BillingInfoCard from "@/components/settings/subscription/BillingInfoCard";
 import SummaryCard from "@/components/shared/summary-card";
+import WebContainer from "@/lib/webContainer";
 
 export default function SubscriptionPage() {
   const navigate = useNavigate();
 
 
   return (
-    <>
-      <div className="w-full p-6 md:p-10 lg:p-16 space-y-8">
+    <WebContainer>
+      <div className="w-full space-y-8">
         <SettingsTabs />
         <SummaryCard />
         <BillingInfoCard
@@ -28,7 +28,7 @@ export default function SubscriptionPage() {
           ]}
         />
       </div>
+    </WebContainer>
 
-    </>
   );
 }

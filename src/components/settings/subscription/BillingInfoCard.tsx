@@ -19,7 +19,7 @@ function ValueText({
 }) {
   const cls =
     tone === "primary"
-      ? "text-[#25396F]"
+      ? "text-[#25396F] dark:text-accent"
       : tone === "muted"
         ? "text-muted-foreground"
         : "text-foreground";

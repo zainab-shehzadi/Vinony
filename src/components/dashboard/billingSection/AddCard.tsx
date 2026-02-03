@@ -101,9 +101,7 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
             type="button"
             variant="ghost" 
             onClick={()=> {
-                setTimeout(() => {
                     setCardActive(false)
-                }, 1000);
             }}
             className="w-full sm:w-auto h-11 px-8 rounded-xl order-2 sm:order-1 bg-accent/10 hover:bg-accent/20 hover:text-foreground"
           >

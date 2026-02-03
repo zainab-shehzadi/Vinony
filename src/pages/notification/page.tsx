@@ -4,6 +4,7 @@ import * as React from "react";
 import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AppNotification, notifications } from "@/constants/landingPage";
+import WebContainer from "@/lib/webContainer";
 
 type SectionKey = "today" | "yesterday" | "thisMonth";
 
@@ -15,7 +16,7 @@ const SECTIONS: Array<{ key: SectionKey; label: string }> = [
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mt-6 mb-3 text-[14px] font-semibold text-foreground">
+    <p className="mt-6 mb-3 md:text-[16px] font-bold text-foreground">
       {children}
     </p>
   );
@@ -47,7 +48,8 @@ function NotificationRow({ note }: { note: AppNotification }) {
 
 export default function NotificationPage() {
   return (
-    <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-6 md:py-10">
+    <WebContainer>
+    <div className="w-full ">
       <div className="border-b border-border pb-6">
         <h1 className="text-[16px] md:text-[28px] font-medium text-foreground">
           Notifications
@@ -75,5 +77,6 @@ export default function NotificationPage() {
         })}
       </div>
     </div>
+    </WebContainer>
   );
 }
