@@ -14,7 +14,6 @@ import ImageSection from "@/pages/dashboard/images/ImageSection";
 import LandingPage from "@/pages/landingPage/page";
 import PricingPage from "@/pages/pricing/PricingPage";
 import AIModelPage from "@/pages/aIModels/AIModel";
-import ModelDetailPage from "@/pages/aIModels/ ModelDetailPage";
 import NotFound from "@/pages/notFound";
 import TermAndCondition from "@/pages/legal/TermsAndConditions";
 import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
@@ -29,6 +28,7 @@ import PaymentPage from "@/pages/dashboard/settings/SettingPages/PaymentPage";
 import NotificationPage from "@/pages/notification/page";
 import TotalInvoices from "@/pages/dashboard/billings/TotalInvoices";
 import BuyCredits from "@/pages/dashboard/billings/BuyCredits";
+import ModelDetailPage from "@/pages/aIModels/ModelDetailPage";
 
 
 export const routes: RouteObject[] = [
@@ -50,7 +50,6 @@ export const routes: RouteObject[] = [
     ],
   },
 
-  // --- PRIVATE DASHBOARD ROUTES ---
   {
     // element: <PrivateRoute />, 
     children: [

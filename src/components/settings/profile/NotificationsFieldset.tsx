@@ -20,7 +20,7 @@ export default function NotificationsFieldset({ value, onChange }: Props) {
           />
           <div>
             <p className="text-sm lg:text-[16px] font-semibold text-foreground">{n.title}</p>
-            <p className="text-sm lg:text-[16px] text-[#475569] dark:text-accent">{n.description}</p>
+            <p className="mt-1 text-sm lg:text-[16px] text-[#475569] dark:text-accent">{n.description}</p>
           </div>
         </div>
       ))}

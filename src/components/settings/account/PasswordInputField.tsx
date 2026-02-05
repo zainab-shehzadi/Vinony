@@ -20,7 +20,7 @@ export default function PasswordInputField({
   const [show, setShow] = React.useState(false);
 
   return (
-    <div className="grid grid-cols-12 items-center gap-4">
+    <div className="grid grid-cols-12 items-center gap-2 md:gap-4">
       <div className="col-span-12 md:col-span-4">
         <p className="text-14 md:text-[16px] font-bold text-foreground">{label}</p>
       </div>

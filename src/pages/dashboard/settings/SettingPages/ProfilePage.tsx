@@ -36,7 +36,7 @@ export default function ProfilePage() {
         <ProfileForm />
 
         <AccountAction
-          title="Logout"
+          title=""
           buttonText="Log Out Account"
           onClick={handleLogoutClick}
         />

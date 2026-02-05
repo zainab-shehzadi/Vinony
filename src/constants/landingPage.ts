@@ -2,25 +2,25 @@ import { CtaBannerContent, ModelsShowcaseContent, TestimonialItem } from "@/type
 
 export const HOW_IT_WORKS = [
   {
-    title: "Advanced conversational AI",
+    title: "Choose a Plan",
     description:
-      "GPT-4.0 is ideal for building chat assistants that must handle complex user intent, follow detailed policies, and maintain conversational context over long sessions.",
+      "Select a pricing plan that fits your needs, whether you’re exploring AI tools or building at scale with advanced models and higher limits.",
     iconSrc: "/Vector.svg",
   },
   {
-    title: "Professional content creation",
+    title: "Pick any Model or Tool",
     description:
-      "The model performs exceptionally well at producing long, coherent, and well-structured content.",
+      "Choose from a wide range of AI models and tools for text, image, video, and code generation—all in one platform.",
     iconSrc: "/Group.svg",
   },
   {
-    title: "Reasoning & problem-solving",
+    title: "Generate with Credits",
     description:
-      "GPT-4.0 can analyze scenarios, weigh trade-offs, and provide step-by-step reasoning, making it suitable for strategic.",
+      "Use credits to generate content instantly and flexibly across models, paying only for what you create.",
     iconSrc: "/bar.svg",
   },
- 
-];
+] as const;
+
 
 export const HOW_IT_WORKS1 = [
   {
@@ -81,7 +81,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: "t1",
     quote:
-      "Finally, I don't need five different tabs open. Vinony handles everything from quick copy tweaks to full image generation.",
+      "Finally, I don't need five different tabs open. Vinony handles everything from quick to full image generation.",
     name: "Guy Hawkins",
     role: "Nursing Assistant",
     avatarSrc: "/profile.svg",
@@ -89,7 +89,7 @@ export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: "t2",
     quote:
-      "The model switching is seamless. I can test my prompts across GPT-4, Claude, and Gemini without leaving the workspace.",
+      "The model switching is seamless. I can test my prompts across GPT-4, Claude, and Gemini without workspace.",
     name: "Guy Hawkins",
     role: "Nursing Assistant",
     avatarSrc: "/profile.svg",

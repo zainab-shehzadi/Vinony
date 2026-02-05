@@ -5,7 +5,7 @@ export default function PlanBadge({ label, className }: { label: string; classNa
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 rounded-full btn-gradient px-4 py-3 text-sm font-semibold text-primary-foreground  ",
+        "inline-flex items-center gap-2 rounded-full btn-gradient px-4 py-2 md:py-3 text-sm font-semibold text-primary-foreground  ",
         className
       )}
     >

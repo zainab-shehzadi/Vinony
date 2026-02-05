@@ -67,7 +67,7 @@ export default function PricingComparisonTable({
 
         <div className="hidden lg:block">
           <div className="border-y border-border bg-background px-4 xl:px-16">
-            <table className="w-full table-fixed border-collapse border-x border-border">
+            <table className="w-full table-fixed border-collapse border-r border-border">
               <colgroup>
                 <col className="w-[28%]" />
                 <col className="w-[24%]" />
@@ -128,14 +128,12 @@ export default function PricingComparisonTable({
 
                   return (
                     <tr key={row.id} className={cn(!isLastRow && "border-b border-border")}>
-                      {/* Feature name column */}
                       <td className="border-r border-border px-4 md:px-6 lg:px-8 lg:py-5 text-left align-middle">
                         <span className="block text-sm md:text-base lg:text-[18px] font-medium text-foreground break-words">
                           {row.label}
                         </span>
                       </td>
 
-                      {/* Plan columns */}
                       {plans.map((p, i) => {
                         const isSelected = selected === p.id;
                         const isLastCol = i === plans.length - 1;

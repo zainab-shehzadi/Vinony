@@ -85,8 +85,12 @@ export default function ProfileForm() {
                 <PhoneField
                   country={country}
                   phone={phone}
-                  onCountryChange={(c) => form.setValue("country", c, { shouldDirty: true })}
-                  onPhoneChange={(v) => form.setValue("phone", v, { shouldDirty: true })}
+                  onCountryChange={(c) =>
+                    form.setValue("country", c, { shouldDirty: true })
+                  }
+                  onPhoneChange={(v) =>
+                    form.setValue("phone", v.replace(/\D/g, ""), { shouldDirty: true })
+                  }
                 />
               </SettingsRow>
 

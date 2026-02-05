@@ -318,14 +318,65 @@ export const MODELS: ModelCardData[] = [
 ];
 
 
-    
+
+
 import type { MarqueeItem } from "@/types/marquee";
 
 export const DEFAULT_MODELS_MARQUEE: MarqueeItem[] = [
-    { id: "veo2-1", label: "Veo 2" },
-    { id: "llama-31", label: "Llama 3.1" },
-    { id: "flux", label: "Flux" },
-    { id: "claude-sonnet", label: "Claude Sonnet" },
-    { id: "gpt-4o", label: "GPT-4o" },
-    { id: "veo2-2", label: "Veo 2" },
+  // OpenAI
+  { id: "veo2-1", label: "Veo 2" },
+  { id: "llama-31", label: "Llama 3.1" },
+  { id: "flux", label: "Flux" },
+  { id: "claude-sonnet", label: "Claude Sonnet" },
+  { id: "gpt-4o", label: "GPT-4o" },
+  { id: "veo2-2", label: "Veo 2" },
+  { id: "openai-gpt-4o", label: "GPT-4o" },
+  { id: "openai-gpt-4o-mini", label: "GPT-4o mini" },
+  { id: "openai-gpt-4-1", label: "GPT-4.1" },
+  { id: "openai-gpt-4-1-mini", label: "GPT-4.1 mini" },
+  { id: "openai-o3", label: "OpenAI o3" },
+  { id: "openai-o4-mini", label: "OpenAI o4 mini" },
+
+  // Anthropic
+  { id: "anthropic-claude-opus", label: "Claude Opus" },
+  { id: "anthropic-claude-sonnet", label: "Claude Sonnet" },
+  { id: "anthropic-claude-haiku", label: "Claude Haiku" },
+
+  // Google
+  { id: "google-gemini-2-0", label: "Gemini 2.0" },
+  { id: "google-gemini-1-5-pro", label: "Gemini 1.5 Pro" },
+  { id: "google-gemini-1-5-flash", label: "Gemini 1.5 Flash" },
+
+  // Meta
+  { id: "meta-llama-4", label: "Llama 4" },
+  { id: "meta-llama-3-1", label: "Llama 3.1" },
+  { id: "meta-llama-3", label: "Llama 3" },
+
+  // Mistral
+  { id: "mistral-large", label: "Mistral Large" },
+  { id: "mistral-small", label: "Mistral Small" },
+  { id: "mistral-mixtral-8x7b", label: "Mixtral 8×7B" },
+  { id: "mistral-mixtral-8x22b", label: "Mixtral 8×22B" },
+
+  // xAI
+  { id: "xai-grok", label: "Grok" },
+
+  // Cohere
+  { id: "cohere-command-r", label: "Command R" },
+  { id: "cohere-command-r-plus", label: "Command R+" },
+
+  // Stability / Images
+  { id: "stability-sd3", label: "Stable Diffusion 3" },
+  { id: "stability-sdxl", label: "SDXL" },
+
+  // Black Forest Labs (Flux)
+  { id: "bfl-flux-1", label: "FLUX.1" },
+  { id: "bfl-flux-1-pro", label: "FLUX.1 Pro" },
+
+  // Video
+  { id: "google-veo-2", label: "Veo 2" },
+  { id: "openai-sora", label: "Sora" },
+
+  // Voice
+  { id: "openai-whisper", label: "Whisper" },
 ];

@@ -8,7 +8,7 @@ export default function PaymentMethods({
 }) {
   return (
     <div className="w-full rounded-3xl p-6 md:p-8 bg-input border border-border/50">
-      <h3 className="text-[12px] md:text-sm font-semibold text-foreground mb-6">
+      <h3 className="text-[12px] md:text-[16px] font-semibold text-foreground mb-6">
         Payment Methods
       </h3>
 

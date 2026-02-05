@@ -17,7 +17,7 @@ function splitLines(text: string) {
 export default function GuaranteeStrip() {
   return (
     <section className="w-full bg-white dark:bg-background">
-      <div className="py-10 md:py-14">
+      <div className="py-6 sm:py-10 md:py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {GUARANTEE_ITEMS.map((item, idx) => (
             <div

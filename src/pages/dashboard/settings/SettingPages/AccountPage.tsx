@@ -48,7 +48,7 @@ export default function AccountPage() {
             <Divider />
 
             <AccountAction
-              title="Delete Account"
+              title=""
               buttonText="Delete Account"
               onClick={handleDeleteClick}
               variant="danger-outline"
