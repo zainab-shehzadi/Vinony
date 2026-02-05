@@ -45,8 +45,8 @@ export default function GeneratedHistory() {
 
   return (
     <>
-      <div className="w-full mx-auto py-6 space-y-5">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
+      <div className="w-full mx-auto py-6 space-y-1 overflow-y-auto">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <h3 className="text-[16px] md:text-lg font-bold text-foreground">
               {filteredGroups[0]?.label || "History"}
@@ -60,38 +60,40 @@ export default function GeneratedHistory() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-accent w-4 h-4" />
             <Input
               placeholder="Search for video"
-              className="pl-10 bg-input rounded-xl"
+              className="pl-10 bg-input rounded-xl border border-border"
             />
           </div>
         </div>
 
         <Accordion
           type="multiple"
-          defaultValue={["today", "yesterday"]}
+          // defaultValue={["today", "yesterday", "previous"]}
           className="w-full space-y-10"
+          defaultValue={filteredGroups.map(g => g.id)}
         >
-          {filteredGroups.map((group) => (
+          {filteredGroups.map((group, index) => (
             <AccordionItem
               key={group.id}
               value={group.id}
               className="border-none"
             >
-              {group.id !== "today" && (
-                <div className="flex items-center justify-between py-4 border-t border-border">
+              {index !== 0 && (
+                <div className="flex items-center justify-between py-2 border-t border-border">
                   <h3 className="text-[16px] md:text-lg font-bold">
                     {group.label}
                   </h3>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm md:text-[16px] text-accent">
-                      {getTotalImages(group.prompts)} Total
-                    </span>
-                    <AccordionTrigger className="p-0 hover:no-underline" />
-                  </div>
+                  <AccordionTrigger className="p-0 mr-2 hover:no-underline flex gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm md:text-base text-accent">
+                        {getTotalImages(group.prompts)} Total
+                      </span>
+                    </div>
+                  </AccordionTrigger>
                 </div>
               )}
 
               <AccordionContent
-                className={`${group.id === "today" ? "pt-0" : "pt-4"} space-y-12`}
+                className={`${index === 0 ? "pt-0" : "pt-4"} space-y-12`}
               >
                 {group.prompts.map((prompt: any, pIdx: number) => {
                   const uniqueId = `${group.id}-${pIdx}`;
@@ -101,9 +103,13 @@ export default function GeneratedHistory() {
                       <div
                         className={`flex flex-col gap-3 md:flex-row sm:items-start sm:justify-between text-sm py-4 px-2 cursor-pointer transition-all
                         ${activeId === uniqueId ? "bg-primary/10 border-r-4 border-r-primary" : "border-r-4 border-r-transparent"}`}
-                        onClick={() => setActiveId(uniqueId)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleText(uniqueId);
+                          setActiveId(uniqueId);
+                        }}
                       >
-                        <div className="flex items-start gap-4 flex-1 min-w-0">
+                        <div className="flex items-start gap-12 flex-1 min-w-0 max-w-full sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]">
                           <p
                             className={`text-foreground text-[16px] font-medium transition-all ${isExpanded ? "whitespace-normal" : "truncate"}`}
                           >
@@ -113,6 +119,7 @@ export default function GeneratedHistory() {
                             onClick={(e) => {
                               e.stopPropagation();
                               toggleText(uniqueId);
+                              setActiveId(uniqueId);
                             }}
                           >
                             <ChevronDown

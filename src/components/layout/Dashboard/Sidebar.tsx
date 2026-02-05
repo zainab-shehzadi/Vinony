@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, X } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -10,27 +10,36 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/paths";
 import CreditSection from "@/components/ui/credit-section";
 import { menuItems } from "@/constants/sideBarData";
-
+import { messages } from "@/constants/static-data";
+import { Icons } from "@/constants/aiModelData";
 interface IProp {
   toggle: boolean;
+  setToggle: (val: boolean) => void;
   activeHistory: Boolean;
   setActiveHistory: (a: Boolean) => void;
+  activeView: String;
   setActiveView: (a: String) => void;
   setReqGenerate: (a: Boolean) => void;
   setReqVideoGenerate: (a: Boolean) => void;
   setReqChatGenerate: (a: Boolean) => void;
   setReqAgentGenerate: (a: Boolean) => void;
+  selectedHeading: string;
+  onSelectChat: (heading: string, data: any) => void;
 }
 
 const Sidebar = ({
   toggle,
+  setToggle,
   activeHistory,
   setActiveHistory,
+  activeView,
   setActiveView,
   setReqGenerate,
   setReqVideoGenerate,
   setReqChatGenerate,
-  setReqAgentGenerate
+  setReqAgentGenerate,
+  selectedHeading,
+  onSelectChat,
 }: IProp) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -60,7 +69,6 @@ const Sidebar = ({
 
   const handleTabClick = (sub) => {
     setActiveView(sub.view);
-
     switch (sub.view) {
       case "video-history":
         setReqVideoGenerate(false);
@@ -90,8 +98,36 @@ const Sidebar = ({
       className={`fixed z-50 w-64 h-full bg-background border-r border-border flex flex-col p-4 lg:relative transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${toggle ? "translate-x-0" : "-translate-x-full"}`}
     >
       {/* Logo Section */}
-      <div className="flex items-center justify-center gap-2 px-2 mt-5 mb-10">
-        <p className="text-xl font-semibold text-primary">LOGO HERE</p>
+      <div className="flex justify-end w-full p-2 lg:hidden">
+        <button
+          onClick={() => setToggle(false)}
+          className="group flex items-center justify-center p-2 rounded-xl bg-muted/30 hover:bg-primary/10 transition-all duration-300 active:scale-95"
+          title="Close Sidebar"
+        >
+          <X className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+        </button>
+      </div>
+      <div className="flex items-center justify-center lg:mt-5 gap-2 mb-10">
+        <p className="text-xl font-semibold text-primary flex gap-2 items-center">
+          {" "}
+          <span className="flex">
+            <Icons
+              filling="#805AF5"
+              width={18}
+              height={36}
+              path={["M0 0H17.6879V17.6879L0 35.3757V0Z"]}
+              viewBox="0 0 18 36"
+            />
+            <Icons
+              filling="#805AF5"
+              width={18}
+              height={36}
+              path={["M0 17.6879L17.6879 0V35.3757H0V17.6879Z"]}
+              viewBox="0 0 18 36"
+            />
+          </span>
+          LOGO HERE
+        </p>
       </div>
       {/* Sidebar heading */}
       <div className="text-[12px] font-normal text-accent tracking-widest px-2 mb-2 uppercase">
@@ -104,7 +140,17 @@ const Sidebar = ({
           type="single"
           collapsible
           value={activeAccordion}
-          onValueChange={setActiveAccordion}
+          onValueChange={(value) => {
+            setActiveAccordion(value);
+            if (!value) {
+              setActiveView("");
+              setActiveHistory(false);
+              setReqGenerate(false);
+              setReqVideoGenerate(false);
+              setReqChatGenerate(false);
+              setReqAgentGenerate(false);
+            }
+          }}
           className="w-full border-none"
         >
           {menuItems.map((item, index) => {
@@ -125,12 +171,15 @@ const Sidebar = ({
               <AccordionItem
                 value={`item-${index}`}
                 key={index}
-                className="border-none group overflow-hidden rounded-lg  transition-all data-[state=open]:bg-secondary-bg"
+                className="border-none group overflow-hidden rounded-lg transition-all data-[state=open]:bg-secondary-bg"
               >
                 {hasSubItems ? (
                   // if subItems exist then standard AccordionTrigger
                   <AccordionTrigger
-                    onClick={() => item.path && navigate(item.path)}
+                    onClick={() => {
+                      item.path && navigate(item.path);
+                      setToggle(false);
+                    }}
                     className={`hover:no-underline py-3 px-2 mt-2 rounded-lg transition-all ${
                       item.path && isActive(item.path)
                         ? "bg-secondary-bg text-primary"
@@ -142,7 +191,10 @@ const Sidebar = ({
                 ) : (
                   // if subItems not exist then simple Button (No Arrow)
                   <div
-                    onClick={() => item.path && navigate(item.path)}
+                    onClick={() => {
+                      setToggle(false);
+                      item.path && navigate(item.path);
+                    }}
                     className={`flex items-center justify-between cursor-pointer py-3 px-2 mt-2 rounded-lg transition-all ${
                       item.path && isActive(item.path)
                         ? "bg-secondary-bg text-primary"
@@ -157,9 +209,14 @@ const Sidebar = ({
                     <div className="flex flex-col ml-6">
                       {item.type === "chat" && (
                         <button
-                          className={`text-[12px] text-accent font-normal hover:text-primary flex items-center gap-1 py-2`}
+                          className={`text-[12px] font-normal flex items-center gap-1 py-2 ${
+                            !activeHistory
+                              ? "text-primary"
+                              : "text-accent hover:text-primary"
+                          }`}
                           onClick={() => {
-                            setActiveHistory(!activeHistory);
+                            setActiveHistory(false);
+                            setActiveView("new-chat");
                             setReqChatGenerate(false);
                           }}
                         >
@@ -174,6 +231,10 @@ const Sidebar = ({
                             type="single"
                             collapsible
                             className="w-full border-none"
+                            value={activeHistory ? "recent-history" : ""}
+                            onValueChange={(val) => {
+                              setActiveHistory(val === "recent-history");
+                            }}
                           >
                             <AccordionItem
                               value="recent-history"
@@ -181,8 +242,11 @@ const Sidebar = ({
                             >
                               {/* Accordion Trigger for Recent Chats */}
                               <AccordionTrigger
-                                className="flex items-center gap-1 py-1 px-0 text-[12px] font-normal text-accent tracking-tighter hover:no-underline hover:text-slate-600 transition-colors"
-                              // onClick={() => setActiveHistory(false)}
+                                className={`flex items-center gap-1 py-1 px-0 text-[12px] font-normal text-accent tracking-tighter hover:no-underline transition-colors ${activeHistory ? "text-primary" : "text-accent hover:text-primary"}`}
+                                onClick={() => {
+                                  setActiveHistory(!activeHistory);
+                                  setReqChatGenerate(false);
+                                }}
                               >
                                 <span>Recent Chats</span>
                               </AccordionTrigger>
@@ -190,20 +254,31 @@ const Sidebar = ({
                               {/* Accordion Content for History List */}
                               <AccordionContent className="pt-1 pb-0 h-38 border-none overflow-y-auto hide-scrollbar">
                                 <div className="space-y-1 mt-1">
-                                  {recentChats.slice(0, 4).map((chat, i) => (
-                                    <div
-                                      key={i}
-                                      className="group relative flex items-center justify-between px-3 py-1 rounded-lg hover:bg-primary/5 cursor-pointer transition-colors"
-                                    >
-                                      <span className="text-[12px] text-accent truncate pr-4">
-                                        {chat}
-                                      </span>
-                                      <MoreHorizontal
-                                        size={25}
-                                        className="text-accent transition-opacity"
-                                      />
-                                    </div>
-                                  ))}
+                                  {Object.entries(messages)
+                                    .slice(0, 4)
+                                    .map(([heading, data], i) => {
+                                      const isActive =
+                                        selectedHeading === heading;
+                                      return (
+                                        <div
+                                          key={i}
+                                          onClick={() =>
+                                            onSelectChat(heading, data)
+                                          }
+                                          className={`group relative flex items-center justify-between py-1 rounded-lg  cursor-pointer transition-colors ${isActive ? "text-primary" : "text-accent hover:bg-primary/5"}`}
+                                        >
+                                          <span className="text-[12px]  truncate pr-4">
+                                            {heading}
+                                          </span>
+                                          <div>
+                                            <MoreHorizontal
+                                              size={16}
+                                              className="text-accent transition-opacity"
+                                            />
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
                                 </div>
                               </AccordionContent>
                             </AccordionItem>
@@ -216,8 +291,15 @@ const Sidebar = ({
                         item.subItems?.map((sub, i) => (
                           <button
                             key={i}
-                            onClick={() => handleTabClick(sub)}
-                            className="text-[12px] text-accent hover:text-primary text-left py-1.5 transition-colors"
+                            onClick={() => {
+                              handleTabClick(sub);
+                              setActiveHistory(false);
+                            }}
+                            className={`text-[12px] text-accent hover:text-primary text-left py-1.5 transition-colors ${
+                              activeView === sub.view
+                                ? "text-primary"
+                                : "text-accent hover:text-primary"
+                            }`}
                           >
                             {sub.label}
                           </button>

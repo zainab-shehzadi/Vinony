@@ -28,7 +28,7 @@ function NotificationRow({ note }: { note: AppNotification }) {
       className={cn(
         "flex items-center gap-4 rounded-xl border px-4 py-4 transition-colors",
         note.unread
-          ? "bg-[#F3E6FF] border-transparent  dark:bg-primary/15 dark:border-primary/25"
+          ? " dark:bg-primary/15 dark:border-primary/25"
           : "bg-background border-border dark:bg-background dark:border-border"
       )}
     >
@@ -56,10 +56,10 @@ export default function NotificationPage() {
     <WebContainer>
     <div className="w-full ">
       <div className="border-b border-border pb-6">
-        <h1 className="text-[20px] md:text-[28px] font-medium text-foreground">
+        <h1 className="text-[24px] md:text-[28px] font-medium text-foreground">
           Notifications
         </h1>
-        <p className="text-[10px] md:text-[16px] text-foreground">
+        <p className="text-[14px] md:text-[16px] text-foreground">
           Stay informed with real-time updates on generations, credits, subscriptions, and platform activity.
         </p>
       </div>

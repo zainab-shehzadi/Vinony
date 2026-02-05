@@ -4,16 +4,18 @@ export const ActionButton = ({
   icon,
   label,
   menu,
+  actionHandler,
 }: {
   icon: React.ReactNode;
   label: string;
   menu: string[];
+  actionHandler?: () => void;
 }) => {
   let hasMenu = menu && menu.length > 0;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 whitespace-nowrap text-foreground">
+        <button className="flex items-center gap-2 whitespace-nowrap text-foreground" onClick={actionHandler}>
           <span>{icon}</span>
           <span className="text-sm font-normal">{label}</span>
         </button>

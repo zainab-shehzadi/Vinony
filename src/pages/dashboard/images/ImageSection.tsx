@@ -26,13 +26,16 @@ export default function ImageSection() {
   return (
     <>
       <WebContainer>
-        <Modelbar
+        {activeView === "" && (
+           <Modelbar
           models={AI_IMAGE_MODELS}
           selectedModel={selectedModel}
           setSelectedModel={setSelectedModel}
           activeVersion={activeVersion}
           setActiveVersion={setActiveVersion}
         />
+        )}
+       
 
         {activeView !== "image-history" && (
           <div className={`w-full`}>

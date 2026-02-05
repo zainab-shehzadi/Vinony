@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { useState } from "react";
+import {messages} from "@/constants/static-data"
 
 export default function DashboardLayout() {
   const [toggle, setToggle] = useState(false);
@@ -11,19 +12,28 @@ export default function DashboardLayout() {
   const [reqVideoGenerate, setReqVideoGenerate] = useState<Boolean>(false);
   const [reqChatGenerate, setReqChatGenerate] = useState<Boolean>(false);
   const [reqAgentGenerate, setReqAgentGenerate] = useState<Boolean>(false);
+  const [selectedChat, setSelectedChat] = useState(Object.entries(messages)[0]);
 
   return (
     <>
       <div className="flex h-screen">
         <Sidebar
           toggle={toggle}
+          setToggle={setToggle}
           activeHistory={activeHistory}
           setActiveHistory={setActiveHistory}
+          activeView={activeView}
           setActiveView={setActiveView}
           setReqGenerate={setReqGenerate}
           setReqVideoGenerate={setReqVideoGenerate}
           setReqChatGenerate={setReqChatGenerate}
           setReqAgentGenerate={setReqAgentGenerate}
+          selectedHeading={selectedChat[0]}
+          onSelectChat={(heading, data) => {
+            setSelectedChat([heading, data]);
+            setReqChatGenerate(true);
+            // setActiveHistory(false);
+          }}
         />
         {toggle && (
           <div
@@ -46,7 +56,9 @@ export default function DashboardLayout() {
                 reqChatGenerate,
                 setReqChatGenerate,
                 reqAgentGenerate, 
-                setReqAgentGenerate
+                setReqAgentGenerate,
+                selectedChat,
+                setSelectedChat
               }}
             />
           </main>
