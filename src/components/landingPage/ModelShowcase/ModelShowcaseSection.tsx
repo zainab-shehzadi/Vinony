@@ -27,7 +27,7 @@ export default function ModelShowcaseSection({
         <section
             className={cn(
                 "w-full p-[8px]",
-                "bg-[url('/Bgborder.png')] bg-no-repeat bg-center bg-[length:100%_100%]",
+                "bg-[url('/Bgborder.png')] dark:bg-[url('/darkBgborder.png')]  bg-no-repeat bg-center bg-[length:100%_100%]",
                 "overflow-hidden",
                 reverse ? "px-4" : "px-8 lg:px-12 ",
                 "py-8  xl:py-12"
