@@ -1,4 +1,6 @@
+"use client";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 function BalloonsIllustration() {
   return (
@@ -7,7 +9,13 @@ function BalloonsIllustration() {
       <div className="pointer-events-none absolute -inset-6 rounded-[32px] bg-[radial-gradient(60%_60%_at_50%_30%,rgba(128,90,245,0.22),transparent_70%)] blur-sm" />
 
       {/* card */}
-      <div className="relative rounded-[28px] border border-white/50 bg-white/70 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.12)] backdrop-blur">
+      <div
+        className={cn(
+          "relative rounded-[28px] border p-4 sm:p-6 backdrop-blur",
+          "border-border bg-white/70 shadow-[0_20px_80px_rgba(0,0,0,0.12)]",
+          "dark:border-primary/20 dark:bg-white/5 dark:shadow-[0_20px_80px_rgba(0,0,0,0.35)]"
+        )}
+      >
         <svg
           viewBox="0 0 720 360"
           className="h-auto w-full"
@@ -147,7 +155,6 @@ function BalloonsIllustration() {
         </svg>
       </div>
 
-      {/* animation styles */}
       <style>
         {`
           .nf-float { animation: nfFloat 4.6s ease-in-out infinite; transform-origin: center; }
@@ -168,33 +175,47 @@ export default function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen w-full bg-[radial-gradient(80%_60%_at_50%_0%,rgba(128,90,245,0.18),transparent_60%),linear-gradient(to_bottom,#ffffff,#fafafa)]">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-10 px-6 py-12 md:flex-row md:gap-14">
+    <div
+      className={cn(
+        "min-h-screen w-full",
+        // light
+        "bg-[radial-gradient(80%_60%_at_50%_0%,rgba(128,90,245,0.18),transparent_60%),linear-gradient(to_bottom,#ffffff,#fafafa)]",
+        // dark
+        "dark:bg-[radial-gradient(80%_60%_at_50%_0%,rgba(128,90,245,0.22),transparent_60%),linear-gradient(to_bottom,#0B0B0F,#07070A)]"
+      )}
+    >
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-10 px-5 py-10 sm:px-6 md:flex-row md:gap-14">
         {/* left content */}
-        <div className="max-w-xl">
+        <div className="w-full max-w-xl text-center md:text-left">
           <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
             404 • Page Not Found
           </div>
 
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-gray-900 md:text-5xl">
+          <h1 className="mt-4 text-3xl font-semibold leading-tight text-gray-900 sm:text-4xl md:text-5xl dark:text-white">
             Oops! This page drifted away 🎈
           </h1>
 
-          <p className="mt-4 text-base leading-7 text-gray-600">
+          <p className="mt-4 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7 dark:text-white/70">
             We couldn’t find the page you’re looking for. It may have been moved,
             renamed, or never existed.
           </p>
 
-          <div className="mt-4 rounded-xl border border-gray-200 bg-white/70 px-4 py-3 text-sm text-gray-700 backdrop-blur">
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white/70 px-4 py-3 text-xs text-gray-700 backdrop-blur sm:text-sm dark:border-white/10 dark:bg-white/5 dark:text-white/70">
             <span className="font-medium">Requested:</span>{" "}
-            <span className="font-mono text-gray-900">{location.pathname}</span>
+            <span className="break-all font-mono text-gray-900 dark:text-white">
+              {location.pathname}
+            </span>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="h-12 w-full rounded-xl border border-gray-200 bg-white px-5 text-base font-semibold text-gray-900 hover:bg-gray-50 sm:w-auto"
+              className={cn(
+                "h-12 w-full rounded-xl border px-5 text-base font-semibold transition",
+                "border-gray-200 bg-white text-gray-900 hover:bg-gray-50",
+                "dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 sm:w-auto"
+              )}
             >
               Go Back
             </button>
@@ -216,7 +237,9 @@ export default function NotFound() {
         </div>
 
         {/* right illustration */}
-        <BalloonsIllustration />
+        <div className="w-full md:w-[520px]">
+          <BalloonsIllustration />
+        </div>
       </div>
     </div>
   );

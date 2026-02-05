@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { CircleDollarSign, Paperclip, Plus } from "lucide-react";
+import { useRef, useState } from "react";
+import { CircleDollarSign, Plus } from "lucide-react";
 import { ModelConfig } from "@/constants/aiModelData";
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ActionButton } from "@/components/ui/actionButton";
+import FilePicker from "@/components/shared/file-picker";
 
 interface IProp {
   setReqGenerate: (a: boolean) => void;
@@ -22,6 +23,23 @@ export default function CreationInput({
   Actions,
 }: IProp) {
   const [inputValue, setInputValue] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [files, setFiles] = useState<string[]>([]);
+  const [fileData, setFileData] = useState<File[]>([]);
+  const openFilePicker = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current?.click();
+    }
+  };
+  const ActionHandler = (sub) => {
+    switch (sub.id) {
+      case "attach":
+        openFilePicker();
+        break;
+      default:
+        null;
+    }
+  };
 
   return (
     <div className="w-full mx-auto py-4 rounded-xl bg-background">
@@ -32,21 +50,27 @@ export default function CreationInput({
           e.preventDefault();
           setReqGenerate(true);
           setInputValue("");
+          setFileData([]);
+          setFiles([]);
         }}
         className="bg-input rounded-lg p-2 shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)]"
       >
-        {/* Upper Part: Input and Paperclip */}
-        <div className="flex items-start w-full gap-3 px-3 py-2">
-          <label className="mt-2 cursor-pointer hover:opacity-70 transition-opacity">
-            <Paperclip size={20} className="text-foreground" />
-            <input type="file" className="hidden" />
-          </label>
+        {/* Input and FilePicker */}
+        <div className="flex flex-col items-start w-full gap-3 px-3 py-2">
+          <FilePicker
+            fileInputRef={fileInputRef}
+            files={files}
+            setFiles={setFiles}
+            fileData={fileData}
+            setFileData={setFileData}
+          />
 
-          <input
+          <textarea
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={Placeholder}
-            className="w-full py-2 bg-transparent border-none focus:ring-0 text-foreground outline-none placeholder:text-accent text-sm resize-none min-h-[40px]"
+            className="w-full py-2 bg-transparent border-none focus:ring-0 text-foreground outline-none placeholder:text-accent text-sm resize-none min-h-[120px] align-top"
+            rows={3}
           />
         </div>
 
@@ -63,15 +87,16 @@ export default function CreationInput({
               <DropdownMenuContent className="bg-card border border-border rounded-lg p-2 z-50">
                 {Actions.map((action, index) => (
                   <>
-                  <DropdownMenuItem className="py-1">
-                    <ActionButton
-                      icon={action.icon}
-                      label={action.baseLabel}
-                      menu={action.menu ?? []}
-                      key={index}
-                    />
-                  </DropdownMenuItem>
-                  <hr className="border border-border"/>
+                    <DropdownMenuItem className="py-1">
+                      <ActionButton
+                        icon={action.icon}
+                        label={action.baseLabel}
+                        menu={action.menu ?? []}
+                        key={index}
+                        actionHandler={() => ActionHandler(action)}
+                      />
+                    </DropdownMenuItem>
+                    <hr className="border border-border" />
                   </>
                 ))}
               </DropdownMenuContent>
@@ -84,6 +109,7 @@ export default function CreationInput({
                 label={action.baseLabel}
                 menu={action.menu ?? []}
                 key={index}
+                actionHandler={() => ActionHandler(action)}
               />
             ))}
           </div>

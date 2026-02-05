@@ -6,6 +6,7 @@ import type { ModelsShowcaseContent } from "@/types/landingPage";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/theme/ThemeProvider";
+import { useNavigate } from "react-router-dom";
 
 function splitLines(text: string) {
   const parts = text.split("\n");
@@ -21,33 +22,26 @@ type Props = {
   content?: ModelsShowcaseContent;
   onCtaClick?: () => void;
   className?: string;
-
-  /** ✅ right-side image for light mode */
   imageSrc?: string;
-
-  /** ✅ right-side image for dark mode */
   darkImageSrc?: string;
 };
 
 export default function ModelsShowcase({
   content = MODELS_SHOWCASE_CONTENT,
-  onCtaClick,
   className,
   imageSrc = "/overlay.svg",
   darkImageSrc = "/overlay-dark.svg",
 }: Props) {
-  const { resolved } = useTheme(); // ✅ "light" | "dark"
+  const { resolved } = useTheme();
 
-  const handleCta = () => {
-    onCtaClick?.();
-    content.onCta?.();
-  };
+  const navigate = useNavigate();
+
 
   const rightSrc = resolved === "dark" ? darkImageSrc : imageSrc;
 
   return (
     <section className={cn("w-full bg-[#D9D9D940] dark:bg-background ", className)}>
-      <div className="px-5 sm:px-8 md:px-12 lg:px-14 xl:px-28 py-6 md:py-14">
+      <div className="px-5 sm:px-8 md:px-12 lg:px-14 xl:px-28 py-6 md:py-12">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left */}
           <div className="text-center lg:text-left">
@@ -61,7 +55,7 @@ export default function ModelsShowcase({
 
             <Button
               type="button"
-              onClick={handleCta}
+              onClick={() => navigate("/ai-models")}
               className="mt-10 btn-gradient h-11 rounded-xl px-10 text-sm font-semibold text-white md:h-14 md:text-base lg:text-lg"
             >
               {content.ctaLabel}

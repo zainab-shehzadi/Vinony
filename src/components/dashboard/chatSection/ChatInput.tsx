@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Paperclip, Mic, ArrowUp, ChevronDown, Plus } from "lucide-react";
 import {
   DropdownMenu,
@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Actions } from "@/constants/aiModelData";
+import FilePicker from "@/components/shared/file-picker";
 
 interface IModel {
   id: string;
@@ -36,8 +37,27 @@ export function ChatInput({
   const hasVersions =
     selectedModel.versions && selectedModel.versions.length > 0;
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [files, setFiles] = useState<string[]>([]);
+  const [fileData, setFileData] = useState<File[]>([]);
+  const openFilePicker = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current?.click();
+    }
+  };
+  
+  const ActionHandler = (sub) => {
+    switch (sub.id) {
+      case "photosandfiles":
+        openFilePicker();
+        break;
+      default:
+        null;
+    }
+  };
+
   return (
-    <div className={`w-full mx-auto p-4 border border-border rounded-lg my-6 my-10`}>
+    <div className={`w-full mx-auto p-2 sm:p-4 border border-border rounded-lg my-6`}>
       <div className="inline-block mb-2">
         {hasVersions ? (
           <DropdownMenu>
@@ -79,7 +99,14 @@ export function ChatInput({
       </div>
 
       {/* Main Input Box */}
-      <div className="bg-input rounded-lg p-2 shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)]">
+      <div className="bg-input rounded-lg px-2 border border-border py-1 shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)]">
+        <FilePicker
+            fileInputRef={fileInputRef}
+            files={files}
+            setFiles={setFiles}
+            fileData={fileData}
+            setFileData={setFileData}
+          />
         <form
           className="flex items-center gap-3 sm:px-3 py-2"
           onSubmit={(e) => {
@@ -91,7 +118,7 @@ export function ChatInput({
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="bg-card text-foreground rounded-full w-8 h-8 hover:bg-hover sm:hidden">
+              <Button className="bg-card text-foreground rounded-full w-8 h-8 hover:bg-hover md:hidden">
                 <Plus size={20} strokeWidth={3} />
               </Button>
             </DropdownMenuTrigger>
@@ -102,6 +129,7 @@ export function ChatInput({
                     icon={action.icon}
                     label={action.baseLabel}
                     key={index}
+                    actionHandler={() => ActionHandler(action)}
                   />
                 </DropdownMenuItem>
               ))}
@@ -109,8 +137,10 @@ export function ChatInput({
           </DropdownMenu>
           <Paperclip
             size={20}
-            className="text-foreground cursor-pointer hidden sm:block"
+            className="text-foreground cursor-pointer hidden md:block"
+            onClick={openFilePicker}
           />
+          
           <input
             type="text"
             value={inputValue}
@@ -129,7 +159,7 @@ export function ChatInput({
           </div>
         </form>
         {!reqGenerate && (
-          <div className="hidden sm:flex items-center gap-4 sm:px-3 py-2 mt-1 overflow-x-auto no-scrollbar ">
+          <div className="hidden md:flex items-center gap-4 sm:px-3 py-2 mt-1 overflow-x-auto no-scrollbar ">
             {Actions.slice(1).map((action, index) => (
               <ActionButton
                 icon={action.icon}
@@ -147,11 +177,13 @@ export function ChatInput({
 const ActionButton = ({
   icon,
   label,
+  actionHandler,
 }: {
   icon: React.ReactNode;
   label: string;
+  actionHandler?: () => void;
 }) => (
-  <button className="flex items-center gap-2 text-foregroun transition-colors whitespace-nowrap px-1">
+  <button className="flex items-center gap-2 text-foregroun transition-colors whitespace-nowrap px-1" onClick={actionHandler}>
     <span className="text-foreground">{icon}</span>
     <span className="text-[14px] font-medium">{label}</span>
   </button>

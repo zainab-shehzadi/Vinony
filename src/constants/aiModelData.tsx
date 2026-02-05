@@ -40,18 +40,21 @@ import proofReading from "@/assets/Proofreading.svg";
 export interface IconProps {
   path: string | string[]; // Single path ya array of paths
   className?: string;
-  size?: number;
+  height?: number;
+  width?: number;
+  filling?: string;
+  viewBox?: string;
 }
 
-export const Icons = ({ path, className, size = 20 }: IconProps) => {
+export const Icons = ({ path, className, height = 20, width = 20, filling ="none", viewBox = "0 0 20 20" }: IconProps) => {
   const pathArray = Array.isArray(path) ? path : [path];
 
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 20 20"
-      fill="none"
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      fill={filling}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
@@ -115,13 +118,13 @@ export const AI_CHAT_MODELS: ModelConfig[] = [
       <img src={deepseek} width={16} height={16} className="text-[#6881FD]" />
     ),
   },
-  {
-    id: "gemini3",
-    baseLabel: "Gemini 3 Flash",
-    icon: (
-      <img src={gemini} width={16} height={16} className="text-[#448AFF]" />
-    ),
-  },
+  // {
+  //   id: "gemini3",
+  //   baseLabel: "Gemini 3 Flash",
+  //   icon: (
+  //     <img src={gemini} width={16} height={16} className="text-[#448AFF]" />
+  //   ),
+  // },
   {
     id: "grok",
     baseLabel: "Grok",
@@ -138,7 +141,9 @@ export const AI_CHAT_MODELS: ModelConfig[] = [
   {
     id: "gemini",
     baseLabel: "Gemini",
-    versions: ["Pro", "Ultra"],
+    versions: [
+    "2.0 Flash", "1.5 Pro", "1.5 Flash", "1.0 Ultra", "1.5 Flash-8B"    
+  ],
     icon: (
       <img src={gemini} width={16} height={16} className="text-[#448AFF]" />
     ),
@@ -322,13 +327,13 @@ export const GENERATED_GROUPS = [
     prompts: [
       {
         text: "A photorealistic portrait of a young woman, natural window light, soft shadows. natural window light, soft shadows natural window light, soft shadows natural window light, soft shadows",
-        date: "29/01/2026",
+        date: "05/02/2026",
         model: "Sora Image",
         images: [soraImage1, soraImage2, soraImage3, soraImage1],
       },
       {
         text: "A photorealistic portrait of a young woman, natural window light, soft shadows. photorealistic portrait of a young womanphotorealistic portrait of a young.",
-        date: "28/01/2026",
+        date: "04/02/2026",
         model: "Nano Banana",
         images: [nanoImage1, nanoImage2, nanoImage3, nanoImage1],
       },

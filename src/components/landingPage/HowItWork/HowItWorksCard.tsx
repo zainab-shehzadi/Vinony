@@ -25,7 +25,7 @@ export default function HowItWorksCard({
         <div className="pointer-events-none absolute -bottom-3 left-8 right-8 h-6 rounded-full" />
 
         <div
-          className={cn("relative h-full md:h-[320px] lg:h-[340px] xl:h-full overflow-hidden rounded-2xl p-[2px]", "bg-slate-100")}
+          className={cn("relative h-full md:h-[270px] lg:h-[340px] xl:h-[360px] overflow-hidden rounded-2xl p-[2px]", "bg-slate-100")}
           style={{ clipPath: CLIP }}
         >
           <div

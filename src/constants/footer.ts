@@ -31,8 +31,8 @@ export const FOOTER_SECTIONS: FooterSection[] = [
   {
     title: "Legal",
     links: [
-      { label: "Privacy", to: "/privacy-policy" },
-      { label: "Terms", to: "/terms-condition" },
+      { label: "Privacy Policy", to: "/privacy-policy" },
+      { label: "Terms  & Condition", to: "/terms-condition" },
       { label: "Security", to: "/security" },
       { label: "Cookies", to: "/cookies" },
     ],

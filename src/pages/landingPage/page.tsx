@@ -37,7 +37,7 @@ export default function LandingPage() {
 without juggling multiple subscriptions."
         />
         <GetStartedPreview
-          imageSrc="/overlay-bg.svg"
+          imageSrc="/overlay-bg.png"
           darkimgSrc="/darkbg.svg"
           onGetStarted={() => navigate("/login")}
         />
@@ -55,16 +55,13 @@ without juggling multiple subscriptions."
       />
 
       <Container>
-
         <ModelShowcaseList
           items={MODEL_SHOWCASE}
           onExplore={(id) => console.log("Explore:", id)}
         />
       </Container>
-
       <div className="lg:pt-10 xl:pt-16">
         <ModelsShowcase onCtaClick={() => console.log("Explore models")} />;
-
       </div>
 
       <Container>
@@ -74,7 +71,7 @@ without juggling multiple subscriptions."
             title="All AI Models Available for Creators"
           />
         </div>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 lg:mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {HOW_IT_WORKS.map((item) => (
             <HowItWorksCard
               key={item.title}
@@ -85,7 +82,7 @@ without juggling multiple subscriptions."
             />
           ))}
         </div>
-        <div className="xl:pt-14">
+        <div className="pt-10 xl:pt-14">
 
           <GetStartedSection imageSrc="/model.png"
             eyebrow="Get Started With Vinony"

@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,14 +32,49 @@ export function Modelbar({
   return (
     <nav className="w-full mt-4 md:mt-6">
       <div className="overflow-x-auto no-scrollbar">
-        <div className="flex w-max mx-auto gap-2.5 overflow-x-auto no-scrollbar pb-2 flex-nowrap">
+        <div className="flex sm:w-max sm:mx-auto gap-2.5 overflow-x-auto no-scrollbar pb-2 flex-nowrap">
+          {/* Models on small screen */}
+          <div className="w-full sm:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex w-full items-center justify-between gap-2 px-4 py-2.5 rounded-2xl border border-border bg-background outline-none">
+                  <Search size={16} />
+                  <span>{selectedModel.baseLabel}</span>
+                  <ChevronDown size={14} />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="rounded-xl p-1 w-[calc(97vw-32px)] border border-border sm:hidden"
+              >
+                {models.map((model) => (
+                  <>
+                    <DropdownMenuItem
+                      key={model.id}
+                      onClick={() => {
+                        setSelectedModel(model);
+                        if (model.versions) setActiveVersion(model.versions[0]);
+                      }}
+                      className="flex items-center gap-2 p-2 cursor-pointer focus:bg-hover focus:text-accent"
+                    >
+                      {model.icon}
+                      {model.baseLabel}
+                    </DropdownMenuItem>
+                    <hr className="border border-border last:hidden" />
+                  </>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Models on tab to big screens */}
           {models?.map((model) => {
             const isActive = selectedModel.id === model.id;
             const hasVersions = model.versions && model.versions.length > 0;
 
             const displayLabel =
               isActive && hasVersions
-                ? `${model.baseLabel}- ${activeVersion}`
+                ? `${model.baseLabel}-${activeVersion}`
                 : model.baseLabel;
 
             const ButtonContent = (
@@ -51,9 +86,7 @@ export function Modelbar({
                 className={`flex items-center gap-2 px-4 md:px-10 py-2.5 rounded-[14px] text-[16px] transition-all duration-300 border border-border flex-shrink-0 whitespace-nowrap outline-none
                 ${isActive ? "text-white btn-gradient shadow-[inset_0px_4px_10px_rgba(0,0,0,0.4)] font-bold" : "bg-background text-foreground font-normal"}`}
               >
-                <span
-                  className={`flex-shrink-0 ${isActive ? "" : ""}`}
-                >
+                <span className={`flex-shrink-0 ${isActive ? "brightness-0 invert" : ""}`}>
                   {model.icon}
                 </span>
                 <span>{displayLabel}</span>
@@ -68,7 +101,7 @@ export function Modelbar({
 
             return hasVersions ? (
               <DropdownMenu key={model.id}>
-                <DropdownMenuTrigger asChild>
+                <DropdownMenuTrigger asChild className="hidden sm:flex">
                   {ButtonContent}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -76,24 +109,29 @@ export function Modelbar({
                   className="rounded-xl p-1 min-w-[150px] border border-border"
                 >
                   {model.versions?.map((v) => (
-                   <>
-                     <DropdownMenuItem
-                      key={v}
-                      className="rounded-lg cursor-pointer focus:bg-grey-50 focus:text-accent"
-                      onClick={() => {
-                        setSelectedModel(model);
-                        setActiveVersion(v);
-                      }}
-                    >
-                      {model.baseLabel} {v}
-                    </DropdownMenuItem>
-                    <hr className="border border-border"/>
-                   </>
+                    <>
+                      <DropdownMenuItem
+                        key={v}
+                        className="rounded-lg cursor-pointer focus:bg-hover focus:text-accent"
+                        onClick={() => {
+                          setSelectedModel(model);
+                          setActiveVersion(v);
+                        }}
+                      >
+                        {model.baseLabel} {v}
+                      </DropdownMenuItem>
+                      <hr className="border border-border last:hidden" />
+                    </>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <React.Fragment key={model.id}>{ButtonContent}</React.Fragment>
+              <div
+                key={model.id}
+                className={"hidden sm:flex"}
+              >
+                {ButtonContent}
+              </div>
             );
           })}
         </div>

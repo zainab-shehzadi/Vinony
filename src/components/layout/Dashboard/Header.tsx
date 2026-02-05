@@ -77,7 +77,6 @@ export default function Header({ setToggle, toggle }: IProp) {
   return (
     <>
       <header className="h-16 w-full border-b border-border flex items-center justify-between px-4 md:px-10 xl:px-16 sticky top-0">
-        {/* Left Side: Workspace Title & Mobile Menu */}
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -88,7 +87,8 @@ export default function Header({ setToggle, toggle }: IProp) {
             <Menu className="w-6 h-6" />
           </button>
 
-          <h1 className="text-sm md:text-base lg:text-[20px] font-semibold truncate">
+      
+          <h1 className="text-base sm:text-xl font-semibold truncate">
             Chat Workspace
           </h1>
         </div>
@@ -201,7 +201,7 @@ export default function Header({ setToggle, toggle }: IProp) {
                   className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70"
                   onSelect={() => go(PATH.TERMS)}
                 >
-                  Terms
+                  Terms and Conditions
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator className="bg-border mx-1" />
@@ -210,7 +210,8 @@ export default function Header({ setToggle, toggle }: IProp) {
                   className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70"
                   onSelect={() => go(PATH.PRIVACY)}
                 >
-                  Privacy
+            
+                  Privacy Policy
                 </DropdownMenuItem>
 
                 <DropdownMenuSeparator className="bg-border mx-1" />
@@ -225,6 +226,7 @@ export default function Header({ setToggle, toggle }: IProp) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+        
       </header>
 
       {/* ✅ Logout Modal */}

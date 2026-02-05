@@ -36,7 +36,7 @@ export default function AccountAction({
     <div className={cn("w-full", className)}>
       {withDivider ? <div className="mb-6 h-px w-full bg-border" /> : null}
 
-      <div className="flex flex-col gap-3 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+      <div className="flex flex-col py-0 md:py-3 sm:flex-row sm:items-center sm:justify-between md:gap-4">
         <p className="text-[16px] font-bold text-foreground">{title}</p>
 
         <Button

@@ -1,20 +1,46 @@
-import React from "react";
-import { Bot, ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {messages} from "@/constants/static-data"
 
-const ChatResponse: React.FC = () => {
+interface ChatResponseProps {
+  activeChat: [string, any];
+}
+
+function ChatResponse ({activeChat}: ChatResponseProps) {
+  const activeData = activeChat[1];
+ const [selectedVersions, setSelectedVersions] = useState<{ [key: number]: string }>({});
+
+  // 2. Jab bhi activeChat badle, versions reset karein
+  useEffect(() => {
+    const initial: { [key: number]: string } = {};
+    activeData.messages.forEach((msg: any) => {
+      if (msg.versions && msg.versions.length > 0) {
+        initial[msg.id] = msg.versions[0];
+      }
+    });
+    setSelectedVersions(initial);
+  }, [activeChat]);
+
+  
+  // 2. Version change handler function
+  const handleVersionChange = (msgId: number, version: string) => {
+    setSelectedVersions((prev) => ({
+      ...prev,
+      [msgId]: version,
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="py-4 mx-auto space-y-8">
-        {messages.map((msg : any) => {
+      <div className=" mx-auto space-y-8">
+        {activeData.messages.map((msg: any) => {
           const hasVersions = msg.versions && msg.versions.length > 0;
-
+          const currentVersion = selectedVersions[msg.id];
           return (
             <div
               key={msg.id}
@@ -25,8 +51,8 @@ const ChatResponse: React.FC = () => {
               {msg.role === "assistant" ? (
                 <div className="flex w-full gap-3 min-h-[400px]">
                   {/* AI Avatar */}
-                  <div className="flex-shrink-0 w-9 h-9 bg-input rounded-full flex items-center justify-center shadow-sm mt-1">
-                    <Bot size={18} className="text-primary" />
+                  <div className="flex-shrink-0 w-9 h-9 bg-input rounded-full hidden md:flex items-center justify-center shadow-sm mt-1">
+                    {msg.icon}
                   </div>
 
                   <div className="flex-1 space-y-2">
@@ -35,7 +61,7 @@ const ChatResponse: React.FC = () => {
                       {hasVersions ? (
                         <DropdownMenu>
                           <DropdownMenuTrigger className="flex items-center gap-1 font-bold text-foreground text-[14px] outline-none hover:opacity-70 transition-opacity">
-                            {msg.senderName}{" "}
+                            {msg.senderName}-{currentVersion}
                             <ChevronDown size={14} className="text-accent" />
                           </DropdownMenuTrigger>
                           <DropdownMenuContent
@@ -46,17 +72,18 @@ const ChatResponse: React.FC = () => {
                               <>
                                 <DropdownMenuItem
                                   key={v}
+                                  onClick={() => handleVersionChange(msg.id, v)}
                                   className="rounded-lg cursor-pointer focus:bg-grey-50 focus:text-textMuted p-2 text-sm"
                                 >
                                   {msg.senderName} {v}
                                 </DropdownMenuItem>
-                                <hr className="border border-border"/>
+                                <hr className="border border-border" />
                               </>
                             ))}
                           </DropdownMenuContent>
                         </DropdownMenu>
                       ) : (
-                        <span className="font-bold text-foreground text-[14px]">
+                        <span className="font-bold text-foreground text-sm">
                           {msg.senderName}
                         </span>
                       )}
@@ -97,7 +124,7 @@ const ChatResponse: React.FC = () => {
                 </div>
               ) : (
                 /* User Section */
-                <div className="w-full flex flex-col items-end">
+                <div className="w-full flex flex-col items-end mt-1">
                   {msg.credit && (
                     <div className="pr-2 mb-2">
                       <span className="text-sm font-bold text-primary tracking-tight">
@@ -105,7 +132,7 @@ const ChatResponse: React.FC = () => {
                       </span>
                     </div>
                   )}
-                  <div className="bg-input px-6 py-3 rounded-3xl rounded-tr-none shadow-sm max-w-[85%] text-right">
+                  <div className="bg-input px-6 py-3 rounded-3xl rounded-tr-none shadow-sm max-w-full sm:max-w-[85%]">
                     <p className="text-sm md:text-[16px] text-accent">
                       {msg.content}
                     </p>

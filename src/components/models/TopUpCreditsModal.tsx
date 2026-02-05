@@ -38,6 +38,8 @@ export default function TopUpCreditsModal({
   loadingPackId = null,
   plan,
 }: Props) {
+
+  
   useEffect(() => {
     if (!open) return;
 

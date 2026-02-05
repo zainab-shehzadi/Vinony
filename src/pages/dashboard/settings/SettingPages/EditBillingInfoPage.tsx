@@ -4,13 +4,9 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import SettingsTabs from "@/components/settings/SettingsTabs";
 import AccountHeader from "@/components/settings/account/AccountHeader";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
 import PhoneField from "@/components/settings/profile/PhoneField";
 import FormActions from "@/components/settings/formAction";
 import type { CountryCode } from "@/types/setting";
@@ -19,15 +15,10 @@ import { BILLING_INFO_DEFAULT } from "@/constants/settings";
 import SettingsRow from "@/components/settings/SettingsRow";
 import WebContainer from "@/lib/webContainer";
 import TopUpCreditsModal, { PlanProps } from "@/components/models/TopUpCreditsModal";
-
-// ✅ import modal
-
 export default function EditBillingInfoPage() {
   const navigate = useNavigate();
 
   const [saving, setSaving] = React.useState(false);
-
-  // ✅ modal state
   const [topUpOpen, setTopUpOpen] = React.useState(false);
   const [loadingPackId, setLoadingPackId] = React.useState<string | null>(null);
 
@@ -79,21 +70,16 @@ export default function EditBillingInfoPage() {
     navigate("/settings/subscription");
   };
 
-  // ✅ open modal on upgrade
   const onUpgradePlan = () => {
     setTopUpOpen(true);
   };
 
-  // ✅ handle buy credits
   const onBuyCredits = async (packId: string) => {
     setLoadingPackId(packId);
     try {
-      // TODO: call API / stripe checkout
       console.log("Buy credits pack:", packId);
 
       await new Promise((r) => setTimeout(r, 700));
-
-      // optional: close modal after success
       setTopUpOpen(false);
     } finally {
       setLoadingPackId(null);
@@ -103,18 +89,17 @@ export default function EditBillingInfoPage() {
   return (
     <WebContainer>
       <div className="w-full space-y-8">
-        <SettingsTabs />
 
         <div className="w-full">
           <AccountHeader title="Edit Info" subtitle="Please update your Info here." />
 
           <div className="mt-6 border-t border-border">
             <form onSubmit={form.handleSubmit(onSubmit)} className="divide-y divide-border">
-              {/* Username */}
               <SettingsRow label="Username">
                 <div className="max-w-[520px]">
                   <Input
                     className="h-11 bg-background border-border"
+                    placeholder="Enter your username"
                     {...form.register("username")}
                     aria-invalid={!!form.formState.errors.username}
                   />
@@ -143,6 +128,7 @@ export default function EditBillingInfoPage() {
                 <div className="max-w-[520px]">
                   <Input
                     className="h-11 bg-background border-border"
+                    placeholder="Enter your country name"
                     {...form.register("countryName")}
                     aria-invalid={!!form.formState.errors.countryName}
                   />
@@ -159,6 +145,7 @@ export default function EditBillingInfoPage() {
                 <div className="max-w-[520px]">
                   <Input
                     className="h-11 bg-background border-border"
+                    placeholder="Enter your email address"
                     {...form.register("email")}
                     aria-invalid={!!form.formState.errors.email}
                   />

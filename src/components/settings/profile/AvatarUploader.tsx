@@ -118,7 +118,7 @@ export default function AvatarUploader({
               <img
                 src="/camera.svg"
                 alt="Upload"
-                className="h-7 w-7 sm:h-8 sm:w-8"
+                className="h-9 w-9"
               />
               <span className="text-xs sm:text-sm font-medium text-[#515151]">
                 Upload photo

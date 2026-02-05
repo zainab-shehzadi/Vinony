@@ -62,10 +62,8 @@ export default function PhoneField({
         </SelectContent>
       </Select>
 
-      {/* Divider line */}
       <div className="h-11 w-px bg-border" />
 
-      {/* Right: Phone input (no border, fills remaining space) */}
       <Input
         value={phone}
         onChange={(e) => onPhoneChange(e.target.value)}
