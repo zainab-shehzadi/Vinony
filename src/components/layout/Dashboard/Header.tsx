@@ -37,7 +37,7 @@ export default function Header({ setToggle, toggle }: IProp) {
           >
             <Menu className="w-6 h-6" />
           </div>
-          <h1 className="text-sm lg:text-base font-semibold truncate">
+          <h1 className="text-base sm:text-xl font-semibold truncate">
             Chat Workspace
           </h1>
         </div>
@@ -126,12 +126,12 @@ export default function Header({ setToggle, toggle }: IProp) {
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
                 <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70">
-                  Terms
+                  Terms and Conditions
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
                 <DropdownMenuItem className="py-2.5 cursor-pointer text-accent font-medium focus:bg-card focus:text-accent/70">
-                  Privacy
+                  Privacy Policy
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-border mx-1" />
 
