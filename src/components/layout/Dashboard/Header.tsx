@@ -26,7 +26,6 @@ export default function Header({ setToggle, toggle }: IProp) {
   const navigate = useNavigate();
 
   return (
-
     <>
       <header className="h-16 w-full border-b border-border flex items-center justify-between px-4 md:px-10 xl:px-16  sticky top-0">
         {/* Left Side: Workspace Title & Mobile Menu */}
@@ -52,7 +51,9 @@ export default function Header({ setToggle, toggle }: IProp) {
           <div className="flex items-center border-l border-r pl-1 pr-1">
             <div className="text-foreground w-40 hidden md:flex md:justify-center gap-2 cursor-pointer">
               <CreditCard className="w-6 h-6 text-primary" />
-              <span className="text-sm md:text-[16px] font-medium">Upgrade plan</span>
+              <span className="text-sm md:text-[16px] font-medium">
+                Upgrade plan
+              </span>
             </div>
             {/* Mobile Icon only version */}
             <div className="md:hidden text-primary cursor-pointer">
