@@ -174,7 +174,6 @@
     --sb-thumb-hover: #a382ff;
   }
 
-  /* ✅ Global page colors */
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
