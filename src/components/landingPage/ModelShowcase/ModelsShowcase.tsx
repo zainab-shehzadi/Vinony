@@ -43,7 +43,6 @@ export default function ModelsShowcase({
     <section className={cn("w-full bg-[#D9D9D940] dark:bg-background ", className)}>
       <div className="px-5 sm:px-8 md:px-12 lg:px-14 xl:px-28 py-6 md:py-12">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          {/* Left */}
           <div className="text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-extrabold leading-[1.05] tracking-tight text-foreground">
               {splitLines(content.heading)}
