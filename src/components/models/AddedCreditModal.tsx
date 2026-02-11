@@ -10,7 +10,7 @@ type Props = {
   loading?: boolean;
 };
 
-export default function LogoutModal({
+export default function TopUpSuccessModal({
   open,
   onOpenChange,
   onConfirm,
@@ -20,12 +20,8 @@ export default function LogoutModal({
     <ModalShell
       open={open}
       onOpenChange={onOpenChange}
-      title="Credits Added to You Wallet"
-      description={
-        <>
-          Your top-up was successful. The credits have been added to your wallet and are ready to use
-        </>
-      }
+      title="Credits Added to Your Wallet"
+      description="Your top-up was successful. The credits have been added to your wallet and are ready to use."
     >
       <div className="space-y-4">
         <Button
@@ -34,7 +30,7 @@ export default function LogoutModal({
           disabled={loading}
           className="h-12 w-full rounded-lg btn-gradient text-primary-foreground"
         >
-          {loading ? "Logging out..." : "Go to Dashboard"}
+          {loading ? "Opening..." : "Go to Dashboard"}
         </Button>
 
         <Button

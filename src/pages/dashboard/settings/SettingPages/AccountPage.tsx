@@ -8,6 +8,7 @@ import TwoFactorRow from "@/components/settings/account/TwoFactorRow";
 import ChangePasswordSection from "@/components/settings/account/ChangePasswordSection";
 import AccountAction from "@/components/settings/accountActions";
 import DeleteAccountModal from "@/components/models/DeleteAccountModal.tsx";
+import WebContainer from "@/lib/webContainer";
 
 export default function AccountPage() {
   const [twoFactor, setTwoFactor] = React.useState(true);
@@ -29,40 +30,40 @@ export default function AccountPage() {
   };
 
   return (
-    <div className="w-full p-4 sm:p-6 md:p-10 lg:p-16 space-y-8">
-      <SettingsTabs />
+    <WebContainer>
+      <div className="w-full space-y-8">
+        <SettingsTabs />
 
-      <div className="w-full">
-        <AccountHeader
-          title="Account settings"
-          subtitle="Please update your account settings here"
-        />
-
-        <div className="mt-4">
-          <Divider />
-          <TwoFactorRow value={twoFactor} onChange={setTwoFactor} />
-          <Divider />
-          <ChangePasswordSection />
-          <Divider />
-
-          <AccountAction
-            title="Delete Account"
-            buttonText="Delete Account"
-            onClick={handleDeleteClick}
-            variant="danger-outline"
-            withDivider
+        <div className="w-full">
+          <AccountHeader
+            title="Account settings"
+            subtitle="Please update your account settings here"
           />
+
+          <div className="mt-4">
+            <Divider />
+            <TwoFactorRow value={twoFactor} onChange={setTwoFactor} />
+            <Divider />
+            <ChangePasswordSection />
+            <Divider />
+
+            <AccountAction
+              title=""
+              buttonText="Delete Account"
+              onClick={handleDeleteClick}
+              variant="danger-outline"
+              withDivider
+            />
+          </div>
         </div>
+
+        <DeleteAccountModal
+          open={deleteOpen}
+          onOpenChange={setDeleteOpen}
+          onConfirm={handleConfirmDelete}
+          loading={deleting}
+        />
       </div>
-
-      <DeleteAccountModal
-        open={deleteOpen}
-        onOpenChange={setDeleteOpen}
-        onConfirm={handleConfirmDelete}
-        loading={deleting}
-      />
-     
-
-    </div>
+    </WebContainer>
   );
 }

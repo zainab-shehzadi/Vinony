@@ -13,6 +13,7 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     // These are form rules 
@@ -31,10 +32,13 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
     try {
         setTimeout(() => {
             alert("Card added successfully!");
-        }, 3000);
+            reset();
+            setCardActive(false);
+        }, 1000);
         console.log("Validated Form Data:", data);
-    } catch{
-        alert("something went wrong")
+    } catch(error) {
+        alert("something went wrong");
+        console.error("Error adding card:", error);
     }
   };
 
@@ -45,7 +49,7 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
         subtitle="Please enter your payment details to add a new card."
       />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 border-t border-border">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-3 md:mt-8 border-t border-border">
         
         {/* Card Number */}
         <FormRow label="Card Number" error={errors.cardNumber?.message}>
@@ -101,9 +105,7 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
             type="button"
             variant="ghost" 
             onClick={()=> {
-                setTimeout(() => {
                     setCardActive(false)
-                }, 1000);
             }}
             className="w-full sm:w-auto h-11 px-8 rounded-xl order-2 sm:order-1 bg-accent/10 hover:bg-accent/20 hover:text-foreground"
           >
@@ -125,8 +127,8 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
 // Reusable Row Component for cleaner JSX
 function FormRow({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 items-start py-6 border-b border-border gap-2 md:gap-4">
-      <label className="text-sm md:text-base font-bold pt-2">{label}</label>
+    <div className="grid grid-cols-1 md:grid-cols-3 items-start py-5 md:py-6 border-b border-border gap-2 md:gap-4">
+      <label className="text-sm md:text-base font-bold ">{label}</label>
       <div className="md:col-span-2 max-w-sm w-full">
         {children}
         {error && <p className="text-xs text-destructive mt-1 font-medium">{error}</p>}

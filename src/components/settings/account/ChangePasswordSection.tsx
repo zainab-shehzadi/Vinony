@@ -101,7 +101,7 @@ export default function ChangePasswordSection() {
 
           <div className="pt-2">
             <FormActions saving={saving} onCancel={onCancel}
-              saveText="Chnage Password"
+              saveText="Change Password"
               savingText="changing"
             />
           </div>

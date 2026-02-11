@@ -15,7 +15,7 @@ export const ActionButton = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 whitespace-nowrap text-foreground" onClick={actionHandler}>
+        <button className="flex items-center gap-2 whitespace-nowrap text-foreground px-3 py-1" onClick={actionHandler}>
           <span>{icon}</span>
           <span className="text-sm font-normal">{label}</span>
         </button>
@@ -24,7 +24,7 @@ export const ActionButton = ({
         <DropdownMenuContent
           sideOffset={8}
           align="start"
-          className="z-50 min-w-[160px] overflow-hidden rounded-xl border border-border bg-card p-1.5 shadow-xl animate-in fade-in zoom-in-95"
+          className="z-50 min-w-[160px] overflow-hidden rounded-lg border border-border bg-card p-1.5 shadow-xl animate-in fade-in zoom-in-95"
         >
           {menu.map((action, index) => (
             <>
@@ -34,7 +34,7 @@ export const ActionButton = ({
             >
               {action}
             </DropdownMenuItem>
-            <hr className="border border-border" />
+            <hr className="border border-border last:hidden" />
             </>
           ))}
         </DropdownMenuContent>

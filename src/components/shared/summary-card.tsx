@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CancelSubscriptionModal from "../models/CancelSubscriptionModal";
 import TopUpCreditsModal from "../models/TopUpCreditsModal";
+import TopUpSuccessModal from "../models/AddedCreditModal";
 
 interface PlanProps {
   name: string;
@@ -23,6 +24,8 @@ export default function SummaryCard() {
   const [cancelLoading, setCancelLoading] = useState(false);
   const [topUpOpen, setTopUpOpen] = useState(false);
   const [topUpLoadingId, setTopUpLoadingId] = useState<string | null>(null);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [successLoading, setSuccessLoading] = useState(false);
   const handleConfirmCancel = async () => {
     try {
       setCancelLoading(true);
@@ -30,43 +33,52 @@ export default function SummaryCard() {
 
       setCancelOpen(false);
     } catch (e) {
-      // TODO: show toast if you have one
       console.error(e);
     } finally {
       setCancelLoading(false);
     }
   };
   const handleBuyCredits = async (packId: string) => {
+    setTopUpLoadingId(packId);
     try {
-      setTopUpLoadingId(packId);
-
-      // ✅ TODO: call API / thunk for buying credits
-      // await billingService.buyTopUp(packId);
-
       setTopUpOpen(false);
+      setSuccessOpen(true);
     } catch (e) {
       console.error(e);
     } finally {
       setTopUpLoadingId(null);
     }
   };
+
+
+
+  const onSuccessConfirm = async () => {
+    setSuccessLoading(true);
+    try {
+      setSuccessOpen(false);
+      navigate("/dashboard");
+    } finally {
+      setSuccessLoading(false);
+    }
+  };
+
   return (
     <div className="w-full rounded-3xl p-5 md:p-8 bg-input border border-border my-5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <h2 className="text-xl md:text-2xl text-foreground font-semibold tracking-tight">
+        <h2 className="text-lg md:text-xl text-foreground font-semibold tracking-tight">
           Current Plan Summary
         </h2>
-        <div className="flex flex-row items-center gap-2 sm:gap-3">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
           <Button
             variant="secondary"
             onClick={() => setCancelOpen(true)}
-            className="flex-1 sm:flex-none bg-accent/10 rounded-xl text-foreground hover:bg-accent/20 border-none h-11 px-2 sm:px-6 transition-all"
+            className="w-full sm:w-auto bg-accent/10 rounded-xl text-foreground hover:bg-accent/20 border-none h-11 px-2 sm:px-6 transition-all"
           >
             Cancel Subscription
           </Button>
           <Button
             onClick={() => setTopUpOpen(true)}
-            className="flex-1 sm:flex-none btn-gradient rounded-xl h-11 px-3 sm:px-6 transition-all"
+            className="w-full sm:w-auto btn-gradient rounded-xl h-11 px-3 sm:px-6 transition-all"
           >
             Upgrade Plan
           </Button>
@@ -86,8 +98,14 @@ export default function SummaryCard() {
         plan={Plan}
       />
 
+      <TopUpSuccessModal
+        open={successOpen}
+        onOpenChange={setSuccessOpen}
+        onConfirm={onSuccessConfirm}
+        loading={successLoading}
+      />
       {/* Stats Grid: Mobile pe columns stack honge */}
-      <div className="w-full pt-10">
+      <div className="w-full pt-4 md:pt-10">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-4">
           <div className="flex flex-col gap-2">
             <span className="text-sm sm:text-[16px] font-medium uppercase text-muted-foreground/70">
@@ -136,7 +154,7 @@ export default function SummaryCard() {
 
       {/* Expiry Info */}
       <div className="flex flex-col gap-1.5 py-7">
-        <p className="text-foreground text-xs md:text-sm font-semibold">
+        <p className="text-foreground text-sm md:text-base font-semibold">
           Active until Dec 9, 2025
         </p>
         <p className="text-muted-foreground/80 text-xs md:text-sm font-normal">
@@ -147,19 +165,19 @@ export default function SummaryCard() {
       {/* Alert Box: Same to same logic with padding and wrapping */}
       <div className="p-4 md:p-6 border border-border/60 rounded-[20px] md:rounded-3xl bg-background/80 shadow-sm transition-colors">
         <div className="flex items-start gap-3">
-          <CircleAlert size={16} className="text-foreground mt-0.5 shrink-0" />
+          <CircleAlert size={16} className="text-foreground md:mt-1 shrink-0" />
           <div className="flex flex-col gap-1">
-            <p className="text-foreground text-xs md:text-sm font-medium leading-tight">
+            <p className="text-foreground text-sm md:text-base font-semibold leading-tight">
               We need your attention!
             </p>
             <div className="flex flex-wrap items-center gap-x-1.5">
-              <span className="text-muted-foreground text-xs font-normal leading-relaxed">
+              <span className="text-muted-foreground text-xs md:text-sm font-normal leading-relaxed">
                 Your payment was declined. To start using tools, please
               </span>
               <button
                 type="button"
                 onClick={() => navigate("/settings/payment")}
-                className="text-primary hover:text-primary/80 text-xs font-normal underline-offset-4 hover:underline transition-all"
+                className="text-primary pt-2 sm:pt-0 hover:text-primary/80 text-xs font-bold underline-offset-4 hover:underline transition-all"
               >
                 Add Payment Method.
               </button>

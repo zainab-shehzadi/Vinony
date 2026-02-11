@@ -52,6 +52,7 @@ export interface ChatHistoryItem {
   modelName: string;
 }
 
+
 export const messages: ChatHistory = {
   "How to be a better person": {
     metadata: {
@@ -708,43 +709,29 @@ export const historyData: ChatHistoryItem[] = [
     modelName: "Grok 4.1 Fast",
   },
   {
-    id: 5,
+    id: 6,
     title: "REACT NEXTJS Tutorial",
     credits: 24,
     date: "14/04/2025",
     modelName: "Grok 4.1 Fast",
   },
   {
-    id: 5,
+    id: 7,
     title: "REACT NEXTJS Tutorial",
     credits: 24,
     date: "14/04/2025",
     modelName: "Grok 4.1 Fast",
   },
   {
-    id: 5,
+    id: 8,
     title: "REACT NEXTJS Tutorial",
     credits: 24,
     date: "14/04/2025",
     modelName: "Grok 4.1 Fast",
   },
   {
-    id: 5,
-    title: "REACT NEXTJS Tutorial",
-    credits: 24,
-    date: "14/04/2025",
-    modelName: "Grok 4.1 Fast",
-  },
-  {
-    id: 5,
-    title: "REACT NEXTJS Tutorial",
-    credits: 24,
-    date: "14/04/2025",
-    modelName: "Grok 4.1 Fast",
-  },
-  {
-    id: 5,
-    title: "REACT NEXTJS Tutorial",
+    id: 9,
+    title: "Help me with web development tasks from client",
     credits: 24,
     date: "14/04/2025",
     modelName: "Grok 4.1 Fast",

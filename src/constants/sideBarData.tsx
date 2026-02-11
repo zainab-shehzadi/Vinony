@@ -1,18 +1,21 @@
-import { Image, MessageSquare, Receipt, Settings, Users, Video } from "lucide-react";
 import { PATH } from "./paths";
-
+import image from "@/assets/material-symbols_image-outline-sharp.png"
+import video from "@/assets/bxs_videos.png"
+import agent from "@/assets/fluent_agents-12-regular.png"
+import billing from "@/assets/stash_billing-info.png"
+import setting from "@/assets/material-symbols_settings-outline.png"
 
 export const menuItems = [
   {
     title: "Chat",
-    icon: <MessageSquare className="w-5 h-5" />,
+    icon: setting,
     path: PATH.CHAT,
     type: "chat",
     subItems: ["New Project"],
   },
   {
     title: "Images",
-    icon: <Image className="w-5 h-5" />,
+    icon: image,
     path: PATH.IMAGE,
     subItems: [
       { id: "image-creations", label: "My Creations", view: "image-history" },
@@ -20,7 +23,7 @@ export const menuItems = [
   },
   {
     title: "Videos",
-    icon: <Video className="w-5 h-5" />,
+    icon: video,
     path: PATH.VIDEO,
     subItems: [
       { id: "video-creations", label: "My Creations", view: "video-history" },
@@ -28,21 +31,19 @@ export const menuItems = [
   },
   {
     title: "Agents",
-    icon: <Users className="w-5 h-5" />,
+    icon: agent,
     path: PATH.AGENT,
-    subItems: [
-      { id: "my-history", label: "My History", view: "my-history" },
-    ],
+    subItems: [{ id: "my-history", label: "My History", view: "my-history" }],
   },
   {
     title: "Billings",
-    icon: <Receipt className="w-5 h-5" />,
+    icon: billing,
     path: PATH.BILLING,
   },
   {
     title: "Settings",
-    icon: <Settings className="w-5 h-5" />,
+    icon: setting,
     path: PATH.SETTING,
-    end:false
+    end: false,
   },
 ];

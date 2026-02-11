@@ -42,7 +42,7 @@ export default function CreationInput({
   };
 
   return (
-    <div className="w-full mx-auto py-4 rounded-xl bg-background">
+    <div className="w-full mx-auto py-3 rounded-xl bg-background">
       <p className="font-bold text-[16px] text-foreground mb-2">Prompt</p>
 
       <form
@@ -69,7 +69,15 @@ export default function CreationInput({
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={Placeholder}
-            className="w-full py-2 bg-transparent border-none focus:ring-0 text-foreground outline-none placeholder:text-accent text-sm resize-none min-h-[120px] align-top"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault(); 
+                if (inputValue.trim()) {
+                  e.currentTarget.form?.requestSubmit();
+                }
+              }
+            }}
+            className="w-full py-2 bg-transparent border-none focus:ring-0 text-foreground outline-none placeholder:text-accent text-sm resize-none min-h-[80px] md:min-h-[110px] align-top"
             rows={3}
           />
         </div>
@@ -84,10 +92,10 @@ export default function CreationInput({
                   <Plus size={20} strokeWidth={3} />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-card border border-border rounded-lg p-2 z-50">
+              <DropdownMenuContent className="bg-card border border-border rounded-lg p-2 z-50 ml-4">
                 {Actions.map((action, index) => (
                   <>
-                    <DropdownMenuItem className="py-1">
+                    <DropdownMenuItem className="py-1 hover:bg-hover">
                       <ActionButton
                         icon={action.icon}
                         label={action.baseLabel}
@@ -96,7 +104,7 @@ export default function CreationInput({
                         actionHandler={() => ActionHandler(action)}
                       />
                     </DropdownMenuItem>
-                    <hr className="border border-border" />
+                    <hr className="border border-border last:hidden" />
                   </>
                 ))}
               </DropdownMenuContent>

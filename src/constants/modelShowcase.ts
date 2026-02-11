@@ -43,7 +43,7 @@ export const MODEL_SHOWCASE: ModelShowcaseItem[] = [
       { id: "f4", text: "Advanced Diffusion-Based Architecture" },
     ],
     ctaLabel: "Start Exploring Now",
-    imageSrc: "/chat.svg",
+    imageSrc: "/chat2.png",
     imageAlt: "Flux model preview",
   },
 ];

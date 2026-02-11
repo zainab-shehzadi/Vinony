@@ -20,7 +20,7 @@ interface IProp {
   selectedModel: IModel;
   activeVersion: string;
   setActiveVersion: (v: string) => void;
-  reqGenerate: Boolean;
+  reqGenerate?: Boolean;
   setReqGenerate: (v: Boolean) => void;
   setActiveHistory: (a: Boolean) => void;
 }
@@ -45,7 +45,7 @@ export function ChatInput({
       fileInputRef.current?.click();
     }
   };
-  
+
   const ActionHandler = (sub) => {
     switch (sub.id) {
       case "photosandfiles":
@@ -57,7 +57,9 @@ export function ChatInput({
   };
 
   return (
-    <div className={`w-full mx-auto p-2 sm:p-4 border border-border rounded-lg my-6`}>
+    <div
+      className={`w-full mx-auto p-2 sm:p-4 border border-border rounded-lg my-2`}
+    >
       <div className="inline-block mb-2">
         {hasVersions ? (
           <DropdownMenu>
@@ -101,12 +103,12 @@ export function ChatInput({
       {/* Main Input Box */}
       <div className="bg-input rounded-lg px-2 border border-border py-1 shadow-[inset_0_1px_4px_rgba(0,0,0,0.05)]">
         <FilePicker
-            fileInputRef={fileInputRef}
-            files={files}
-            setFiles={setFiles}
-            fileData={fileData}
-            setFileData={setFileData}
-          />
+          fileInputRef={fileInputRef}
+          files={files}
+          setFiles={setFiles}
+          fileData={fileData}
+          setFileData={setFileData}
+        />
         <form
           className="flex items-center gap-3 sm:px-3 py-2"
           onSubmit={(e) => {
@@ -114,6 +116,8 @@ export function ChatInput({
             setInputValue("");
             setReqGenerate(true);
             setActiveHistory(false);
+            setFileData([]);
+            setFiles([]);
           }}
         >
           <DropdownMenu>
@@ -124,14 +128,17 @@ export function ChatInput({
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-card border border-border">
               {Actions.map((action, index) => (
-                <DropdownMenuItem className="focus:bg-hover focus:text-foreground">
-                  <ActionButton
-                    icon={action.icon}
-                    label={action.baseLabel}
-                    key={index}
-                    actionHandler={() => ActionHandler(action)}
-                  />
-                </DropdownMenuItem>
+                <>
+                  <DropdownMenuItem className="focus:bg-hover focus:text-foreground">
+                    <ActionButton
+                      icon={action.icon}
+                      label={action.baseLabel}
+                      key={index}
+                      actionHandler={() => ActionHandler(action)}
+                    />
+                  </DropdownMenuItem>
+                  <hr className="border border-border last:hidden" />
+                </>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
@@ -140,7 +147,7 @@ export function ChatInput({
             className="text-foreground cursor-pointer hidden md:block"
             onClick={openFilePicker}
           />
-          
+
           <input
             type="text"
             value={inputValue}
@@ -183,7 +190,10 @@ const ActionButton = ({
   label: string;
   actionHandler?: () => void;
 }) => (
-  <button className="flex items-center gap-2 text-foregroun transition-colors whitespace-nowrap px-1" onClick={actionHandler}>
+  <button
+    className="flex items-center gap-2 text-foregroun transition-colors whitespace-nowrap px-1"
+    onClick={actionHandler}
+  >
     <span className="text-foreground">{icon}</span>
     <span className="text-[14px] font-medium">{label}</span>
   </button>

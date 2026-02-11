@@ -14,7 +14,6 @@ import ImageSection from "@/pages/dashboard/images/ImageSection";
 import LandingPage from "@/pages/landingPage/page";
 import PricingPage from "@/pages/pricing/PricingPage";
 import AIModelPage from "@/pages/aIModels/AIModel";
-import ModelDetailPage from "@/pages/aIModels/ ModelDetailPage";
 import NotFound from "@/pages/notFound";
 import TermAndCondition from "@/pages/legal/TermsAndConditions";
 import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
@@ -29,6 +28,7 @@ import PaymentPage from "@/pages/dashboard/settings/SettingPages/PaymentPage";
 import NotificationPage from "@/pages/notification/page";
 import TotalInvoices from "@/pages/dashboard/billings/TotalInvoices";
 import BuyCredits from "@/pages/dashboard/billings/BuyCredits";
+import ModelDetailPage from "@/pages/aIModels/ModelDetailPage";
 
 
 export const routes: RouteObject[] = [
@@ -50,7 +50,6 @@ export const routes: RouteObject[] = [
     ],
   },
 
-  // --- PRIVATE DASHBOARD ROUTES ---
   {
     // element: <PrivateRoute />, 
     children: [
@@ -61,9 +60,11 @@ export const routes: RouteObject[] = [
           { path: PATH.IMAGE, element: <ImageSection /> },
           { path: PATH.VIDEO, element: <VideoSection /> },
           { path: PATH.AGENT, element: <AgentSection /> },
-          { path: PATH.BILLING, element: <BillingSection /> },
-          { path: PATH.INVOICE, element: <TotalInvoices /> },
+          { path: PATH.BILLING, element: <Navigate to="/dashboard/billing-section/" replace /> },
+          { path: "/dashboard/billing-section/", element: <BillingSection/>},
+          { path: PATH.INVOICE, element: <TotalInvoices />},
           { path: PATH.CREDIT, element: <BuyCredits /> },
+
           { path: PATH.SETTING, element: <Navigate to="/settings/profile" replace /> },
           { path: "/settings/profile", element: <ProfilePage /> },
           { path: "/settings/subscription", element: <SubscriptionPage /> },

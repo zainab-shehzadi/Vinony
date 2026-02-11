@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { Progress } from './progress'
 import { ArrowUpRight, X } from 'lucide-react'
 
 function CreditSection() {
+    const navigate = useNavigate();
+
   return (
     <>
         <div className="mt-auto border border-border rounded-lg p-3 bg-background shadow-sm relative overflow-hidden">
@@ -20,10 +23,14 @@ function CreditSection() {
 
         <Progress value={20} className="h-1.5 mb-4 bg-slate-100" />
 
-        <button className="text-primary text-sm font-semibold flex items-center gap-1 hover:underline">
-          Upgrade Plan
-          <ArrowUpRight size={16} />
-        </button>
+        <button
+        type="button"
+        onClick={() => navigate("/pricing")} 
+        className="text-primary text-sm font-semibold flex items-center gap-1 hover:underline"
+      >
+        Upgrade Plan
+        <ArrowUpRight size={16} />
+      </button>
       </div>
     </>
   )

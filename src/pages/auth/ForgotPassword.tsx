@@ -59,7 +59,7 @@ export default function ForgotPassword() {
           </Button>
 
 
-          <div className="text-sm md:text-lg text-[#81878C] space-y-1 md:py-2">
+          <div className="text-sm md:text-lg text-foreground space-y-1 md:py-2">
             <div>
               Already have account?{" "}
               <Link to="/login" className="auth-link text-secondary">
@@ -75,7 +75,7 @@ export default function ForgotPassword() {
           </div>
           <div className="auth-divider " />
 
-          <p className=" auth-helper md:pt-4 text-sm md:text-lg text-[#5B5D5E]">
+          <p className=" auth-helper md:pt-4 text-sm md:text-lg text-foreground">
             You may contact{" "}
             <a className="auth-link text-primary" href="#" onClick={(e) => e.preventDefault()}>
               Customer Service

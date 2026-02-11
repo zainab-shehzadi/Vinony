@@ -19,17 +19,17 @@ function ValueText({
 }) {
   const cls =
     tone === "primary"
-      ? "text-[#25396F]"
+      ? "text-[#25396F] dark:text-accent"
       : tone === "muted"
         ? "text-muted-foreground"
         : "text-foreground";
 
-  return <p className={cn("text-[14px] md:text-[18px]", cls)}>{children}</p>;
+  return <p className={cn("text-[14px] md:text-[18px] border border-border rounded-lg px-2 py-3", cls)}>{children}</p>;
 }
 
 export function BillingInfoField({ label, value, tone }: BillingInfoItem) {
   return (
-    <div className="space-y-2 md:space-y-4">
+    <div className="space-y-2">
       <p className="text-[14px] md:text-[18px] font-bold text-foreground ">
         {label}
       </p>
@@ -58,7 +58,7 @@ export default function BillingInfoCard({
   className,
 }: Props) {
   return (
-    <section className={cn("w-full", className)}>
+    <section className={cn("w-full bg-input p-5 md:p-8 border border-border rounded-3xl", className)}>
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-[16px] text-[20px] font-bold text-foreground">

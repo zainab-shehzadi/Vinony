@@ -2,177 +2,223 @@
 
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import SettingsTabs from "@/components/settings/SettingsTabs";
 import AccountHeader from "@/components/settings/account/AccountHeader";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
 import PhoneField from "@/components/settings/profile/PhoneField";
 import FormActions from "@/components/settings/formAction";
 import type { CountryCode } from "@/types/setting";
 import { billingEditSchema, BillingEditValues } from "@/components/validations/billing.schema";
 import { BILLING_INFO_DEFAULT } from "@/constants/settings";
 import SettingsRow from "@/components/settings/SettingsRow";
-
+import WebContainer from "@/lib/webContainer";
+import TopUpCreditsModal, { PlanProps } from "@/components/models/TopUpCreditsModal";
 export default function EditBillingInfoPage() {
-    const navigate = useNavigate();
-    const [saving, setSaving] = React.useState(false);
+  const navigate = useNavigate();
 
-    const form = useForm<BillingEditValues>({
-        resolver: zodResolver(billingEditSchema),
-        defaultValues: {
-            username: BILLING_INFO_DEFAULT.username,
-            phoneCountry: BILLING_INFO_DEFAULT.phoneCountry,
-            phone: BILLING_INFO_DEFAULT.phone,
-            countryName: BILLING_INFO_DEFAULT.countryName,
-            email: BILLING_INFO_DEFAULT.email,
-            plan: BILLING_INFO_DEFAULT.plan,
-        },
-        mode: "onChange",
+  const [saving, setSaving] = React.useState(false);
+  const [topUpOpen, setTopUpOpen] = React.useState(false);
+  const [loadingPackId, setLoadingPackId] = React.useState<string | null>(null);
+
+  const form = useForm<BillingEditValues>({
+    resolver: zodResolver(billingEditSchema),
+    defaultValues: {
+      username: BILLING_INFO_DEFAULT.username,
+      phoneCountry: BILLING_INFO_DEFAULT.phoneCountry,
+      phone: BILLING_INFO_DEFAULT.phone,
+      countryName: BILLING_INFO_DEFAULT.countryName,
+      email: BILLING_INFO_DEFAULT.email,
+      plan: BILLING_INFO_DEFAULT.plan,
+    },
+    mode: "onChange",
+  });
+
+  const phoneCountry = form.watch("phoneCountry") as CountryCode;
+  // const phone = form.watch("phone") ?? "";
+
+  const planSummary: PlanProps = React.useMemo(
+    () => ({
+      name: form.watch("plan") || "Free Plan",
+      cycle: "Monthly",
+      cost: "$0",
+    }),
+    [form]
+  );
+
+  const onSubmit = async (values: BillingEditValues) => {
+    setSaving(true);
+    console.log('on Submit is running...');
+    try {
+      console.log("Billing Edit Submit:", values);
+      await new Promise((r) => setTimeout(r, 700));
+      navigate("/settings/subscription");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const onCancel = () => {
+    form.reset({
+      username: BILLING_INFO_DEFAULT.username,
+      phoneCountry: BILLING_INFO_DEFAULT.phoneCountry,
+      phone: BILLING_INFO_DEFAULT.phone,
+      countryName: BILLING_INFO_DEFAULT.countryName,
+      email: BILLING_INFO_DEFAULT.email,
+      plan: BILLING_INFO_DEFAULT.plan,
     });
+    navigate("/settings/subscription");
+  };
 
-    const phoneCountry = form.watch("phoneCountry") as CountryCode;
-    const phone = form.watch("phone") ?? "";
+  const onUpgradePlan = () => {
+    setTopUpOpen(true);
+  };
 
-    const onSubmit = async (values: BillingEditValues) => {
-        setSaving(true);
-        try {
-            // TODO: call your API
-            console.log("Billing Edit Submit:", values);
+  const onBuyCredits = async (packId: string) => {
+    setLoadingPackId(packId);
+    try {
+      console.log("Buy credits pack:", packId);
 
-            await new Promise((r) => setTimeout(r, 700));
-            navigate("/settings/subscription"); // go back
-        } finally {
-            setSaving(false);
-        }
-    };
+      await new Promise((r) => setTimeout(r, 700));
+      setTopUpOpen(false);
+    } finally {
+      setLoadingPackId(null);
+    }
+  };
 
-    const onCancel = () => {
-        form.reset({
-            username: BILLING_INFO_DEFAULT.username,
-            phoneCountry: BILLING_INFO_DEFAULT.phoneCountry,
-            phone: BILLING_INFO_DEFAULT.phone,
-            countryName: BILLING_INFO_DEFAULT.countryName,
-            email: BILLING_INFO_DEFAULT.email,
-            plan: BILLING_INFO_DEFAULT.plan,
-        });
-        navigate("/settings/subscription");
-    };
+  return (
+    <WebContainer>
+      <div className="w-full space-y-8">
 
-    const onUpgradePlan = () => {
-        // You can route to pricing/subscription upgrade page
-        navigate("/pricing");
-    };
+        <div className="w-full">
+          <AccountHeader title="Edit Info" subtitle="Please update your Info here." />
 
-    return (
-        <div className="w-full p-4 sm:p-6 md:p-10 lg:p-16 space-y-8">
-            <SettingsTabs />
-
-            <div className="w-full">
-                <AccountHeader title="Edit Info" subtitle="Please update your Info here." />
-
-                <div className="mt-6 border-t border-border">
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="divide-y divide-border">
-                        {/* Username */}
-                        <SettingsRow label="Username">
-                            <div className="max-w-[520px]">
-                                <Input
-                                    className="h-11 bg-background border-border"
-                                    {...form.register("username")}
-                                    aria-invalid={!!form.formState.errors.username}
-                                />
-                                {form.formState.errors.username?.message ? (
-                                    <p className="mt-2 text-xs text-destructive">
-                                        {form.formState.errors.username.message}
-                                    </p>
-                                ) : null}
-                            </div>
-                        </SettingsRow>
-
-                        {/* Phone */}
-                        <SettingsRow label="Phone Number">
-                            <div className="max-w-[520px]">
-                                <PhoneField
-                                    country={phoneCountry}
-                                    phone={phone}
-                                    onCountryChange={(c) =>
-                                        form.setValue("phoneCountry", c, { shouldDirty: true })
-                                    }
-                                    onPhoneChange={(v) => form.setValue("phone", v, { shouldDirty: true })}
-                                />
-                            </div>
-                        </SettingsRow>
-
-                        {/* Country */}
-                        <SettingsRow label="Country">
-                            <div className="max-w-[520px]">
-                                <Input
-                                    className="h-11 bg-background border-border"
-                                    {...form.register("countryName")}
-                                    aria-invalid={!!form.formState.errors.countryName}
-                                />
-                                {form.formState.errors.countryName?.message ? (
-                                    <p className="mt-2 text-xs text-destructive">
-                                        {form.formState.errors.countryName.message}
-                                    </p>
-                                ) : null}
-                            </div>
-                        </SettingsRow>
-
-                        {/* Email */}
-                        <SettingsRow label="Email">
-                            <div className="max-w-[520px]">
-                                <Input
-                                    className="h-11 bg-background border-border"
-                                    {...form.register("email")}
-                                    aria-invalid={!!form.formState.errors.email}
-                                />
-                                {form.formState.errors.email?.message ? (
-                                    <p className="mt-2 text-xs text-destructive">
-                                        {form.formState.errors.email.message}
-                                    </p>
-                                ) : null}
-                            </div>
-                        </SettingsRow>
-
-
-                        {/* Actions */}{/* Plan + Upgrade */}
-                        <SettingsRow label="Plan">
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                                <div className="w-full max-w-[520px]">
-                                    <Input
-                                        value={form.watch("plan")}
-                                        readOnly
-                                        tabIndex={-1}
-                                        className="
-          h-11 bg-background border border-border rounded-md
-          text-foreground font-semibold
-          cursor-default select-none
-          focus-visible:ring-0 focus-visible:ring-offset-0
-        "
-                                    />
-                                </div>
-
-                                <Button
-                                    type="button"
-                                    onClick={onUpgradePlan}
-                                    className="h-10 rounded-lg btn-gradient text-primary-foreground px-6"
-                                >
-                                    Upgrade Plan
-                                </Button>
-                            </div>
-                        </SettingsRow>
-
-                        <div className="pt-6 md:pt-10">
-                            <FormActions saving={saving} onCancel={onCancel} saveText="Save" />
-                        </div>
-                    </form>
+          <div className="mt-6 border-t border-border">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="divide-y divide-border">
+              <SettingsRow label="Username">
+                <div className="max-w-[520px]">
+                  <Input
+                    className="h-11 bg-background border-border"
+                    placeholder="Enter your username"
+                    {...form.register("username")}
+                    aria-invalid={!!form.formState.errors.username}
+                  />
+                  {form.formState.errors.username?.message ? (
+                    <p className="mt-2 text-xs text-destructive">
+                      {form.formState.errors.username.message}
+                    </p>
+                  ) : null}
                 </div>
-            </div>
+              </SettingsRow>
+
+              {/* Phone */}
+              <SettingsRow label="Phone Number">
+                <div className="max-w-[520px]">
+                  <Controller
+                  control={form.control}
+                  name="phone"
+                  render={({ field, fieldState }) => (
+                    <>
+                      <PhoneField
+                        country={phoneCountry}
+                        phone={field.value}
+                        onCountryChange={(c) =>
+                          form.setValue("phoneCountry", c, {
+                            shouldDirty: true,
+                            shouldValidate: true,
+                          })
+                        }
+                        onPhoneChange={field.onChange}
+                      />
+
+                      {fieldState.error && (
+                        <p className="mt-2 text-xs text-destructive">
+                          {fieldState.error.message}
+                        </p>
+                      )}
+                    </>
+                  )}
+                />
+                </div>
+              </SettingsRow>
+
+              {/* Country */}
+              <SettingsRow label="Country">
+                <div className="max-w-[520px]">
+                  <Input
+                    className="h-11 bg-background border-border"
+                    placeholder="Enter your country name"
+                    {...form.register("countryName")}
+                    aria-invalid={!!form.formState.errors.countryName}
+                  />
+                  {form.formState.errors.countryName?.message ? (
+                    <p className="mt-2 text-xs text-destructive">
+                      {form.formState.errors.countryName.message}
+                    </p>
+                  ) : null}
+                </div>
+              </SettingsRow>
+
+              {/* Email */}
+              <SettingsRow label="Email">
+                <div className="max-w-[520px]">
+                  <Input
+                    className="h-11 bg-background border-border"
+                    placeholder="Enter your email address"
+                    {...form.register("email")}
+                    aria-invalid={!!form.formState.errors.email}
+                  />
+                  {form.formState.errors.email?.message ? (
+                    <p className="mt-2 text-xs text-destructive">
+                      {form.formState.errors.email.message}
+                    </p>
+                  ) : null}
+                </div>
+              </SettingsRow>
+
+              {/* Plan + Upgrade */}
+              <SettingsRow label="Plan">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  <div className="w-full max-w-[520px]">
+                    <Input
+                      value={form.watch("plan")}
+                      readOnly
+                      tabIndex={-1}
+                      className="
+                        h-11 bg-background border border-border rounded-md
+                        text-foreground font-semibold
+                        cursor-default select-none
+                        focus-visible:ring-0 focus-visible:ring-offset-0
+                      "
+                    />
+                  </div>
+
+                  <Button
+                    type="button"
+                    onClick={onUpgradePlan}
+                    className="h-10 rounded-lg btn-gradient text-primary-foreground px-6"
+                  >
+                    Upgrade Plan
+                  </Button>
+                </div>
+              </SettingsRow>
+
+              <div className="pt-6 md:pt-10">
+                <FormActions saving={saving} onCancel={onCancel} saveText="Save" />
+              </div>
+            </form>
+          </div>
         </div>
-    );
+      </div>
+
+      <TopUpCreditsModal
+        open={topUpOpen}
+        onOpenChange={setTopUpOpen}
+        plan={planSummary}
+        onBuyCredits={onBuyCredits}
+        loadingPackId={loadingPackId}
+      />
+    </WebContainer>
+  );
 }

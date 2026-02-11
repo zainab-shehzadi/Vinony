@@ -38,7 +38,7 @@ export default function DeleteAccountModal({
           {loading ? "Deleting..." : "Yes, Delete"}
         </Button>
 
-        <Button
+        {/* <Button
           type="button"
           variant="outline"
           onClick={() => onOpenChange(false)}
@@ -46,7 +46,7 @@ export default function DeleteAccountModal({
           className="h-12 w-full rounded-lg border-destructive text-foreground hover:bg-destructive/5 hover:text-fooreground"
         >
           Cancel
-        </Button>
+        </Button> */}
       </div>
     </ModalShell>
   );

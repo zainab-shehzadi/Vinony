@@ -14,7 +14,7 @@ export default function WebContainer({ children, className, as = "div" }: Props)
   return (
     <Comp
       className={cn(
-        "flex flex-col items-center w-full px-2 md:px-6 xl:px-16 h-[90vh] overflow-hidden md:overflow-visible relative",
+        "flex-grow overflow-y-auto flex flex-col items-center no-scrollbar w-full p-6 md:p-10 xl:p-16",
         className
       )}
     >
@@ -22,5 +22,3 @@ export default function WebContainer({ children, className, as = "div" }: Props)
     </Comp>
   );
 }
-
-// flex-grow overflow-y-auto  no-scrollbar

@@ -7,6 +7,7 @@ import ProfileForm from "@/components/settings/profile/ProfileForm";
 import AccountAction from "@/components/settings/accountActions";
 import SettingsTabs from "@/components/settings/SettingsTabs";
 import LogoutModal from "@/components/models/LogoutAccountModal";
+import WebContainer from "@/lib/webContainer";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -18,8 +19,6 @@ export default function ProfilePage() {
   const handleConfirmLogout = async () => {
     setLoggingOut(true);
     try {
-  
-
       setLogoutOpen(false);
       navigate("/login");
     } finally {
@@ -29,12 +28,12 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div className="w-full p-6 md:p-10 lg:p-16 space-y-8">
+    <WebContainer>
+      <div className="w-full space-y-8 ">
         <SettingsTabs />
         <ProfileForm />
-
         <AccountAction
-          title="Logout"
+          title=""
           buttonText="Log Out Account"
           onClick={handleLogoutClick}
         />
@@ -46,6 +45,7 @@ export default function ProfilePage() {
         onConfirm={handleConfirmLogout}
         loading={loggingOut}
       />
+      </WebContainer>
     </>
   );
 }

@@ -5,7 +5,6 @@ import { Modelbar } from "@/components/shared/model-bar";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { AI_CHAT_MODELS, ModelConfig } from "@/constants/aiModelData";
-import WebContainer from "@/lib/webContainer";
 
 interface IContext {
   activeHistory: Boolean;
@@ -33,7 +32,8 @@ export default function Chat() {
   );
 
   return (
-    <WebContainer>
+    // <WebContainer
+     <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pb-0 md:pt-10 xl:px-16">
       <Modelbar
         models={AI_CHAT_MODELS}
         selectedModel={selectedModel}
@@ -56,7 +56,7 @@ export default function Chat() {
       )}
 
       <div
-        className={`w-full ${reqChatGenerate ? "mt-auto -mb-5 2xl:-mb-10 " : activeHistory ? "mt-0" : "mt-auto -mb-5 md:mt-5 lg:mt-0"}`}
+        className={`w-full ${reqChatGenerate ? "mt-auto -mb-4 " : activeHistory ? "mt-0" : "mt-auto -mb-5 md:mt-2 lg:mt-0"}`}
       >
         <ChatInput
           selectedModel={selectedModel}
@@ -77,6 +77,7 @@ export default function Chat() {
           }}
         />
       )}
-    </WebContainer>
+     {/* </WebContainer> */}
+    </div>
   );
 }

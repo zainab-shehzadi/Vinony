@@ -17,14 +17,14 @@ export default function PaymentHistory({visible, font, Record, Credits, Invoices
   return (
     <div className="flex flex-col gap-8 w-full mx-auto mt-5">
       <div className="w-full overflow-x-auto">
-        <table className="w-full text-left border-collapse bg-background rounded-lg">
+        <table className="w-full text-left border-collapse bg-background rounded-lg min-w-[700px]">
           <thead>
-            <tr className="text-xs font-bold uppercase text-foreground tracking-widest border-b border-border/50">
-              <th className="px-4 py-4">Invoice ID</th>
-              <th className="px-4 py-4">Billing Date</th>
-              <th className="px-4 py-4">Plan</th>
-              <th className="px-4 py-4">Amount</th>
-              <th className="px-4 py-4 text-right md:text-left w-[180px]">
+            <tr className="text-sm font-bold uppercase text-foreground tracking-widest border-b border-border/50">
+              <th className="px-4 py-4 w-[180px] whitespace-nowrap">Invoice ID</th>
+              <th className="px-4 py-4 w-[180px] whitespace-nowrap">Billing Date</th>
+              <th className="px-4 py-4 w-[180px] whitespace-nowrap">Plan</th>
+              <th className="px-4 py-4 w-[180px] whitespace-nowrap">Amount</th>
+              <th className="px-4 py-4 w-[180px] whitespace-nowrap">
                 Payment Method
               </th>
             </tr>
@@ -41,10 +41,10 @@ export default function PaymentHistory({visible, font, Record, Credits, Invoices
                 <td className="px-4 py-3 font-normal text-sm text-foreground whitespace-nowrap">
                   {inv.date}
                 </td>
-                <td className="px-4 py-3 font-normal text-sm text-foreground">
+                <td className="px-4 py-3 font-normal text-sm text-foreground whitespace-nowrap">
                   {inv.plan}
                 </td>
-                <td className={`px-4 py-3 text-sm text-foreground ${font}`}>
+                <td className={`px-4 py-3 text-sm text-foreground ${font} whitespace-nowrap`}>
                   <p>{inv.amount}<span className={`text-accent font-normal ${visible}`}> USD</span></p>
                 </td>
                 <td className="px-4 py-3">

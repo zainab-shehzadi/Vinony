@@ -8,7 +8,7 @@ const images =[frame2, frame3, frame4, frame5]
 
 export default function AgentFrame() {
   return (
-    <div className='w-full grid grid-cols-1 gap-2 mt-5'>
+    <div className='w-full grid grid-cols-1 gap-2 mt-5 pl-12'>
         <div className='grid grid-cols-1'>
             <img src={frame1} alt="Frame1" className="w-full h-full object-cover overflow-hidden rounded-2xl"/>
         </div>

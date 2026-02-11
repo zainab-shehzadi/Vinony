@@ -57,7 +57,7 @@ const Sidebar = ({
     if (location.pathname === PATH.IMAGE) return "item-1";
     if (location.pathname === PATH.VIDEO) return "item-2";
     if (location.pathname === PATH.AGENT) return "item-3";
-    if (location.pathname === PATH.BILLING) return "item-4";
+    if (location.pathname.startsWith(PATH.BILLING)) return "item-4";
     if (location.pathname.startsWith(PATH.SETTING)) return "item-5";
     return "";
   };
@@ -88,6 +88,8 @@ const Sidebar = ({
   const isActive = (path: string) => {
     if (path === PATH.SETTING) {
       return location.pathname.startsWith(PATH.SETTING);
+    }else if(path === PATH.BILLING){
+      return location.pathname.startsWith(PATH.BILLING)
     }
 
     return location.pathname === path;
@@ -98,17 +100,10 @@ const Sidebar = ({
       className={`fixed z-50 w-64 h-full bg-background border-r border-border flex flex-col p-4 lg:relative transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${toggle ? "translate-x-0" : "-translate-x-full"}`}
     >
       {/* Logo Section */}
-      <div className="flex justify-end w-full p-2 lg:hidden">
-        <button
-          onClick={() => setToggle(false)}
-          className="group flex items-center justify-center p-2 rounded-xl bg-muted/30 hover:bg-primary/10 transition-all duration-300 active:scale-95"
-          title="Close Sidebar"
-        >
-          <X className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-        </button>
-      </div>
-      <div className="flex items-center justify-center lg:mt-5 gap-2 mb-10">
-        <p className="text-xl font-semibold text-primary flex gap-2 items-center">
+      <div className="flex items-center justify-between lg:justify-center mt-5 mb-10 cursor-pointer"
+      onClick={()=> navigate(PATH.CHAT)}
+      >
+        <p className="text-base lg:text-xl font-semibold text-primary flex gap-2 items-center">
           {" "}
           <span className="flex">
             <Icons
@@ -128,6 +123,15 @@ const Sidebar = ({
           </span>
           LOGO HERE
         </p>
+        <div className="flex justify-end lg:hidden">
+          <button
+            onClick={() => setToggle(false)}
+            className="group flex items-center justify-center p-2 rounded-xl bg-muted/30 hover:bg-primary/10 transition-all duration-300 active:scale-95"
+            title="Close Sidebar"
+          >
+            <X className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          </button>
+        </div>
       </div>
       {/* Sidebar heading */}
       <div className="text-[12px] font-normal text-accent tracking-widest px-2 mb-2 uppercase">
@@ -157,9 +161,9 @@ const Sidebar = ({
             let hasSubItems = item.subItems && item.subItems.length > 0;
             const content = (
               <div
-                className={`flex items-center gap-3 font-medium ${item.path && isActive(item.path) ? "text-primary" : "text-accent"}`}
+                className={`flex items-center gap-2 font-medium px-2 ${item.path && isActive(item.path) ? "text-primary" : "text-accent"}`}
               >
-                {item.icon}
+                  <img src={item.icon} alt={item.title} className={`h-5 w-5 ${item.path && isActive(item.path) ? "invert-[60%] sepia-[0%] saturate-[9000%] hue-rotate-[210deg]" : ""}`} />
                 <span
                   className={`text-[14px] transition-all ${item.path && isActive(item.path) && "font-semibold text-[16px]"}`}
                 >
@@ -311,21 +315,8 @@ const Sidebar = ({
             );
           })}
         </Accordion>
-
-        {/* Static Footer Links */}
-        {/* <div className="space-y-1">
-          <button className="flex items-center gap-3 w-full px-2 py-3 text-accent hover:bg-slate-50 rounded-lg transition-colors">
-            <Receipt className="w-5 h-5" />
-            <span className="text-sm font-medium">Billings</span>
-          </button>
-          <button className="flex items-center gap-3 w-full px-2 py-3 text-accent hover:bg-slate-50 rounded-lg transition-colors">
-            <Settings className="w-5 h-5" />
-            <span className="text-sm font-medium">Settings</span>
-          </button>
-        </div> */}
       </nav>
 
-      {/* Credit Section */}
       <CreditSection />
     </div>
   );

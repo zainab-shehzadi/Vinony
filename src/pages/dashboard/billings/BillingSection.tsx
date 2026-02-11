@@ -3,12 +3,11 @@ import PaymentCard from "@/components/shared/payment-card";
 import SummaryCard from "@/components/shared/summary-card";
 import AddCard from "@/components/dashboard/billingSection/AddCard";
 import { useState } from "react";
-import WebContainer from "@/lib/webContainer";
 
 export default function BillingSection() {
   const [cardActive, setCardActive] = useState<Boolean>(false);
   return (
-    <WebContainer>
+    <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:py-10 xl:px-16">
       {!cardActive && (
         <>
           <SummaryCard />
@@ -19,7 +18,7 @@ export default function BillingSection() {
       {cardActive && (
         <AddCard setCardActive={setCardActive} />
       )}
-    </WebContainer>
+    </div>
 
   );
 }

@@ -1,19 +1,21 @@
 import { Ellipsis, Plus } from "lucide-react";
 import { cards } from "@/constants/static-data";
+import { useState } from "react";
 
 export default function PaymentMethods({
   setCardActive,
 }: {
   setCardActive: (value: boolean) => void;
 }) {
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   return (
-    <div className="w-full rounded-3xl p-6 md:p-8 bg-input border border-border/50">
-      <h3 className="text-[12px] md:text-sm font-semibold text-foreground mb-6">
+    <div className="w-full rounded-3xl p-4 md:p-8 bg-input border border-border/50">
+      <h3 className="text-lg md:text-xl font-semibold text-foreground mb-3 md:mb-6">
         Payment Methods
       </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {cards.map((card) => (
+        {cards.map((card, index) => (
           <div
             key={card.id}
             className="bg-background rounded-2xl p-6 shadow-sm border border-border/40 flex flex-col h-[200px] relative group"
@@ -24,14 +26,29 @@ export default function PaymentMethods({
                   {card.name}
                 </p>
                 {card.active && (
-                  <span className="px-2 py-0.5 bg-[#E8F8EE] text-[#71DD8C] text-[12px] font-normal rounded-xl uppercase tracking-tight">
+                  <span className="px-2 py-0.5 bg-[#E8F8EE] dark:bg-[#182542] text-[#71DD8C] text-xs font-normal rounded-xl uppercase tracking-tight">
                     Active
                   </span>
                 )}
               </div>
-              <button className="text-muted-foreground/50 hover:text-foreground transition-colors">
+              <button
+                className="text-muted-foreground/50 hover:text-foreground transition-colors"
+                onClick={() =>
+                  setOpenDropdown(openDropdown === index ? null : index)
+                }
+              >
                 <Ellipsis size={20} />
               </button>
+              {openDropdown === index && (
+                <div className="absolute right-0 mt-2 w-32 bg-input border border-border rounded-md shadow-lg z-50 overflow-hidden">
+                  <button
+                    onClick={()=> setOpenDropdown(null)}
+                    className="w-full px-4 py-2 text-sm text-left hover:text-muted-foreground hover:bg-hover transition-colors"
+                  >
+                    Remove Card
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="flex-grow flex items-center">
@@ -42,7 +59,7 @@ export default function PaymentMethods({
 
             <div className="mt-auto pt-2">
               <div className="flex justify-between items-center gap-2">
-                <p className="text-[12px] font-normal text-accent leading-none">
+                <p className="text-xs font-normal text-accent leading-none">
                   Exp {card.exp}
                 </p>
                 <div className="h-10 w-12 flex items-center justify-end pb-1">

@@ -38,6 +38,8 @@ export default function TopUpCreditsModal({
   loadingPackId = null,
   plan,
 }: Props) {
+
+  
   useEffect(() => {
     if (!open) return;
 
@@ -45,7 +47,6 @@ export default function TopUpCreditsModal({
       if (e.key === "Escape") onOpenChange(false);
     };
 
-    // Optional: lock scroll behind modal
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -59,37 +60,38 @@ export default function TopUpCreditsModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999]">
-      {/* overlay (click to close) */}
-      <button
-        type="button"
-        aria-label="Close modal"
-        onClick={() => onOpenChange(false)}
-        className="absolute inset-0 bg-black/60"
-      />
+    <div
+    className="fixed inset-0 z-50"
+    role="dialog"
+    aria-modal="true"
+    onClick={() => onOpenChange(false)}
+  >
+    <div className="absolute inset-0 bg-black/80" />
 
-      <div className="relative z-[10000] flex min-h-[100dvh] items-center justify-center px-4 py-6">
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={(e) => e.stopPropagation()}
-          className={[
-            "w-[660px] h-[834px] rounded-xl bg-white shadow-2xl relative",
-            "max-w-[calc(100vw-32px)] max-h-[calc(100dvh-32px)]",
-            "overflow-hidden",
-          ].join(" ")}
-        >
-          {/* ✅ FIXED: removed stray comma */}
+    <div className="relative flex min-h-[100dvh] items-center justify-center px-4 py-8">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={[
+          "w-[660px] h-[834px] rounded-2xl bg-background shadow-2xl relative",
+          "max-w-[calc(100vw-32px)] max-h-[calc(100dvh-32px)] overflow-hidden",
+          "border border-white/10 ring-1 ring-white/5",
+        ].join(" ")}
+      >
           <button
             type="button"
             onClick={() => onOpenChange(false)}
-            className="absolute right-4 top-4 grid h-6 w-6 place-items-center rounded-full bg-[#FF4D4D] text-white shadow-sm hover:opacity-90 transition"
+            className="absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-full bg-[#FF4D4D] text-white shadow-sm hover:opacity-90 transition"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
           </button>
 
-          <div className="h-full overflow-y-auto px-4 pt-3 pb-4 md:px-10 md:pt-6 md:pb-4">
+          <div
+            className={[
+              "h-full overflow-y-auto px-4 pt-3 pb-4 md:px-10 md:pt-6 md:pb-4",
+              "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            ].join(" ")}
+          >
             <h1 className="text-center text-2xl md:text-[30px] font-semibold text-foreground tracking-tight mt-2">
               Top up your account
             </h1>
@@ -143,7 +145,7 @@ export default function TopUpCreditsModal({
                 </p>
               </div>
 
-              <div className="mt-4 border-t border-gray-200" />
+              <div className="mt-4 border-t border-white/10" />
             </div>
 
             <TopUpPacksSection

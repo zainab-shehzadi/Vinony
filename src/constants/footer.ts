@@ -6,7 +6,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     links: [
       { label: "Features", to: "/features" },
       { label: "Pricing", to: "/pricing" },
-      { label: "Models", to: "/models" },
+      { label: "Models", to: "/ai-models" },
       { label: "Changelog", to: "/changelog" },
     ],
   },
@@ -31,8 +31,8 @@ export const FOOTER_SECTIONS: FooterSection[] = [
   {
     title: "Legal",
     links: [
-      { label: "Privacy", to: "/privacy-policy" },
-      { label: "Terms", to: "/terms-condition" },
+      { label: "Privacy Policy", to: "/privacy-policy" },
+      { label: "Terms  & Condition", to: "/terms-condition" },
       { label: "Security", to: "/security" },
       { label: "Cookies", to: "/cookies" },
     ],

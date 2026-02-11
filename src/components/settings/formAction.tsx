@@ -30,7 +30,7 @@ export default function FormActions({
       {leftSlot}
 
       <Button
-        type="submit"
+        type="button"
         onClick={onCancel}
         disabled={cancelDisabled}
         className="bg-[#F2F2F2] hover:bg-gray-200 text-foreground semibold p-4 dark:text-background dark:"

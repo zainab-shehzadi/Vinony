@@ -13,7 +13,7 @@ type OutletContextType = {
 import { Video_Actions } from "@/constants/aiModelData";
 import GeneratedVideo from "@/components/dashboard/videoSection/GeneratedVideo";
 import VideoHistory from "@/components/dashboard/videoSection/VideoHistory";
-import WebContainer from "@/lib/webContainer";
+// import WebContainer from "@/lib/webContainer";
 
 export default function VideoSection() {
   const { activeView, reqVideoGenerate, setReqVideoGenerate } =
@@ -26,30 +26,28 @@ export default function VideoSection() {
   );
   return (
     <>
-       
-    <WebContainer>
- {activeView !== "video-history" && (
-            <Modelbar
-              models={AI_VIDEO_MODELS}
-              selectedModel={selectedModel}
-              setSelectedModel={setSelectedModel}
-              activeVersion={activeVersion}
-              setActiveVersion={setActiveVersion}
-            />
+      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pt-10 xl:px-16 pb-10">
+        {activeView !== "video-history" && (
+          <Modelbar
+            models={AI_VIDEO_MODELS}
+            selectedModel={selectedModel}
+            setSelectedModel={setSelectedModel}
+            activeVersion={activeVersion}
+            setActiveVersion={setActiveVersion}
+          />
         )}
-          {activeView !== "video-history" && (
-            <div className={`w-full`}>
-              <CreationInput
-                setReqGenerate={setReqVideoGenerate}
-                Placeholder="Describe the video you want to generate... e.g., A futuristic cityscape at sunset"
-                Actions={Video_Actions}
-              />
-            </div>
-          )}
-          {reqVideoGenerate && <GeneratedVideo />}
-          {activeView === "video-history" && <VideoHistory />}
-            </WebContainer>
-
+        {activeView !== "video-history" && (
+          <div className={`w-full md:mt-10`}>
+            <CreationInput
+              setReqGenerate={setReqVideoGenerate}
+              Placeholder="Describe the video you want to generate... e.g., A futuristic cityscape at sunset"
+              Actions={Video_Actions}
+            />
+          </div>
+        )}
+        {reqVideoGenerate && <GeneratedVideo />}
+        {activeView === "video-history" && <VideoHistory />}
+      </div>
     </>
   );
 }

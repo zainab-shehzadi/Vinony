@@ -55,7 +55,7 @@ export default function AgentsResponse() {
                           </DropdownMenuContent>
                         </DropdownMenu>
                       ) : (
-                        <span className="font-bold text-foreground text-sm md:text-[16px]">
+                        <span className="font-bold text-foreground text-sm md:text-base">
                           {msg.senderName}
                         </span>
                       )}
@@ -66,14 +66,14 @@ export default function AgentsResponse() {
                     </div>
 
                     {/* AI Message Bubble */}
-                    <div className="bg-input p-5 rounded-[2rem] rounded-tl-none ">
-                      <div className="bg-input p-5 rounded-[2rem] rounded-tl-none">
+                    <div className="bg-input p-5 rounded-3xl ">
+                      <div className="bg-input p-5 rounded-3xl">
                         {Array.isArray(msg.content) ? (
                           <div className="space-y-6">
                             {" "}
                             {msg.content?.map((data, index) => (
                               <div key={index} className="space-y-2">
-                                <h3 className="font-bold text-sm md:text-[16px] text-foreground">
+                                <h3 className="font-bold text-sm md:text-base text-foreground">
                                   {data.heading}
                                 </h3>
 
@@ -82,7 +82,7 @@ export default function AgentsResponse() {
                                   {data.paragraph?.map((point, idx) => (
                                     <li
                                       key={idx}
-                                      className="flex gap-3 text-sm md:text-[16px] leading-relaxed text-accent"
+                                      className="flex gap-3 text-sm md:text-base leading-relaxed text-accent"
                                     >
                                       <span className="text-primary font-bold min-w-[18px]">
                                         {idx + 1}
@@ -95,14 +95,14 @@ export default function AgentsResponse() {
                             ))}
                           </div>
                         ) : (
-                          <p className="text-sm md:text-[16px] leading-relaxed text-textMuted">
+                          <p className="text-sm md:text-base leading-relaxed text-textMuted">
                             {msg.content}
                           </p>
                         )}
-                        <h3 className="font-bold text-sm md:text-[16px] text-foreground mt-5">
+                        <h3 className="font-bold text-sm md:text-base text-foreground mt-5">
                           {msg.conclude}
                         </h3>
-                        <p className="flex gap-3 text-sm md:text-[16px] leading-relaxed text-accent font-normal">{msg.concludePara}</p>
+                        <p className="flex gap-3 text-sm md:text-base leading-relaxed text-accent font-normal">{msg.concludePara}</p>
                       </div>
                     </div>
                   </div>
@@ -113,15 +113,15 @@ export default function AgentsResponse() {
                   <div className="flex items-end leading-tight gap-2">
                     <div className="flex flex-col items-end">
                       <div className="flex items-center gap-5">
-                        <span className="text-sm sm:text-[16px] font-bold text-foreground">
+                        <span className="text-sm sm:text-base font-bold text-foreground">
                           You
                         </span>
-                        <span className="text-[12px] sm:text-xs font-normal text-accent mt-1">
+                        <span className="text-xs sm:text-xs font-normal text-accent mt-1">
                           {msg.time}
                         </span>
                       </div>
                       {msg.credit && (
-                        <span className="text-[12px] md:text-sm font-semibold text-primary/80 mt-0.5">
+                        <span className="text-xs md:text-sm font-semibold text-primary/80 mt-0.5">
                           {msg.credit} Credits used
                         </span>
                       )}
@@ -131,8 +131,8 @@ export default function AgentsResponse() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 mr-12">
-                    <div className="bg-input px-5 py-2.5 rounded-[28px] rounded-tr-none shadow-sm">
-                      <p className="text-sm md:text-[16px] text-accent">
+                    <div className="bg-input px-5 py-2.5 rounded-3xl shadow-sm">
+                      <p className="text-sm md:text-base text-accent">
                         {msg.content as string}
                       </p>
                     </div>

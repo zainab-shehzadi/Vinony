@@ -8,10 +8,12 @@ export default function AccountHeader({
 }) {
   return (
     <div className="py-2">
-      <h1 className="text-[16px] md:text-[20px] font-bold text-foreground">{title}</h1>
-      <p className="mt-1 text-sm md:text-[16px] text-[#475569] dark:text-accent">
+      <h1 className="text-[20px] font-bold text-foreground">{title}</h1>
+      <p className="mt-1 text-xs md:text-sm text-[#475569] dark:text-accent">
         {subtitle}
       </p>
     </div>
   );
 }
+
+// text-[14px] md:text-[16px]

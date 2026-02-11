@@ -6,7 +6,6 @@ import GeneratedHistory from "@/components/dashboard/imageSection/GeneratedHisto
 import { useOutletContext } from "react-router-dom";
 import GeneratedImage from "@/components/dashboard/imageSection/GeneratedImage";
 import { Image_Actions } from "@/constants/aiModelData"
-import WebContainer from "@/lib/webContainer";
 
 type OutletContextType = {
   activeView: String;
@@ -25,8 +24,8 @@ export default function ImageSection() {
   );
   return (
     <>
-      <WebContainer>
-        {activeView === "" && (
+      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:py-10 xl:px-16">
+        {activeView !== "image-history" && (
            <Modelbar
           models={AI_IMAGE_MODELS}
           selectedModel={selectedModel}
@@ -38,7 +37,7 @@ export default function ImageSection() {
        
 
         {activeView !== "image-history" && (
-          <div className={`w-full`}>
+          <div className={`w-full md:mt-6 lg:mt-10`}>
             <CreationInput
               setReqGenerate={setReqGenerate}
               Placeholder="Describe the image you want to generate... e.g., A futuristic cityscape at sunset"
@@ -49,7 +48,7 @@ export default function ImageSection() {
         {reqGenerate && <GeneratedImage />}
         {activeView === "image-history" && <GeneratedHistory />}
 
-      </WebContainer>
+      </div>
 
     </>
   );

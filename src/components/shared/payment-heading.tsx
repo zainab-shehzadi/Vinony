@@ -9,16 +9,16 @@ interface IProp {
 export default function PaymentHeading({ heading, paragraph, route }: IProp) {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-between items-start">
+    <div className="flex flex-col-reverse md:flex-row justify-between items-start relative">
       <div className="flex flex-col gap-1">
         <p className="text-lg md:text-xl text-foreground font-bold">
           {heading}
         </p>
-        <p className="text-[10px] md:text-xs text-accent font-normal">
+        <p className="text-xs md:text-sm text-accent font-normal">
           {paragraph}
         </p>
       </div>
-      <span className="font-semibold text-sm md:text-[16px] text-foreground cursor-pointer hover:text-foreground/70" onClick={()=> navigate(route)}>
+      <span className="absolute top-1 right-0 md:static font-semibold text-xs md:text-base text-foreground cursor-pointer hover:text-foreground/70" onClick={()=> navigate(route)}>
         View All
       </span>
     </div>

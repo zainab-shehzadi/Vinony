@@ -86,7 +86,8 @@ export function Modelbar({
                 className={`flex items-center gap-2 px-4 md:px-10 py-2.5 rounded-[14px] text-[16px] transition-all duration-300 border border-border flex-shrink-0 whitespace-nowrap outline-none
                 ${isActive ? "text-white btn-gradient shadow-[inset_0px_4px_10px_rgba(0,0,0,0.4)] font-bold" : "bg-background text-foreground font-normal"}`}
               >
-                <span className={`flex-shrink-0 ${isActive ? "brightness-0 invert" : ""}`}>
+                {/* <span className={`flex-shrink-0 ${isActive ? "brightness-0 invert" : ""}`}> */}
+                <span className={`flex-shrink-0 ${isActive ? model.id ==='sora' ? "" :  "brightness-0 invert" : ""}`}>
                   {model.icon}
                 </span>
                 <span>{displayLabel}</span>

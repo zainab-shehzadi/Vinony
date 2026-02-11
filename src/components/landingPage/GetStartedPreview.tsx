@@ -22,7 +22,7 @@ export default function GetStartedPreview({
   const src = resolved === "dark" ? darkimgSrc : imageSrc;
 
   return (
-    <section className={cn("w-full pt-4 md:pt-10", className)}>
+    <section className={cn("w-full pt-4 md:pt-10 pb-6 lg:pb-0", className)}>
       {/* Button */}
       <div className="flex justify-center">
         <button
@@ -35,7 +35,7 @@ export default function GetStartedPreview({
       </div>
 
       {/* Preview */}
-      <div className="px-2 md:px-10 lg:px-20 dark:px-0 flex justify-center mt-6">
+      <div className="px-2 md:px-10 lg:px-18 dark:px-0 flex justify-center mt-4 lg:mt-6 ">
         <img
           key={src}
           src={src}
