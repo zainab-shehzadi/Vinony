@@ -84,6 +84,53 @@
   .auth-divider {
     @apply my-4 h-px w-full bg-border;
   }
+
+
+  .landing-assistant {
+    @apply grid gap-3;
+  }
+
+  .landing-assistant__messages {
+    @apply h-80 overflow-auto rounded-xl border border-border bg-muted/40 p-3;
+  }
+
+  .landing-assistant__bubble {
+    @apply max-w-[80%] whitespace-pre-wrap break-words rounded-xl px-3 py-2 text-sm leading-snug;
+  }
+
+  .landing-assistant__bubble.is-user {
+    @apply ml-auto bg-primary text-primary-foreground;
+  }
+
+  .landing-assistant__bubble.is-assistant {
+    @apply mr-auto bg-card text-foreground border border-border;
+  }
+
+  .landing-assistant__composer {
+    @apply grid items-end gap-2;
+    grid-template-columns: 1fr 120px;
+  }
+
+  .landing-assistant__composer textarea {
+    @apply w-full resize-none rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground outline-none;
+  }
+
+  .landing-assistant__composer textarea::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .landing-assistant__composer textarea:focus {
+    @apply ring-2 ring-ring;
+  }
+
+  .landing-assistant__composer button {
+    @apply h-11 rounded-xl text-white disabled:opacity-60 disabled:cursor-not-allowed;
+    background: linear-gradient(90deg, var(--btn-grad-from) 0%, var(--btn-grad-to) 100%);
+  }
+
+  .landing-assistant__composer button:hover:enabled {
+    filter: brightness(0.95);
+  }
 }
 
 /* -------------------------------------------------------

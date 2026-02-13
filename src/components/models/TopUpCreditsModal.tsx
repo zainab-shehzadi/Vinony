@@ -68,7 +68,7 @@ export default function TopUpCreditsModal({
   >
     <div className="absolute inset-0 bg-black/80" />
 
-    <div className="relative flex min-h-[100dvh] items-center justify-center px-4 py-8">
+    <div className="relative flex min-h-[90dvh] items-center justify-center px-4 py-8">
       <div
         onClick={(e) => e.stopPropagation()}
         className={[

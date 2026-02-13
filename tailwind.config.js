@@ -4,14 +4,17 @@ import animate from "tailwindcss-animate";
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@assistant-ui/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
         sans: ["'Plus Jakarta Sans'", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
-        // Static palette (fixed)
         purple: "#BF5AF2",
         yellow: "#FFD60A",
         blue: "#0A84FF",
@@ -26,7 +29,7 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-          soft: "hsl(var(--card-soft)/ <alpha-value>)",
+          soft: "hsl(var(--card-soft) / <alpha-value>)",
         },
 
         popover: {
@@ -38,6 +41,7 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -60,7 +64,7 @@ export default {
         },
 
         hover: {
-          DEFAULT: "hsl(var(--hover))"
+          DEFAULT: "hsl(var(--hover))",
         },
 
         border: "hsl(var(--border))",
@@ -75,5 +79,10 @@ export default {
       },
     },
   },
+
+  safelist: [
+    "dark",
+  ],
+
   plugins: [animate],
 };

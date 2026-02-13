@@ -19,6 +19,7 @@ import { DEFAULT_MODELS_MARQUEE } from "@/constants/model";
 import { MODEL_SHOWCASE } from "@/constants/modelShowcase";
 import Container from "@/lib/Container";
 import { useNavigate } from "react-router-dom";
+import { LandingAssistantSection } from "./LandingAssistantSection";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -36,11 +37,11 @@ export default function LandingPage() {
           subtitle="Access 100+ chat, image, video, and AI agent tools,
 without juggling multiple subscriptions."
         />
+
         <GetStartedPreview
-          imageSrc="/overlay-bg.png"
-          darkimgSrc="/darkbg.svg"
           onGetStarted={() => navigate("/login")}
         />
+        <LandingAssistantSection />
 
       </Container>
       <LeadingAiProviders />

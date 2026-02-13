@@ -1,25 +1,18 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useTheme } from "@/theme/ThemeProvider";
 
 type Props = {
-  imageSrc: string;
-  darkimgSrc: string;
-  imageAlt?: string;
+ 
   onGetStarted?: () => void;
   className?: string;
 };
 
 export default function GetStartedPreview({
-  imageSrc,
-  darkimgSrc,
-  imageAlt = "Preview",
+
   onGetStarted,
   className,
 }: Props) {
-  const { resolved } = useTheme(); 
-  const src = resolved === "dark" ? darkimgSrc : imageSrc;
 
   return (
     <section className={cn("w-full pt-4 md:pt-10 pb-6 lg:pb-0", className)}>
@@ -35,7 +28,7 @@ export default function GetStartedPreview({
       </div>
 
       {/* Preview */}
-      <div className="px-2 md:px-10 lg:px-18 dark:px-0 flex justify-center mt-4 lg:mt-6 ">
+      {/* <div className="px-2 md:px-10 lg:px-18 dark:px-0 flex justify-center mt-4 lg:mt-6 ">
         <img
           key={src}
           src={src}
@@ -44,7 +37,7 @@ export default function GetStartedPreview({
           loading="lazy"
           className="w-full h-auto object-contain rounded-xl"
         />
-      </div>
+      </div> */}
     </section>
   );
 }
