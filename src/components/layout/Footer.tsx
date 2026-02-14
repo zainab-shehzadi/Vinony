@@ -32,8 +32,8 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[#0E0A0F] text-white mt-6 md:mt-10">
-      <div className=" px-6 md:px-12 lg:px-20 xl:px-36 py-14 xl:mt-4">
-        <div className="grid gap-10 md:grid-cols-3 lg:grid-cols-5">
+      <div className=" px-6 md:px-12 lg:px-20 xl:px-36 pt-7 md:pt-14 xl:mt-4">
+        <div className="grid gap-5 lg:gap-10 md:grid-cols-3 lg:grid-cols-5">
           <div className="col-span-full lg:col-span-1 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h3
               className="text-xl font-semibold text-white cursor-pointer hover:opacity-90"
@@ -46,16 +46,16 @@ export default function Footer() {
             >
               Vinony
             </h3>
-            <p className="mt-3 max-w-[220px] text-sm leading-6 text-[#8F8F8F] mx-auto lg:mx-0">
+            <p className="mt-2 lg:mt-3 max-w-[220px] text-sm leading-6 text-[#8F8F8F] mx-auto lg:mx-0">
               All AI models. One subscription.
             </p>
           </div>
 
           <div className="md:col-span-4">
-            <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+            <div className="grid gap-10 grid-cols-2 md:grid-cols-4">
               {FOOTER_SECTIONS.map((section) => (
                 <div key={section.title}>
-                  <p className="text-base font-semibold text-white/90">
+                  <p className="text-lg font-semibold text-white/90">
                     {section.title}
                   </p>
 
@@ -76,9 +76,9 @@ export default function Footer() {
         <div className="mt-12 h-px w-full bg-white/5" />
 
         {/* Bottom */}
-        <div className="mt-6 flex items-center justify-center">
+        <div className="my-6 flex items-center justify-center">
           <p className="text-sm text-accent">
-            © {year} Vinony. All rights reserved.
+            © {year} <span className="font-medium transition-colors hover:text-primary cursor-pointer hover:underline duration-300" onClick={()=> navigate('/')}>Vinony</span>. All rights reserved.
           </p>
         </div>
       </div>

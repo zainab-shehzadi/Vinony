@@ -1,5 +1,4 @@
 import {
-  Brain,
   Clock4,
   FileText,
   Globe,
@@ -7,22 +6,15 @@ import {
   Hd,
   Paperclip,
   Search,
-  // Sparkles,
-  // Wand2,
-  Zap,
 } from "lucide-react";
-import soraImage1 from "@/assets/17c52441521434f4c2444cb53aad60b06a29e713.png";
-import soraImage2 from "@/assets/4f7f68c012060f5e4375ab6f34883192ca33c2b1.png";
-import soraImage3 from "@/assets/cde7f4dad622b9775339c32c8983bbc2b89a4f87.png";
-import nanoImage1 from "@/assets/G1.png";
-import nanoImage2 from "@/assets/G2.png";
-import nanoImage3 from "@/assets/G3.png";
+
 
 import deepseek from "@/assets/deepseek.svg";
 import gemini from "@/assets/gemini.svg";
-
-// import unikorn from "@/assets/unikorn.svg";
-import seedreams from "@/assets/svg [Recovered].svg"
+import ideogram from "@/assets/image 8.svg"
+import seedream from "@/assets/image 23.svg";
+import unikorn from "@/assets/image 22.svg";
+import gpt from "@/assets/hugeicons_chat-gpt.svg"
 
 import perplexity from "@/assets/perplexity-color (1).svg";
 import openManus from "@/assets/newsvg 1.svg";
@@ -123,8 +115,8 @@ export const AI_CHAT_MODELS: ModelConfig[] = [
     icon: (
       <img
         src={aiDetector}
-        width={25}
-        height={20}
+        width={20}
+        height={15}
         className="dark:brightness-0 dark:invert"
       />
     ),
@@ -154,24 +146,24 @@ export const AI_IMAGE_MODELS: ModelConfig[] = [
   {
     id: "soraimage",
     baseLabel: "Sora Image",
-    icon: (
-      <Icons
-        className="text-foreground"
-        path={[
-          "M9.49478 12.6L4.65479 9.75V4.75C4.65479 2.54 6.47878 0.75 8.73078 0.75C10.1278 0.75 11.3608 1.44 12.0958 2.491",
-          "M7.3501 16.9302C7.72597 17.4919 8.23489 17.9521 8.83157 18.2696C9.42826 18.5871 10.0942 18.7522 10.7701 18.7502C13.0201 18.7502 14.8461 16.9602 14.8461 14.7502V9.75017L9.9101 6.84717",
-          "M7.20166 11.2498V5.41981L11.6137 2.91981C13.5637 1.81481 16.0567 2.46981 17.1827 4.38281C17.5275 4.966 17.7157 5.62844 17.729 6.30582C17.7423 6.9832 17.5803 7.65252 17.2587 8.24881",
-          "M2.23966 11.2499C1.91786 11.8461 1.75566 12.5154 1.76881 13.1927C1.78195 13.8701 1.96998 14.5326 2.31466 15.1159C3.44066 17.0289 5.93466 17.6839 7.88466 16.5799L12.2967 14.0799L12.3927 8.48389",
-          "M14.8458 15.3799C15.5274 15.3535 16.1916 15.1571 16.7779 14.8085C17.3642 14.4599 17.854 13.9702 18.2028 13.3839C19.3288 11.4709 18.6608 9.02392 16.7108 7.91992L12.2978 5.41992L7.23877 8.17492",
-          "M4.65553 4.12012C3.97374 4.14632 3.30934 4.34268 2.72283 4.6913C2.13632 5.03992 1.64635 5.52973 1.29753 6.11612C0.171531 8.03012 0.839531 10.4761 2.78953 11.5801L7.20253 14.0801L12.2505 11.3301",
-        ]}
+     icon:(
+      <img
+        src={gpt}
+        width={25}
+        height={25}
+        className="dark:brightness-0 dark:invert"
       />
     ),
   },
   {
     id: "unikorn",
     baseLabel: "UniKorn",
-    icon: <Brain size={16} className="text-[#6881FD]" />,
+    icon:(
+      <img
+        src={unikorn}
+        className="h-[20px] w-[25px] lg:w-[35px] dark:brightness-0 dark:invert"
+      />
+    ),
   },
   {
     id: "nanobanana",
@@ -183,7 +175,14 @@ export const AI_IMAGE_MODELS: ModelConfig[] = [
   {
     id: "seedream",
     baseLabel: "Seedream",
-    icon: <Zap size={16} className="text-foreground" />,
+    icon:(
+      <img
+        src={seedream}
+        width={20}
+        height={20}
+        className="dark:brightness-0 dark:invert"
+      />
+    ),
   },
   {
     id: "flux",
@@ -204,8 +203,8 @@ export const AI_IMAGE_MODELS: ModelConfig[] = [
     baseLabel: "Ideogram",
     icon: (
       <img
-        src={seedreams}
-        width={15}
+        src={ideogram}
+        width={20}
         height={15}
         className="dark:brightness-0 dark:invert"
       />
@@ -222,7 +221,7 @@ export const AI_VIDEO_MODELS: ModelConfig[] = [
   {
     id: "veo",
     baseLabel: "Veo",
-    icon: <img src={veo} width={25} height={25} />,
+    icon: <img src={veo} width={25} height={25} className="brightness-100 invert dark:brightness-0 dark:invert"/>,
     versions: ["3.1 R1", "2.0", "Light"],
   },
   {
@@ -258,7 +257,7 @@ export const AI_VIDEO_MODELS: ModelConfig[] = [
   {
     id: "runway",
     baseLabel: "Runway",
-    icon: <img src={runway} width={30} height={30} className="dark:brightness-0 dark:invert"/>,
+    icon: <img src={runway} className="h-[15px] lg:h-[25px] dark:brightness-0 dark:invert"/>,
   },
   {
     id: "all",
@@ -276,7 +275,7 @@ export const AI_AGENT_MODELS: ModelConfig[] = [
         src={perplexity}
         width={25}
         height={20}
-        className="dark:brightness-0 dark:invert"
+        className="brightness-100 invert-[50%] dark:brightness-0 dark:invert"
       />
     ),
   },
@@ -342,54 +341,7 @@ export const AI_AGENT_MODELS: ModelConfig[] = [
   },
 ];
 
-export const GENERATED_GROUPS = [
-  {
-    prompts: [
-      {
-        text: "A photorealistic portrait of a young woman, natural window light, soft shadows. natural window light, soft shadows natural window light, soft shadows natural window light, soft shadows",
-        date: "05/02/2026",
-        model: "Sora Image",
-        images: [soraImage1, soraImage2, soraImage3, soraImage1],
-      },
-      {
-        text: "A photorealistic portrait of a young woman, natural window light, soft shadows. photorealistic portrait of a young womanphotorealistic portrait of a young.",
-        date: "04/02/2026",
-        model: "Nano Banana",
-        images: [nanoImage1, nanoImage2, nanoImage3, nanoImage1],
-      },
-      {
-        text: "A photorealistic portrait of a young woman, natural window light, soft shadows. photorealistic portrait of a young woman. photorealistic portrait of a young woman.",
-        date: "27/01/2026",
-        model: "Sora Image",
-        images: [soraImage2, soraImage1, soraImage3, soraImage2],
-      },
-    ],
-  },
-];
-export const GENERATED_VideoGROUPS = [
-  {
-    prompts: [
-      {
-        text: "A photorealistic portrait of a young woman, natural window light, soft shadows. natural window light, soft shadows natural window light, soft shadows natural window light, soft shadows",
-        date: "6/02/2026",
-        model: "Sora Image",
-        video: "https://www.w3schools.com/html/mov_bbb.mp4",
-      },
-      {
-        text: "A photorealistic portrait of a young woman, natural window light, soft shadows. photorealistic portrait of a young womanphotorealistic portrait of a young.",
-        date: "5/02/2026",
-        model: "Nano Banana",
-        video: "https://www.w3schools.com/html/mov_bbb.mp4",
-      },
-      {
-        text: "A photorealistic portrait of a young woman, natural window light, soft shadows. photorealistic portrait of a young woman. photorealistic portrait of a young woman.",
-        date: "20/01/2026",
-        model: "Sora Image",
-        video: "https://www.w3schools.com/html/mov_bbb.mp4",
-      },
-    ],
-  },
-];
+
 
 export const Actions: ModelConfig[] = [
   {
@@ -460,7 +412,7 @@ export const Image_Actions: ModelConfig[] = [
     baseLabel: "Style",
     icon: (
       <Icons
-        className="text-foreground"
+        className="text-foreground mt-1"
         path="M1.66612 14.0278L0.957789 13.7361C0.527234 13.5556 0.239178 13.2431 0.0936225 12.7986C-0.051933 12.3542 -0.0277665 11.9167 0.166122 11.4861L1.66612 8.23611V14.0278ZM4.99946 15.8611C4.54112 15.8611 4.1489 15.6981 3.82279 15.3719C3.49668 15.0458 3.33334 14.6533 3.33279 14.1944V9.19444L5.54112 15.3194C5.58279 15.4167 5.62446 15.5106 5.66612 15.6011C5.70779 15.6917 5.76334 15.7783 5.83279 15.8611H4.99946ZM9.29112 15.7778C8.84668 15.9444 8.41612 15.9236 7.99946 15.7153C7.58279 15.5069 7.29112 15.1806 7.12446 14.7361L3.41612 4.56944C3.24946 4.125 3.26334 3.69111 3.45779 3.26778C3.65223 2.84444 3.97168 2.55611 4.41612 2.40278L10.7078 0.111111C11.1522 -0.0555556 11.5828 -0.0347222 11.9995 0.173611C12.4161 0.381944 12.7078 0.708333 12.8745 1.15278L16.5828 11.3194C16.7495 11.7639 16.7356 12.1981 16.5411 12.6219C16.3467 13.0458 16.0272 13.3339 15.5828 13.4861L9.29112 15.7778ZM7.49946 5.86111C7.73557 5.86111 7.93362 5.78111 8.09362 5.62111C8.25362 5.46111 8.33335 5.26333 8.33279 5.02778C8.33223 4.79222 8.25251 4.59444 8.09362 4.43444C7.93473 4.27444 7.73668 4.19444 7.49946 4.19444C7.26223 4.19444 7.06446 4.27444 6.90612 4.43444C6.74779 4.59444 6.66779 4.79222 6.66612 5.02778C6.66446 5.26333 6.74446 5.46139 6.90612 5.62194C7.06779 5.7825 7.26557 5.86222 7.49946 5.86111ZM8.70779 14.1944L14.9995 11.9028L11.2911 1.69444L4.99946 3.98611L8.70779 14.1944Z"
       />
     ),
@@ -475,7 +427,7 @@ export const Image_Actions: ModelConfig[] = [
     baseLabel: "Aspect Ratio",
     icon: (
       <Icons
-        className="text-foreground"
+        className="text-foreground mt-1.5"
         path="M10 10.8333H14.1667V6.66667H12.5V9.16667H10V10.8333ZM2.5 6.66667H4.16667V4.16667H6.66667V2.5H2.5V6.66667ZM1.66667 13.3333C1.20833 13.3333 0.816111 13.1703 0.49 12.8442C0.163889 12.5181 0.000555556 12.1256 0 11.6667V1.66667C0 1.20833 0.163333 0.816111 0.49 0.49C0.816667 0.163889 1.20889 0.000555556 1.66667 0H15C15.4583 0 15.8508 0.163333 16.1775 0.49C16.5042 0.816666 16.6672 1.20889 16.6667 1.66667V11.6667C16.6667 12.125 16.5036 12.5175 16.1775 12.8442C15.8514 13.1708 15.4589 13.3339 15 13.3333H1.66667ZM1.66667 11.6667H15V1.66667H1.66667V11.6667Z"
       />
     ),

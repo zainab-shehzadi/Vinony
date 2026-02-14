@@ -28,21 +28,21 @@ export default function GetStartedPreview({
         <button
           type="button"
           onClick={onGetStarted}
-          className={cn("h-12 px-10 lg:px-20 rounded-xl text-white font-medium btn-gradient dark:shadow")}
+          className={cn("h-12 px-10 lg:px-20 rounded-xl text-white font-medium btn-gradient dark:shadow z-10")}
         >
           Get Started
         </button>
       </div>
 
       {/* Preview */}
-      <div className="px-2 md:px-10 lg:px-18 dark:px-0 flex justify-center mt-4 lg:mt-6 ">
+      <div className="px-2 md:px-10 lg:px-18 dark:px-0 flex justify-center mt-4 lg:mt-6">
         <img
           key={src}
           src={src}
           alt={imageAlt}
           draggable={false}
           loading="lazy"
-          className="w-full h-auto object-contain rounded-xl"
+          className="w-full h-auto object-contain rounded-xl z-10"
         />
       </div>
     </section>

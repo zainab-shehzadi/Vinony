@@ -1,4 +1,3 @@
-
 import SectionHero from "@/components/common/section-hero/SectionHero";
 import SectionHeading from "@/components/common/SectionHeading";
 import VinonyFaq from "@/components/contactUs/VinonyFaq";
@@ -24,7 +23,12 @@ export default function LandingPage() {
   const navigate = useNavigate();
   return (
     <div className="w-full">
-      <Container>
+      <Container className="relative px-2 md:px-4 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none hidden dark:block
+          bg-[radial-gradient(circle_at_center,rgba(137,1,255,0.25)_0%,rgba(137,1,255,0.15)_40%,transparent_60%)]"
+        />
+
         <SectionHero
           variant="heroB"
           titleParts={[
@@ -32,7 +36,6 @@ export default function LandingPage() {
             { type: "highlight", value: "AI Models" },
             { type: "text", value: ".\nOne Subscription." },
           ]}
-
           subtitle="Access 100+ chat, image, video, and AI agent tools,
 without juggling multiple subscriptions."
         />
@@ -41,7 +44,6 @@ without juggling multiple subscriptions."
           darkimgSrc="/darkbg.svg"
           onGetStarted={() => navigate("/login")}
         />
-
       </Container>
       <LeadingAiProviders />
       <ModelsMarquee
@@ -50,7 +52,7 @@ without juggling multiple subscriptions."
         onSelect={(item) => {
           console.log("Selected:", item);
         }}
-        speedSeconds={16}
+        speedSeconds={45}
         pauseOnHover
       />
 
@@ -61,7 +63,7 @@ without juggling multiple subscriptions."
         />
       </Container>
       <div className="lg:pt-10 xl:pt-16">
-        <ModelsShowcase onCtaClick={() => console.log("Explore models")} />;
+        <ModelsShowcase onCtaClick={() => console.log("Explore models")} />
       </div>
 
       <Container>
@@ -83,8 +85,8 @@ without juggling multiple subscriptions."
           ))}
         </div>
         <div className="pt-10 xl:pt-14">
-
-          <GetStartedSection imageSrc="/model.png"
+          <GetStartedSection
+            imageSrc="/model.png"
             eyebrow="Get Started With Vinony"
             title={
               <>
@@ -92,8 +94,8 @@ without juggling multiple subscriptions."
                 of AI
               </>
             }
-
-            description="Based on the conversation with the AI chatbot, you will receive personalized recommendations." />
+            description="Based on the conversation with the AI chatbot, you will receive personalized recommendations."
+          />
         </div>
         <GuaranteeStrip />
         <TestimonialsSection />
@@ -101,8 +103,6 @@ without juggling multiple subscriptions."
         <VinonyFaq />
         <CtaBanner />
       </Container>
-
     </div>
-
   );
 }

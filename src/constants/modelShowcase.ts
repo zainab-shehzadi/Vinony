@@ -14,6 +14,7 @@ export const MODEL_SHOWCASE: ModelShowcaseItem[] = [
     ],
     ctaLabel: "Start Exploring Now",
     imageSrc: "/chat.svg",
+    imageDarkSrc: "/preview_image1.png",
     imageAlt: "GPT model preview",
   },
   {
@@ -29,6 +30,7 @@ export const MODEL_SHOWCASE: ModelShowcaseItem[] = [
     ],
     ctaLabel: "Start Exploring Now",
     imageSrc: "/chat1.svg",
+    imageDarkSrc: "/preview_image2.png",
     imageAlt: "Veo model preview",
   },
   {
@@ -44,6 +46,7 @@ export const MODEL_SHOWCASE: ModelShowcaseItem[] = [
     ],
     ctaLabel: "Start Exploring Now",
     imageSrc: "/chat2.png",
+    imageDarkSrc: "/preview_image3.png",
     imageAlt: "Flux model preview",
   },
 ];

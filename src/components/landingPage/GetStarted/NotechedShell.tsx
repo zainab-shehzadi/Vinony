@@ -26,12 +26,13 @@ export function NotchedShell({
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-3xl border",
-          "border-slate-200 dark:border-transparent dark:md:border-primary dark:lg:border-0",
+          "relative overflow-hidden rounded-3xl border-2",
+          "border-slate-200 dark:border-primary dark:lg:border-0",
           "bg-[#F5F5F5] dark:bg-transparent",
           "[clip-path:polygon(0_0,55%_0,66%_12%,100%_12%,100%_100%,0_100%)]",
           "lg:[clip-path:polygon(0_0,35%_0,45%_18%,100%_18%,100%_100%,0_100%)]",
-          "dark:lg:[clip-path:polygon(0_0,35%_0,45%_10%,100%_10%,100%_100%,0_100%)]"
+          "dark:lg:[clip-path:polygon(0_0,35%_0,45%_10%,100%_10%,100%_100%,0_100%)]",
+          "dark:[clip-path:none] dark:rounded-2xl"
         )}
       >
 

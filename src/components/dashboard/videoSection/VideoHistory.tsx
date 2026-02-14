@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
-import { GENERATED_VideoGROUPS } from "@/constants/aiModelData";
+import { GENERATED_VideoGROUPS } from "@/constants/historyData.ts";
 import { groupDataByDate } from "@/services/group-by-date.ts";
 import VideoPlayer from "./VideoPlayer";
 

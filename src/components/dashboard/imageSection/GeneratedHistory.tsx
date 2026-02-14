@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
-import { GENERATED_GROUPS } from "@/constants/aiModelData";
+import { GENERATED_GROUPS } from "@/constants/historyData.ts";
 import { groupDataByDate } from "@/services/group-by-date";
 import { downloadImage } from "@/services/download-image";
 
@@ -80,7 +80,7 @@ export default function GeneratedHistory() {
 
   return (
     <>
-      <div className="w-full mx-auto py-3 md:py-1 space-y-1 overflow-y-auto">
+      <div className="w-full mx-auto py-3 md:py-1 space-y-1 overflow-y-auto pr-2">
         <div className="flex flex-col gap-2 md:gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-2">
             <h3 className="text-[16px] md:text-lg font-bold text-foreground">

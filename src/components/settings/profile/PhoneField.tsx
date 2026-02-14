@@ -6,7 +6,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,  
+  SelectTrigger,
 } from "@/components/ui/select";
 
 type Props = {
@@ -31,33 +31,45 @@ export default function PhoneField({
       className={cn(
         "flex w-full items-center overflow-hidden rounded-md border border-border bg-background",
         "focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background",
-        className
+        className,
       )}
     >
       {/* Left: Country select (no border, inside the same box) */}
-      <Select value={country} onValueChange={(v) => onCountryChange(v as CountryCode)}>
+      <Select
+        value={country}
+        onValueChange={(v) => onCountryChange(v as CountryCode)}
+      >
         <SelectTrigger
           className={cn(
             "h-11 w-[px] rounded-none border-0 bg-transparent px-3",
             "shadow-none focus:ring-0 focus:ring-offset-0",
-            "justify-center gap-2"
+            "justify-center gap-2",
           )}
         >
-
-          <span className="text-base leading-none">{selected?.flag}</span>
+          <img
+            src={selected?.flag}
+            alt={selected?.label}
+            width={24}
+            height={16}
+          />
         </SelectTrigger>
-
 
         <SelectContent align="start">
           {COUNTRIES.map((c) => (
-            <SelectItem key={c.code} value={c.code} textValue={c.label}>
+            <SelectItem key={c.code} value={c.code} textValue={c.label} className="focus:bg-hover focus:text-accent">
               <span className="flex w-full items-center gap-2">
-                <span>{c.flag}</span>
+                <img
+                  src={c?.flag}
+                  alt={c?.label}
+                  width={24}
+                  height={16}
+                />
                 <span className="text-sm">{c.label}</span>
-                <span className="ml-auto text-xs text-muted-foreground">{c.dialCode}</span>
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {c.dialCode}
+                </span>
               </span>
             </SelectItem>
-
           ))}
         </SelectContent>
       </Select>
@@ -71,7 +83,7 @@ export default function PhoneField({
         inputMode="tel"
         className={cn(
           "h-11 flex-1  border-0 bg-transparent px-4",
-          "shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          "shadow-none focus-visible:ring-0 focus-visible:ring-offset-0",
         )}
       />
     </div>

@@ -70,7 +70,7 @@ export default function SectionHero({
 
   return (
     <section className={cn("w-full", className)}>
-      <div className={cn("mx-auto w-full max-w-6xl md:px-8", containerClassName)}>
+      <div className={cn("mx-auto w-full max-w-6xl px-4 md:px-12", containerClassName)}>
         <div className={cn(isCenter ? "text-center" : "text-left")}>
 
           <div className={cn(eyebrow ? "mt-3" : "")}>

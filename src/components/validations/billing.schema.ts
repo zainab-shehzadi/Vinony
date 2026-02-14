@@ -6,9 +6,8 @@ export const billingEditSchema = z.object({
   phoneCountry: z.custom<CountryCode>(),
   phone: z
     .string()
-    .min(5, "Phone number is too short")
-    .max(12, "Phone number is too long")
-    .regex(/^[0-9]+$/, "Phone number must contain only digits"),
+    .nonempty("Phone number is required")
+    .regex(/^[0-9]*$/, "Phone number must contain only digits"),
   countryName: z.string().min(2, "Country is required"),
   email: z.string().email("Invalid email"),
   plan: z.string().min(1),

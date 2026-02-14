@@ -19,7 +19,7 @@ export default function PaymentHistory({visible, font, Record, Credits, Invoices
       <div className="w-full overflow-x-auto">
         <table className="w-full text-left border-collapse bg-background rounded-lg min-w-[700px]">
           <thead>
-            <tr className="text-sm font-bold uppercase text-foreground tracking-widest border-b border-border/50">
+            <tr className="text-xs font-bold uppercase text-foreground tracking-widest border-b border-border/50">
               <th className="px-4 py-4 w-[180px] whitespace-nowrap">Invoice ID</th>
               <th className="px-4 py-4 w-[180px] whitespace-nowrap">Billing Date</th>
               <th className="px-4 py-4 w-[180px] whitespace-nowrap">Plan</th>
@@ -35,16 +35,16 @@ export default function PaymentHistory({visible, font, Record, Credits, Invoices
                 key={i}
                 className="bg-transparent hover:bg-input/20 transition-colors group"
               >
-                <td className="px-4 py-3 font-normal text-sm text-foreground group-hover:text-foreground">
+                <td className="px-4 py-3 font-normal text-xs text-foreground group-hover:text-foreground">
                   {inv.id}
                 </td>
-                <td className="px-4 py-3 font-normal text-sm text-foreground whitespace-nowrap">
+                <td className="px-4 py-3 font-normal text-xs text-foreground whitespace-nowrap">
                   {inv.date}
                 </td>
-                <td className="px-4 py-3 font-normal text-sm text-foreground whitespace-nowrap">
+                <td className="px-4 py-3 font-normal text-xs text-foreground whitespace-nowrap">
                   {inv.plan}
                 </td>
-                <td className={`px-4 py-3 text-sm text-foreground ${font} whitespace-nowrap`}>
+                <td className={`px-4 py-3 text-xs text-foreground ${font} whitespace-nowrap`}>
                   <p>{inv.amount}<span className={`text-accent font-normal ${visible}`}> USD</span></p>
                 </td>
                 <td className="px-4 py-3">
@@ -54,7 +54,7 @@ export default function PaymentHistory({visible, font, Record, Credits, Invoices
                     </div>
                     <div className="flex flex-col">
                       <span>••••</span>
-                      <span className="text-sm font-medium">{inv.method}</span>
+                      <span className="text-xs font-medium">{inv.method}</span>
                     </div>
                   </div>
                 </td>

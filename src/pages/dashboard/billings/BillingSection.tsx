@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function BillingSection() {
   const [cardActive, setCardActive] = useState<Boolean>(false);
   return (
-    <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:py-10 xl:px-16">
+    <div className="flex w-full flex-col min-h-[90vh] px-4 pb-3 md:px-10 lg:py-10 xl:px-16">
       {!cardActive && (
         <>
           <SummaryCard />
@@ -19,6 +19,5 @@ export default function BillingSection() {
         <AddCard setCardActive={setCardActive} />
       )}
     </div>
-
   );
 }

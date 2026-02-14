@@ -36,7 +36,7 @@ function ChatResponse ({activeChat}: ChatResponseProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pr-3">
       <div className=" mx-auto space-y-8">
         {activeData.messages.map((msg: any) => {
           const hasVersions = msg.versions && msg.versions.length > 0;
@@ -94,7 +94,7 @@ function ChatResponse ({activeChat}: ChatResponseProps) {
                     </div>
 
                     {/* AI Message Bubble */}
-                    <div className="bg-input p-5 rounded-[2rem] rounded-tl-none ">
+                    <div className="bg-input p-5 rounded-3xl ">
                       {Array.isArray(msg.content) ? (
                         <div className="space-y-4">
                           <p className="text-sm md:text-[16px] leading-relaxed text-accent">
@@ -132,7 +132,7 @@ function ChatResponse ({activeChat}: ChatResponseProps) {
                       </span>
                     </div>
                   )}
-                  <div className="bg-input px-6 py-3 rounded-3xl rounded-tr-none shadow-sm max-w-full sm:max-w-[85%]">
+                  <div className="bg-input px-6 py-3 rounded-3xl shadow-sm max-w-full sm:max-w-[85%]">
                     <p className="text-sm md:text-[16px] text-accent">
                       {msg.content}
                     </p>

@@ -88,8 +88,8 @@ const Sidebar = ({
   const isActive = (path: string) => {
     if (path === PATH.SETTING) {
       return location.pathname.startsWith(PATH.SETTING);
-    }else if(path === PATH.BILLING){
-      return location.pathname.startsWith(PATH.BILLING)
+    } else if (path === PATH.BILLING) {
+      return location.pathname.startsWith(PATH.BILLING);
     }
 
     return location.pathname === path;
@@ -100,8 +100,14 @@ const Sidebar = ({
       className={`fixed z-50 w-64 h-full bg-background border-r border-border flex flex-col p-4 lg:relative transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${toggle ? "translate-x-0" : "-translate-x-full"}`}
     >
       {/* Logo Section */}
-      <div className="flex items-center justify-between lg:justify-center mt-5 mb-10 cursor-pointer"
-      onClick={()=> navigate(PATH.CHAT)}
+      <div
+        className="flex items-center justify-between lg:justify-center mt-5 mb-10 cursor-pointer"
+        onClick={() => {
+          setReqChatGenerate(false);
+          setActiveHistory(false);
+          setActiveView("new-chat");
+          navigate(PATH.CHAT);
+        }}
       >
         <p className="text-base lg:text-xl font-semibold text-primary flex gap-2 items-center">
           {" "}
@@ -163,7 +169,11 @@ const Sidebar = ({
               <div
                 className={`flex items-center gap-2 font-medium px-2 ${item.path && isActive(item.path) ? "text-primary" : "text-accent"}`}
               >
-                  <img src={item.icon} alt={item.title} className={`h-5 w-5 ${item.path && isActive(item.path) ? "invert-[60%] sepia-[0%] saturate-[9000%] hue-rotate-[210deg]" : ""}`} />
+                <img
+                  src={item.icon}
+                  alt={item.title}
+                  className={`h-5 w-5 ${item.path && isActive(item.path) ? "invert-[60%] sepia-[0%] saturate-[9000%] hue-rotate-[210deg]" : ""}`}
+                />
                 <span
                   className={`text-[14px] transition-all ${item.path && isActive(item.path) && "font-semibold text-[16px]"}`}
                 >
@@ -238,6 +248,7 @@ const Sidebar = ({
                             value={activeHistory ? "recent-history" : ""}
                             onValueChange={(val) => {
                               setActiveHistory(val === "recent-history");
+                              setToggle(false)
                             }}
                           >
                             <AccordionItem
@@ -266,9 +277,10 @@ const Sidebar = ({
                                       return (
                                         <div
                                           key={i}
-                                          onClick={() =>
+                                          onClick={() => {
                                             onSelectChat(heading, data)
-                                          }
+                                            setToggle(false)
+                                          }}
                                           className={`group relative flex items-center justify-between py-1 rounded-lg  cursor-pointer transition-colors ${isActive ? "text-primary" : "text-accent hover:bg-primary/5"}`}
                                         >
                                           <span className="text-[12px]  truncate pr-4">
@@ -296,6 +308,7 @@ const Sidebar = ({
                           <button
                             key={i}
                             onClick={() => {
+                              setToggle(false)
                               handleTabClick(sub);
                               setActiveHistory(false);
                             }}

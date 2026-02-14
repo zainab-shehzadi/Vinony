@@ -96,8 +96,6 @@ export default function ProfileForm() {
               
 
               <SettingsRow label="Notifications">
-                {/* <div className="bg-green-300 w-full h-96">
-              </div> */}
                 <NotificationsFieldset
                   value={notifications as NotificationSettings}
                   onChange={(next) => form.setValue("notifications", next, { shouldDirty: true })}

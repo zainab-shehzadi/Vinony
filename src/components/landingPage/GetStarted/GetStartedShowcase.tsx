@@ -11,6 +11,7 @@ export default function GetStartedSection({
   title,
   description = "Based on the conversation with the AI chatbot, you will receive personalized recommendations.",
   imageSrc = "/model.png",
+  imageDarkSrc = "/darkModel.png",
   imageAlt = "Vinony preview",
   className,
   bestSuitedFor,
@@ -20,7 +21,7 @@ export default function GetStartedSection({
       <NotchedShell>
         <div className="grid items-center gap-6 md:gap-10 lg:grid-cols-[1.05fr_1fr] md:pl-10">
           <LeftCopy eyebrow={eyebrow} title={title} description={description} bestSuitedFor={bestSuitedFor}/>
-          <RightPreview src={imageSrc} alt={imageAlt} />
+          <RightPreview src={imageSrc} darkSrc={imageDarkSrc} alt={imageAlt} />
         </div>
       </NotchedShell>
     </section>

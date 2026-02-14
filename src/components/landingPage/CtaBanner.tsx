@@ -21,18 +21,30 @@ export default function CtaBanner({
 
   const bgSrc =
     resolved === "dark" && content.darkBackgroundImageSrc
-      ? content.darkBackgroundImageSrc
+      ? ""
       : content.backgroundImageSrc;
+  // const bgSrc =
+  //   resolved === "dark" && content.darkBackgroundImageSrc
+  //     ? content.darkBackgroundImageSrc
+  //     : content.backgroundImageSrc;
 
   return (
-    <section className={["w-full pt-4 md:pt-6 lg:pt-16 xl:pt-24", className ?? ""].join(" ")}>
+    <section
+      className={[
+        "w-full pt-4 md:pt-6 lg:pt-16 xl:pt-24",
+        className ?? "",
+      ].join(" ")}
+    >
       <div className="relative">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-1 left-6 right-6 h-4 rounded-3xl blur-2xl bg-black dark:bg-black/35"
         />
 
-        <div className="relative overflow-hidden rounded-3xl">
+        <div
+          className="relative overflow-hidden rounded-3xl shadow-[0_10px_8px_-3px_rgba(0,0,0,0.15)] dark:bg-gradient-to-r 
+        dark:from-[#0E0C15] dark:via-primary/20 dark:to-[#0E0C15]"
+        >
           <img
             key={bgSrc}
             src={bgSrc}
@@ -40,10 +52,8 @@ export default function CtaBanner({
             loading="lazy"
             alt=""
             className={[
-              "absolute inset-0 h-full scale-[1.25] md:scale-[1.35]  w-full object-cover",
-              resolved === "dark"
-                ? "origin-center object-center"
-                : "scale-100",
+              "absolute inset-0 h-full scale-[1.25] md:scale-[1.35] w-full object-cover",
+              resolved === "dark" ? "origin-center object-center" : "scale-100",
             ].join(" ")}
           />
 

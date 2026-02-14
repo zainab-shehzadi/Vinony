@@ -19,7 +19,7 @@ export default function NotificationsFieldset({ value, onChange }: Props) {
               type="checkbox"
               checked={value[n.id]}
               className="accent-primary"
-              onChange={(v) => onChange({ ...value, [n.id]: Boolean(v) })}
+              onChange={(e) => onChange({ ...value, [n.id]: e.target.checked })}
             />
           </div>
           <div>

@@ -32,7 +32,7 @@ export default function GuaranteeStrip() {
                 <img
                   src={item.iconSrc}
                   alt={item.iconAlt ?? item.title}
-                  className="h-[20px] w-[20px] object-contain md:h-[40px] md:w-[45px]"
+                  className="h-[35px] w-[40px] object-contain md:h-[40px] md:w-[45px]"
                   draggable={false}
                   loading="lazy"
                 />

@@ -26,7 +26,7 @@ export default function VideoSection() {
   );
   return (
     <>
-      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pt-10 xl:px-16 pb-10">
+      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 lg:pt-10 xl:px-16 pb-10">
         {activeView !== "video-history" && (
           <Modelbar
             models={AI_VIDEO_MODELS}

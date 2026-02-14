@@ -50,6 +50,7 @@ export type GetStartedSectionProps = {
 
   description?: string;
   imageSrc?: string;
+  imageDarkSrc?: string;
   imageAlt?: string;
 
   bestSuitedFor?: string[];

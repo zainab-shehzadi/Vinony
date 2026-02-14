@@ -13,9 +13,36 @@ import FormActions from "../formAction";
 
 const schema = z
   .object({
-    currentPassword: z.string().min(8, "Minimum 8 characters"),
-    newPassword: z.string().min(8, "Minimum 8 characters"),
-    confirmPassword: z.string().min(8, "Minimum 8 characters"),
+    currentPassword: z
+      .string()
+      .regex(/[A-Z]/, "Include at least one uppercase letter")
+      .regex(/[a-z]/, "Include at least one lowercase letter")
+      .regex(/[0-9]/, "Include at least one number")
+      .regex(
+        /[^A-Za-z0-9]/,
+        "Include at least one special character (@, #, $, etc.)",
+      )
+      .min(8, "Minimum 8 characters"),
+    newPassword: z
+      .string()
+      .regex(/[A-Z]/, "Include at least one uppercase letter")
+      .regex(/[a-z]/, "Include at least one lowercase letter")
+      .regex(/[0-9]/, "Include at least one number")
+      .regex(
+        /[^A-Za-z0-9]/,
+        "Include at least one special character (@, #, $, etc.)",
+      )
+      .min(8, "Minimum 8 characters"),
+    confirmPassword: z
+      .string()
+      .regex(/[A-Z]/, "Include at least one uppercase letter")
+      .regex(/[a-z]/, "Include at least one lowercase letter")
+      .regex(/[0-9]/, "Include at least one number")
+      .regex(
+        /[^A-Za-z0-9]/,
+        "Include at least one special character (@, #, $, etc.)",
+      )
+      .min(8, "Minimum 8 characters"),
   })
   .refine((v) => v.newPassword === v.confirmPassword, {
     message: "Passwords do not match",
@@ -36,6 +63,7 @@ export default function ChangePasswordSection() {
       confirmPassword: "",
     },
     mode: "onChange",
+    criteriaMode: "all",
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -59,7 +87,6 @@ export default function ChangePasswordSection() {
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between gap-4 text-left"
       >
-
         <AccountHeader
           title="Change Password"
           subtitle="Please update your account Password here"
@@ -68,7 +95,7 @@ export default function ChangePasswordSection() {
         <ChevronDown
           className={cn(
             "h-5 w-5 lg:h-8 md:w-8 text-muted-foreground transition-transform",
-            open && "rotate-180"
+            open && "rotate-180",
           )}
         />
       </button>
@@ -100,7 +127,9 @@ export default function ChangePasswordSection() {
           />
 
           <div className="pt-2">
-            <FormActions saving={saving} onCancel={onCancel}
+            <FormActions
+              saving={saving}
+              onCancel={onCancel}
               saveText="Change Password"
               savingText="changing"
             />

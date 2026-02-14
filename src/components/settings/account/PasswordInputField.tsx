@@ -10,7 +10,6 @@ type Props = React.ComponentProps<typeof Input> & {
   error?: string;
 };
 
-// 1. React.forwardRef ka use karein
 const PasswordInputField = React.forwardRef<HTMLInputElement, Props>(
   ({ label, placeholder, error, className, ...props }, ref) => {
     const [show, setShow] = React.useState(false);
@@ -27,7 +26,7 @@ const PasswordInputField = React.forwardRef<HTMLInputElement, Props>(
           <div className="relative max-w-[420px]">
             <Input
               {...props}
-              ref={ref} // 2. Ref ko yahan Input component par pass karein
+              ref={ref}
               type={show ? "text" : "password"}
               placeholder={placeholder}
               className={cn(
@@ -56,7 +55,6 @@ const PasswordInputField = React.forwardRef<HTMLInputElement, Props>(
   }
 );
 
-// 3. Display name set karna achi practice hai
 PasswordInputField.displayName = "PasswordInputField";
 
 export default PasswordInputField;

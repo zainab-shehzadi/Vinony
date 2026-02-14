@@ -24,7 +24,7 @@ export default function ImageSection() {
   );
   return (
     <>
-      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:py-10 xl:px-16">
+      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 lg:pt-10 xl:px-16">
         {activeView !== "image-history" && (
            <Modelbar
           models={AI_IMAGE_MODELS}

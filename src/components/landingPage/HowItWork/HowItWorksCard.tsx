@@ -1,11 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-
+// import lineImage from "@/assets/"
 type Props = {
   title: string;
   description: string;
   iconSrc: string;
+  bgLinesSrc?: string;
   iconAlt?: string;
   className?: string;
 };
@@ -16,6 +17,7 @@ export default function HowItWorksCard({
   title,
   description,
   iconSrc,
+  bgLinesSrc = "/bgLines.png",
   iconAlt = "",
   className,
 }: Props) {
@@ -25,26 +27,43 @@ export default function HowItWorksCard({
         <div className="pointer-events-none absolute -bottom-3 left-8 right-8 h-6 rounded-full" />
 
         <div
-          className={cn("relative h-full md:h-[270px] lg:h-[340px] xl:h-[360px] overflow-hidden rounded-2xl p-[2px]", "bg-slate-100")}
+          className={cn(
+            "relative h-full md:h-[270px] lg:h-[340px] xl:h-[360px] overflow-hidden rounded-2xl p-[2px]",
+            "bg-slate-100 dark:bg-primary/5",
+          )}
           style={{ clipPath: CLIP }}
         >
           <div
             className={cn(
               "relative h-full overflow-hidden rounded-2xl bg-white dark:bg-[#0D091D]",
-              "min-h-[200px]  lg:min-h-[330px] xl:min-h-[340px]"
+              "min-h-[200px]  lg:min-h-[330px] xl:min-h-[340px]",
             )}
             style={{ clipPath: CLIP }}
           >
-            {/* inset border */}
-            <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+            <div
+              className="pointer-events-none absolute inset-0"
+              aria-hidden="true"
+            >
               <div
                 className="absolute inset-0 rounded-2xl"
                 style={{
                   clipPath: CLIP,
-                  boxShadow: "inset 0 0 0 2px rgba(235, 196, 250, 0.55)",
+                  boxShadow: "inset 0 0 0 2px rgba(235, 196, 250, 0.09)",
                 }}
               />
               <div className="absolute left-0 right-0 top-0 h-6 bg-white dark:bg-[#0D091D]/50" />
+              {bgLinesSrc ? (
+                <img
+                  src={bgLinesSrc}
+                  draggable={false}
+                  aria-hidden
+                  className={cn(
+                    "mt-10 pointer-events-none select-none",
+                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
+                    "w-[85%] max-w-[400px] lg:max-w-[800px] object-contain",
+                  )}
+                />
+              ) : null}
             </div>
 
             <div className="flex h-full flex-col p-6 xl:p-8 xl:pt-10">

@@ -39,7 +39,7 @@ export default function LogoutModal({
           {loading ? "Logging out..." : "Yes, Logout"}
         </Button>
 
-        {/* <Button
+        <Button
           type="button"
           variant="outline"
           onClick={() => onOpenChange(false)}
@@ -47,7 +47,7 @@ export default function LogoutModal({
           className="h-12 w-full rounded-lg border-border text-foreground hover:bg-muted"
         >
           Cancel
-        </Button> */}
+        </Button>
       </div>
     </ModalShell>
   );

@@ -74,7 +74,7 @@ export default function AvatarUploader({
   return (
     <div
       className={cn(
-        "flex flex-col items-center pt-6 sm:pt-10",
+        "flex sm:flex-col gap-5 items-center px-3 pb-6 sm:items-center pt-6 sm:pt-10",
         className
       )}
       style={
@@ -140,15 +140,17 @@ export default function AvatarUploader({
       />
 
       {/* Helper text */}
-      <div className="mt-6 sm:mt-8 text-center max-w-[320px] sm:max-w-[420px] px-2">
-        <p className="text-xs sm:text-[14px] text-muted-foreground">
+      <div className="sm:mt-3 sm:text-center max-w-[320px] sm:max-w-[420px] sm:px-2">
+        <div className="flex sm:block whitespace-nowrap items-center gap-1">
+          <p className="text-xs sm:text-[14px] text-muted-foreground">
           {AVATAR_RULES.helperAllowed}
         </p>
-        <p className="mt-1 text-xs sm:text-[14px] text-foreground">
+        <p className="sm:mt-1 text-xs sm:text-[14px] text-foreground">
           {AVATAR_RULES.helperTypes}
         </p>
+        </div>
 
-        <div className="mt-3 md:mt-4 sm:mt-6">
+        <div className="flex items-center sm:block gap-2 mt-1 md:mt-4 sm:mt-6">
           <p className="text-xs sm:text-[14px] text-muted-foreground">
             {AVATAR_RULES.helperMax}
           </p>

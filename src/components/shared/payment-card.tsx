@@ -1,6 +1,12 @@
 import { Ellipsis, Plus } from "lucide-react";
 import { cards } from "@/constants/static-data";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 
 export default function PaymentMethods({
   setCardActive,
@@ -31,24 +37,22 @@ export default function PaymentMethods({
                   </span>
                 )}
               </div>
-              <button
-                className="text-muted-foreground/50 hover:text-foreground transition-colors"
-                onClick={() =>
-                  setOpenDropdown(openDropdown === index ? null : index)
-                }
-              >
-                <Ellipsis size={20} />
-              </button>
-              {openDropdown === index && (
-                <div className="absolute right-0 mt-2 w-32 bg-input border border-border rounded-md shadow-lg z-50 overflow-hidden">
-                  <button
-                    onClick={()=> setOpenDropdown(null)}
-                    className="w-full px-4 py-2 text-sm text-left hover:text-muted-foreground hover:bg-hover transition-colors"
+              <DropdownMenu>
+                <DropdownMenuTrigger className="outline-none">
+                  <Ellipsis
+                    size={20}
+                    className="text-muted-foreground/50 hover:text-foreground cursor-pointer"
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="border border-border p-2 bg-input">
+                  <DropdownMenuItem
+                    // onClick={() => handleRemove(index)}
+                    className="text-foreground cursor-pointer focus:bg-hover"
                   >
                     Remove Card
-                  </button>
-                </div>
-              )}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
 
             <div className="flex-grow flex items-center">

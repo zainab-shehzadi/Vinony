@@ -9,9 +9,9 @@ export const SETTINGS_TABS: Array<{ id: SettingsTabId; label: string; to: string
 ];
 
 export const COUNTRIES: CountryOption[] = [
-  { code: "GB", label: "United Kingdom", flag: "🇬🇧", dialCode: "+44" },
-  { code: "US", label: "United States", flag: "🇺🇸", dialCode: "+1" },
-  { code: "PK", label: "Pakistan", flag: "🇵🇰", dialCode: "+92" },
+  { code: "GB", label: "United Kingdom", flag: "https://flagcdn.com/w40/gb.png", dialCode: "+44" },
+  { code: "US", label: "United States", flag: "https://flagcdn.com/w40/us.png", dialCode: "+1" },
+  { code: "PK", label: "Pakistan", flag: "https://flagcdn.com/w40/pk.png", dialCode: "+92" },
 ];
 
 export const NOTIFICATIONS: Array<{

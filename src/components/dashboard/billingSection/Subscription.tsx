@@ -5,7 +5,7 @@ import { INVOICES, CREDITS } from "@/constants/static-data";
 
 export default function Subscription() {
   return (
-    <div className="w-full p-6 md:p-8 bg-input border border-border/50 my-5">
+    <div className="w-full p-6 md:p-8 bg-input border border-border/50 mt-5">
       {/* Invoice Section */}
       <PaymentHeading
         heading="Invoice of Subscription"

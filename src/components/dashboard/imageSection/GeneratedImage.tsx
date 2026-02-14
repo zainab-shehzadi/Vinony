@@ -4,6 +4,7 @@ import soraImage3 from "@/assets/cde7f4dad622b9775339c32c8983bbc2b89a4f87.png";
 import { Download } from "lucide-react";
 import { useState } from "react";
 import { downloadImage } from "@/services/download-image";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const SoraImage = [
   soraImage1,
@@ -18,9 +19,9 @@ export default function GeneratedImage() {
 
   return (
     <>
-      <div className={`w-full px-4 mt-5`}>
-        <div className="flex items-center justify-between mb-5">
-          <h3 className="mt-4 lg:mt-6 text-xl font-semibold text-foreground">
+      <div className={`w-full px-4 mt-2 lg:mt-5`}>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className=" lg:mt-6 text-xl font-semibold text-foreground">
             Generated Images
           </h3>
           <p className="text-[16px] font-medium text-accent">
@@ -38,29 +39,42 @@ export default function GeneratedImage() {
                 className="w-full h-full object-cover transition-transform group-hover:scale-105"
                 alt="Generated"
               />
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
-              onClick={() => setOpenDropdown(openDropdown === index ? null : index)}
+              <div
+                className="absolute top-3 right-3 opacity-100 transition-opacity"
+                onClick={() =>
+                  setOpenDropdown(openDropdown === index ? null : index)
+                }
               >
-                <button className="p-1.5 bg-black/40 hover:bg-black/60 rounded-lg text-white backdrop-blur-sm">
-                  <Download size={18} />
-                </button>
-                {openDropdown === index && (
-                <div className="absolute right-0 mt-2 w-24 bg-input border border-border rounded-md shadow-lg z-50 overflow-hidden">
-                  <button 
-                    onClick={() => downloadImage(image, 'png', setOpenDropdown)}
-                    className="w-full px-4 py-2 text-sm text-left hover:text-muted-foreground hover:bg-hover transition-colors"
+                {" "}
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="outline-none">
+                    <button className="p-1.5 bg-black/40 hover:bg-black/60 rounded-lg text-white backdrop-blur-sm">
+                      <Download size={18} />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    className="border border-border p-2 bg-input"
                   >
-                    PNG
-                  </button>
-                  <hr className="w-full border border-border"/>
-                  <button 
-                    onClick={() => downloadImage(image, 'jpg', setOpenDropdown)}
-                    className="w-full px-4 py-2 text-sm text-left hover:text-muted-foreground hover:bg-hover transition-colors"
-                  >
-                    JPEG
-                  </button>
-                </div>
-              )}
+                    <DropdownMenuItem
+                       onClick={() =>
+                        downloadImage(image, "png", setOpenDropdown)
+                      }
+                      className="text-foreground cursor-pointer focus:bg-hover/20 focus:text-accent"
+                    >
+                      PNG
+                    </DropdownMenuItem>
+                    <hr className="border border-border" />
+                    <DropdownMenuItem
+                       onClick={() =>
+                        downloadImage(image, "jpg", setOpenDropdown)
+                      }
+                      className="text-foreground cursor-pointer focus:bg-hover/20 focus:text-accent"
+                    >
+                      JPG
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>            
               </div>
             </div>
           ))}

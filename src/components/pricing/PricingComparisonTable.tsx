@@ -66,8 +66,8 @@ export default function PricingComparisonTable({
         </div>
 
         <div className="hidden lg:block">
-          <div className="border-y border-border bg-background px-4 xl:px-16">
-            <table className="w-full table-fixed border-collapse border-r border-border">
+          <div className=" border-border bg-background px-4 xl:px-16">
+            <table className="w-full table-fixed border-collapse border border-border">
               <colgroup>
                 <col className="w-[28%]" />
                 <col className="w-[24%]" />

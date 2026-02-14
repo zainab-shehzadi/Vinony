@@ -85,7 +85,7 @@ function FaqRow({
         style={{
           height,
           overflow: "hidden",
-          transition: "height 320ms ease, opacity 220ms ease",
+          transition: "height 310ms ease",
           opacity: isOpen ? 1 : 0,
         }}
       >

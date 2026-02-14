@@ -43,7 +43,7 @@ export default function AddCard({setCardActive}: {setCardActive: (value: boolean
   };
 
   return (
-    <div className="w-full bg-background ">
+    <div className="w-full bg-background pt-3">
       <AccountHeader 
         title="Add card" 
         subtitle="Please enter your payment details to add a new card."

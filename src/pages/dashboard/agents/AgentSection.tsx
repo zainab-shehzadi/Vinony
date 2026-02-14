@@ -31,7 +31,7 @@ export default function AgentSection() {
   );
   return (
     <>
-      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pb-0 md:pt-10 xl:px-16">
+      <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pt-3 md:pb-0 lg:pt-10 xl:px-16">
         {activeView !== "my-history" && (
           <Modelbar
             models={AI_AGENT_MODELS}
@@ -50,7 +50,7 @@ export default function AgentSection() {
           </h1>
         )}
         {reqAgentGenerate && (
-          <div className="flex-grow overflow-y-auto pb-5">
+          <div className="flex-grow overflow-y-auto pb-5 pr-3">
             <AgentSources />
             <AgentsResponse />
             <AgentFrame />
@@ -59,13 +59,12 @@ export default function AgentSection() {
 
         {activeView !== "my-history" && (
           <div
-            className={`w-full ${reqAgentGenerate ? "mt-auto -mb-3" : "mt-auto -mb-5 md:mt-2 lg:mt-20"}`}
+            className={`w-full ${reqAgentGenerate ? "mt-auto -mb-3 lg:mb-0 2xl:-mb-7" : "mt-auto -mb-5 md:mt-2 lg:mt-20"}`}
           >
             <ChatInput
               selectedModel={selectedModel}
               activeVersion={activeVersion}
               setActiveVersion={setActiveVersion}
-              // reqGenerate={reqAgentGenerate}
               setReqGenerate={setReqAgentGenerate}
               setActiveHistory={setActiveHistory}
             />

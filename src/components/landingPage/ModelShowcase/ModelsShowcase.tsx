@@ -42,21 +42,21 @@ export default function ModelsShowcase({
   return (
     <section className={cn("w-full bg-[#D9D9D940] dark:bg-background ", className)}>
       <div className="px-5 sm:px-8 md:px-12 lg:px-14 xl:px-28 py-6 md:py-12">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-14">
           {/* Left */}
           <div className="text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-extrabold leading-[1.05] tracking-tight text-foreground">
               {splitLines(content.heading)}
             </h2>
 
-            <p className="mt-4 md:mt-8 max-w-xl mx-auto lg:mx-0 text-sm md:text-base xl:text-xl leading-relaxed text-muted-foreground">
-              {splitLines(content.subheading)}
+            <p className="mt-4 lg:mt-8 max-w-xl mx-auto lg:mx-0 text-sm md:text-base xl:text-xl leading-relaxed text-muted-foreground">
+              {content.subheading}
             </p>
 
             <Button
               type="button"
               onClick={() => navigate("/ai-models")}
-              className="mt-10 btn-gradient h-11 rounded-xl px-10 text-sm font-semibold text-white md:h-14 md:text-base lg:text-lg"
+              className="mt-4 lg:mt-10 btn-gradient h-11 rounded-xl px-10 text-sm font-semibold text-white md:h-14 md:text-base lg:text-lg"
             >
               {content.ctaLabel}
             </Button>

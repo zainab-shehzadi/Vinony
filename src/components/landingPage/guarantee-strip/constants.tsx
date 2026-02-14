@@ -5,8 +5,10 @@ export function CircleIcon({ children, className }: Props) {
   return (
     <div
       className={cn(
-        "mx-auto grid place-items-center btn-gradient dark:bg-[#31273F] text-white  shadow-sm",
-        "w-[91.79px] h-[91.79px] rounded-full", 
+        "mx-auto grid place-items-center text-white shadow-sm",
+        "bg-gradient-to-r to-[#805AF5] from-[#CD99FF]",
+        "dark:bg-none dark:bg-[#31273F]",
+        "w-[91.79px] h-[91.79px] rounded-full",
         className
       )}
     >

@@ -32,9 +32,9 @@ export default function TestimonialsSection({
         <SectionHeading eyebrow="Testimonials" title="What People Are Saying" />
 
         {/* ✅ sm: 1 slide, md: 2 slides */}
-        <div className="mt-10 lg:hidden">
+        <div className="mt-6 lg:mt-10 lg:hidden">
           <div ref={emblaRef} className="overflow-hidden">
-            <div className="-ml-4 flex">
+            <div className="-ml-4 pb-5 lg:pb-0 flex">
               {items.map((t) => (
                 <div
                   key={t.id}
@@ -47,7 +47,7 @@ export default function TestimonialsSection({
           </div>
 
           {/* optional dots */}
-          <div className="mt-4 flex justify-center gap-2">
+          <div className="mt-2 lg:mt-4 flex justify-center gap-2">
             <span className="h-2 w-2 rounded-full bg-primary" />
             <span className="h-2 w-2 rounded-full bg-primary" />
             <span className="h-2 w-2 rounded-full bg-primary" />

@@ -63,7 +63,7 @@ export default function ModalShell({
                 type="button"
                 aria-label="Close modal"
                 className={cn(
-                  "absolute right-4 top-4 z-50 grid h-8 w-8 place-items-center rounded-full bg-[#FF4D4D] text-white shadow-sm hover:opacity-90 transition",
+                  "absolute right-4 top-4 z-50 grid h-6 w-6 place-items-center rounded-full bg-[#FF4D4D] text-white shadow-sm hover:opacity-90 transition",
                   closeClassName
                 )}
               >

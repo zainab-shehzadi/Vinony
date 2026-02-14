@@ -35,7 +35,7 @@ export function LeftCopy({
     Array.isArray(bestSuitedFor) && bestSuitedFor.length > 0;
 
   return (
-    <div className={cn("pt-14 lg:pt-0 pl-4 md:pl-0", className)}>
+    <div className={cn("pt-8 lg:pt-0 pl-4 md:pl-0", className)}>
       <SectionHeading
         eyebrow={eyebrow}
         title={title}

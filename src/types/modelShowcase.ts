@@ -10,5 +10,6 @@ export type ModelShowcaseItem = {
   features: ShowcaseFeature[];
   ctaLabel?: string;
   imageSrc: string; // can be /public path or imported asset
+  imageDarkSrc?: string;
   imageAlt?: string;
 };

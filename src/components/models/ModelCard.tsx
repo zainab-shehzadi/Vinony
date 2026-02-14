@@ -34,12 +34,12 @@ export default function ModelCard({ item, onTry, className }: Props) {
       className={cn(
         "rounded-2xl border border-accent/20 bg-accent-foreground p-6 shadow-md dark:bg-background",
         "flex h-full flex-col",
-        className
+        className,
       )}
     >
-      {/* Header */}
+      {/* 1. TOP SECTION: Title and Price */}
       <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <h3 className="text-base font-semibold text-foreground md:text-lg lg:text-2xl">
             {item.title}
           </h3>
@@ -58,30 +58,35 @@ export default function ModelCard({ item, onTry, className }: Props) {
         </div>
       </div>
 
-      {/* Description */}
-      {item.description ? (
-        <p className="mt-5 text-sm font-medium leading-6 text-accent md:text-base">
-          {item.description}
-        </p>
-      ) : null}
+      {/* 2. MIDDLE SECTION: Description and Tags */}
+      <div className="flex flex-grow flex-col">
+        {item.description ? (
+          <p className="mt-5 line-clamp-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+            {item.description}
+          </p>
+        ) : (
+          <div className="flex-grow" />
+        )}
 
-      {/* Tags */}
-      {Array.isArray(item.tags) && item.tags.length > 0 ? (
-        <div className="mt-5 flex flex-wrap gap-3">
-          {item.tags.slice(0, 4).map((t) => (
-            <TagPill key={t.id} label={t.label} />
-          ))}
-        </div>
-      ) : null}
+        {Array.isArray(item.tags) && item.tags.length > 0 ? (
+          <div className="mt-6 flex flex-wrap gap-2">
+            {item.tags.slice(0, 4).map((t) => (
+              <TagPill key={t.id} label={t.label} />
+            ))}
+          </div>
+        ) : null}
+      </div>
 
-      {/* CTA fixed to bottom */}
-      <Button
-        type="button"
-        onClick={handleTry}
-        className="btn-gradient mt-auto h-12 w-full rounded-xl text-sm font-semibold text-white md:text-base lg:text-lg mt-2 md:mt-6"
-      >
-        {item.ctaLabel ?? "Try Now"}
-      </Button>
+      {/* 3. BOTTOM SECTION: CTA */}
+      <div className="mt-8">
+        <Button
+          type="button"
+          onClick={handleTry}
+          className="btn-gradient relative h-12 w-full overflow-hidden rounded-xl text-sm font-bold text-white md:h-14 md:text-base"
+        >
+          {item.ctaLabel ?? "Try Now"}
+        </Button>
+      </div>
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default function Chat() {
 
   return (
     // <WebContainer
-     <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pb-0 md:pt-10 xl:px-16">
+     <div className="flex w-full flex-col h-[90vh] px-4 md:px-10 md:pb-0 lg:pt-10 xl:px-16">
       <Modelbar
         models={AI_CHAT_MODELS}
         selectedModel={selectedModel}
@@ -56,7 +56,7 @@ export default function Chat() {
       )}
 
       <div
-        className={`w-full ${reqChatGenerate ? "mt-auto -mb-4 " : activeHistory ? "mt-0" : "mt-auto -mb-5 md:mt-2 lg:mt-0"}`}
+        className={`w-full ${reqChatGenerate ? "mt-auto -mb-3 lg:mb-0 2xl:-mb-7" : activeHistory ? "mt-0" : "mt-auto -mb-5 md:mt-2 lg:mt-0"}`}
       >
         <ChatInput
           selectedModel={selectedModel}

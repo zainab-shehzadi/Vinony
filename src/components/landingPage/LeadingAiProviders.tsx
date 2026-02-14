@@ -48,7 +48,10 @@ function ProviderLogo({ p }: { p: AiProvider }) {
       alt={p.logoAlt ?? p.name}
       loading="lazy"
       draggable={false}
-      className={["select-none object-contain shrink-0", p.className ?? "h-6 "].join(" ")}
+      className={[
+        "select-none object-contain shrink-0",
+        p.className ?? "h-6 ",
+      ].join(" ")}
     />
   );
 }
@@ -80,36 +83,38 @@ export default function LeadingAiProviders({
   return (
     <section className={["w-full", className ?? ""].join(" ")}>
       <div>
-
         <h2
           className={cn(
             "mt-2 lg:mt-4  font-bold text-foreground text-center",
             "text-2xl md:text-4xl xl:text-[48px]",
             "leading-tight md:leading-snug xl:leading-[1.15]",
+            "dark:bg-gradient-to-r dark:from-foreground dark:from-[10%] dark:to-[#8901FF]", 
+            "dark:bg-clip-text dark:text-transparent",
+            "animate-gradient-x",
           )}
         >
           {title}
         </h2>
-        <div className="mt-14">
+        <div className="mt-8 lg:mt-14">
           {(!marquee && (
             <div className="flex items-center justify-center">
               <ProvidersRow providers={providers} />
             </div>
           )) || (
-              <>
-                <div className="relative overflow-hidden">
-                  <div
-                    className="marquee-track flex w-max items-center"
-                    style={{ ["--dur" as any]: `${durationSec}s` }}
-                  >
-                    <ProvidersRow providers={providers} />
-                    <span className="mx-6" aria-hidden="true" />
-                    <SparkleDivider />
-                    <ProvidersRow providers={providers} />
-                  </div>
+            <>
+              <div className="relative overflow-hidden">
+                <div
+                  className="marquee-track flex w-max items-center"
+                  style={{ ["--dur" as any]: `${durationSec}s` }}
+                >
+                  <ProvidersRow providers={providers} />
+                  <span className="mx-6" aria-hidden="true" />
+                  <SparkleDivider />
+                  <ProvidersRow providers={providers} />
                 </div>
+              </div>
 
-                <style>{`
+              <style>{`
   @keyframes marquee {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
@@ -125,8 +130,8 @@ export default function LeadingAiProviders({
     .marquee-track:hover { animation-play-state: paused; }
   }
 `}</style>
-              </>
-            )}
+            </>
+          )}
         </div>
       </div>
     </section>

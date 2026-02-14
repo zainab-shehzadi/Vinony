@@ -37,7 +37,7 @@ export default function CancelSubscriptionModal({
           {loading ? "Canceling..." : "Yes, Cancel"}
         </Button>
 
-        {/* <Button
+        <Button
           type="button"
           variant="outline"
           onClick={() => onOpenChange(false)}
@@ -45,7 +45,7 @@ export default function CancelSubscriptionModal({
           className="h-12 w-full rounded-lg border-destructive text-foreground hover:bg-destructive/5 hover:text-fooreground"
         >
           Cancel
-        </Button> */}
+        </Button>
       </div>
     </ModalShell>
   );
